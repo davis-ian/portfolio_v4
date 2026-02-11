@@ -11,13 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Lottie Scroll Arrow ----------
   const arrowContainer = document.getElementById("scroll-arrow");
-  if (arrowContainer && typeof lottie !== "undefined") {
+  if (
+    arrowContainer &&
+    typeof lottie !== "undefined" &&
+    window.arrowAnimationData
+  ) {
     lottie.loadAnimation({
       container: arrowContainer,
       renderer: "svg",
       loop: true,
       autoplay: true,
-      path: "animations/arrow-left-down2.json",
+      animationData: window.arrowAnimationData,
     });
   }
 
@@ -56,6 +60,68 @@ document.addEventListener("DOMContentLoaded", () => {
     if (el) observer.observe(el);
   });
 
+  function getScrollContainer() {
+    const scroller = document.querySelector(".page-content");
+    if (
+      scroller instanceof HTMLElement &&
+      scroller.scrollHeight > scroller.clientHeight + 1
+    ) {
+      return scroller;
+    }
+    return window;
+  }
+
+  function scrollSection(target, offset = 0, block = "start", useHeading = true) {
+    const scrollContainer = getScrollContainer();
+    const heading = target.querySelector(".section-heading");
+    const scrollTarget =
+      useHeading && heading instanceof HTMLElement ? heading : target;
+
+    if (scrollContainer === window) {
+      let top =
+        window.scrollY + scrollTarget.getBoundingClientRect().top - offset;
+      if (block === "center") {
+        top -= (window.innerHeight - scrollTarget.getBoundingClientRect().height) / 2;
+      }
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      return;
+    }
+
+    let top =
+      scrollContainer.scrollTop +
+      (scrollTarget.getBoundingClientRect().top -
+        scrollContainer.getBoundingClientRect().top) -
+      offset;
+    if (block === "center") {
+      top -=
+        (scrollContainer.clientHeight - scrollTarget.getBoundingClientRect().height) /
+        2;
+    }
+    scrollContainer.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  }
+
+  // Keep Featured/Work top-aligned without section top padding.
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const section = link.getAttribute("data-section");
+      if (!section) return;
+
+      const target = document.getElementById(section);
+      if (!target) return;
+
+      event.preventDefault();
+
+      const isTopAligned = section === "featured" || section === "work";
+      if (isTopAligned) {
+        scrollSection(target, 16, "start", true);
+      } else {
+        scrollSection(target, 0, "center", false);
+      }
+
+      history.replaceState(null, "", `#${section}`);
+    });
+  });
+
   // ----------- Email Injection ------------
   function getEmail() {
     const user = "hello.iandavis";
@@ -75,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (emailNavs.length > 0) {
-    console.log(emailNavs, "email nav");
     const email = getEmail();
     Array.from(emailNavs).forEach((el) => {
       el.href = "mailto:" + email;

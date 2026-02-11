@@ -2,8 +2,8 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SRC_DIR="$ROOT_DIR/images"
-OUT_DIR="$SRC_DIR/optimized"
+SRC_DIR="$ROOT_DIR/scripts/source-images"
+OUT_DIR="$ROOT_DIR/images/optimized"
 
 if ! command -v ffmpeg >/dev/null 2>&1; then
   echo "ffmpeg is required but was not found in PATH." >&2
@@ -75,6 +75,39 @@ for entry in "${IMAGES[@]}"; do
       -q:v 3 \
       -pix_fmt yuvj420p \
       "$OUT_DIR/${base}-${target}.jpg"
+
+    ffmpeg -y -loglevel error -i "$input" \
+      -map_metadata -1 \
+      -vf "scale=${target}:-2:flags=lanczos,hue=s=0" \
+      -frames:v 1 \
+      -c:v libaom-av1 \
+      -still-picture 1 \
+      -cpu-used 6 \
+      -row-mt 1 \
+      -crf 34 \
+      -b:v 0 \
+      -pix_fmt yuv420p \
+      "$OUT_DIR/${base}-gray-${target}.avif"
+
+    ffmpeg -y -loglevel error -i "$input" \
+      -map_metadata -1 \
+      -vf "scale=${target}:-2:flags=lanczos,hue=s=0" \
+      -frames:v 1 \
+      -c:v libwebp \
+      -quality 72 \
+      -compression_level 6 \
+      -preset photo \
+      -pix_fmt yuv420p \
+      "$OUT_DIR/${base}-gray-${target}.webp"
+
+    ffmpeg -y -loglevel error -i "$input" \
+      -map_metadata -1 \
+      -vf "scale=${target}:-2:flags=lanczos,hue=s=0" \
+      -frames:v 1 \
+      -c:v mjpeg \
+      -q:v 3 \
+      -pix_fmt yuvj420p \
+      "$OUT_DIR/${base}-gray-${target}.jpg"
   done
 
 done
