@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FFmpeg WebAssembly Thumbnail Clipper – Ian Davis</title>
+    <meta name="description" content="Client-side video thumbnail clipping using FFmpeg compiled to WebAssembly." />
+    <link rel="icon" href="../favicon.ico" />
+    <link rel="preload" href="../fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+    <div class="site-wrapper">
+
+        <nav class="side-nav">
+            <header>
+                <div class="nav-links">
+                    <p><a href="../index.html#featured" class="nav-link">Featured<span class="underline-bar"></span></a></p>
+                    <p><a href="../index.html#work" class="nav-link">Work<span class="underline-bar"></span></a></p>
+                    <p><a href="../index.html#about" class="nav-link">About<span class="underline-bar"></span></a></p>
+                    <p><a href="../index.html#experience" class="nav-link">Experience<span class="underline-bar"></span></a></p>
+                </div>
+                <div class="contact-links">
+                    <h3>Contact</h3>
+                    <p><a href="mailto:iandaviswebdev@gmail.com" class="nav-link">Mail<span class="underline-bar"></span></a></p>
+                    <p><a href="https://www.linkedin.com/in/iandaviswebdev/" class="nav-link" target="_blank">LinkedIn<span class="underline-bar"></span></a></p>
+                    <p><a href="https://github.com/davis-ian" class="nav-link" target="_blank">Github<span class="underline-bar"></span></a></p>
+                </div>
+            </header>
+        </nav>
+
+        <div class="main-content">
+            <div class="project-page">
+                <section class="project-inner">
+                    <h1 class="project-title">FFmpeg WebAssembly Thumbnail Clipper</h1>
+                    <p class="project-tagline">Client-side video thumbnail clipping using FFmpeg compiled to WebAssembly.</p>
+
+                    <img src="../images/clipper2.png" alt="FFmpeg Clipper cover" class="project-cover" width="4000" height="2666" />
+
+                    <div class="project-actions">
+                        <button class="btn btn-primary" onclick="window.open('https://thumbnail.iandavis.dev/', '_blank')">Live Demo</button>
+                        <button class="btn btn-secondary" onclick="window.open('https://github.com/davis-ian/ffmpeg_wa', '_blank')">GitHub</button>
+                    </div>
+
+                    <div class="project-description">
+                        <p>
+                            <strong>FFmpeg WebAssembly Clipper</strong> is a browser-based tool that allows users to clip thumbnails from local
+                            video files — entirely client-side. Built with <strong>FFmpeg.wasm</strong>, this project eliminates the need for file uploads or
+                            server processing by running FFmpeg directly in the browser via WebAssembly.
+                        </p>
+                        <p>
+                            This project explores the potential of high-performance native tools like FFmpeg being ported to the web.
+                            It demonstrates the power of WebAssembly for enabling complex video operations within the browser sandbox,
+                            without any backend dependencies.
+                        </p>
+                        <p>
+                            Users can load local video files, scrub through frames, and extract high-resolution thumbnail clips
+                            in seconds — ideal for developers, content creators, or media platforms seeking lightweight tooling.
+                        </p>
+                    </div>
+
+                    <div class="highlights">
+                        <h3>Highlights</h3>
+                        <div>
+                            <div class="highlight-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M152,96H104a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V104A8,8,0,0,0,152,96Zm-8,48H112V112h32ZM228,128a100.11,100.11,0,0,1-100,100,8,8,0,0,1,0-16,84,84,0,0,0,0-168,8,8,0,0,1,0-16A100.11,100.11,0,0,1,228,128ZM128,28a100.11,100.11,0,0,0-100,100,8,8,0,0,0,16,0,84,84,0,0,1,84-84,8,8,0,0,0,0-16Z"/></svg>
+                                <p>100% client-side FFmpeg video processing using FFmpeg.wasm.</p>
+                            </div>
+                            <hr class="highlight-divider" />
+                            <div class="highlight-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M164.44,105.34l-48-32A8,8,0,0,0,104,80v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,129.05V95l25.58,17ZM216,40H40A16,16,0,0,0,24,56V168a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,128H40V56H216V168Zm16,40a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16H224A8,8,0,0,1,232,208Z"/></svg>
+                                <p>Efficient video loading and frame extraction with zero upload delay.</p>
+                            </div>
+                            <hr class="highlight-divider" />
+                            <div class="highlight-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,88Zm0,40a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm0,40a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,168Z"/></svg>
+                                <p>Interactive UI with real-time video scrubbing and frame preview.</p>
+                            </div>
+                            <hr class="highlight-divider" />
+                            <div class="highlight-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40H48A16,16,0,0,0,32,56V200a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40Zm0,160H48V56H208V200Zm-42.34-93.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l42.34-42.35A8,8,0,0,1,165.66,106.34Z"/></svg>
+                                <p>No server — ideal for privacy and portability.</p>
+                            </div>
+                            <hr class="highlight-divider" />
+                            <div class="highlight-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M165.78,224H208a16,16,0,0,0,16-16V170.35A8,8,0,0,0,220.24,163l-40.06-28.43a8,8,0,0,0-10.19.6l-16,15A76.35,76.35,0,0,1,112,112.51l15-16a8,8,0,0,0,.6-10.19L99.22,46.24A8,8,0,0,0,92,43.31L64,48A16,16,0,0,0,48,64,176.13,176.13,0,0,0,165.78,224Z"/></svg>
+                                <p>Modular setup ready for expanding to trim/crop/transcode workflows.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <div>
+                            <h3>Tech Stack</h3>
+                            <div class="chip-group">
+                                <span class="chip">Vue 3</span>
+                                <span class="chip">FFmpeg.wasm</span>
+                                <span class="chip">TypeScript</span>
+                                <span class="chip">Vite</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>My Role</h3>
+                            <p>Full-stack Developer (solo)</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="site-footer">
+                <p class="footer-label">Contact</p>
+                <div class="footer-links">
+                    <a href="mailto:iandaviswebdev@gmail.com">Mail</a>
+                    <a href="https://linkedin.com/in/iandaviswebdev" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/davis-ian" target="_blank">GitHub</a>
+                </div>
+                <div class="copyright" id="copyright"></div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('copyright').textContent = '\u00A9 ' + new Date().getFullYear() + ' Ian Davis';
+    </script>
+</body>
+</html>
