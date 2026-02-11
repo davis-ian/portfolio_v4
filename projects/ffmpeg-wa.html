@@ -1,129 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FFmpeg WebAssembly Thumbnail Clipper – Ian Davis</title>
-    <meta name="description" content="Client-side video thumbnail clipping using FFmpeg compiled to WebAssembly." />
+    <title>ffmpeg-wa – Ian Davis</title>
+    <meta
+      name="description"
+      content="Client-side video processing using FFmpeg compiled to WebAssembly."
+    />
     <link rel="icon" href="../favicon.ico" />
-    <link rel="preload" href="../fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../css/main.css" />
-</head>
-<body>
-    <div class="site-wrapper">
+  </head>
+  <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
 
-        <nav class="side-nav">
-            <header>
-                <div class="nav-links">
-                    <p><a href="../index.html#featured" class="nav-link">Featured<span class="underline-bar"></span></a></p>
-                    <p><a href="../index.html#work" class="nav-link">Work<span class="underline-bar"></span></a></p>
-                    <p><a href="../index.html#about" class="nav-link">About<span class="underline-bar"></span></a></p>
-                    <p><a href="../index.html#experience" class="nav-link">Experience<span class="underline-bar"></span></a></p>
+    <div class="site-wrapper">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <span class="explorer-label">EXPLORER</span>
+        </div>
+        <nav class="file-tree">
+          <div class="folder open">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <span class="folder-toggle">▼</span>
+              <span>PORTFOLIO</span>
+            </div>
+            <div class="folder-contents">
+              <a href="../index.html" class="file">
+                <span class="file-prefix">-</span>
+                <span>README.md</span>
+              </a>
+              <div class="folder open">
+                <div class="folder-header" onclick="toggleFolder(this)">
+                  <span class="folder-toggle">▼</span>
+                  <span>projects</span>
                 </div>
-                <div class="contact-links">
-                    <h3>Contact</h3>
-                    <p><a class="nav-link email-nav">Mail<span class="underline-bar"></span></a></p>
-                    <p><a href="https://www.linkedin.com/in/iandaviswebdev/" class="nav-link" target="_blank">LinkedIn<span class="underline-bar"></span></a></p>
-                    <p><a href="https://github.com/davis-ian" class="nav-link" target="_blank">Github<span class="underline-bar"></span></a></p>
+                <div class="folder-contents">
+                  <a href="forma.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>forma.js</span>
+                  </a>
+                  <a href="upnext.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>upnext.js</span>
+                  </a>
+                  <a href="callsign.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>callsign.js</span>
+                  </a>
+                  <a href="minigames.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>minigames.js</span>
+                  </a>
                 </div>
-            </header>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+          <span class="crumb">~/iandavis</span>
+          <span class="crumb-separator">/</span>
+          <span class="crumb">projects</span>
+          <span class="crumb-separator">/</span>
+          <span class="crumb active">ffmpeg-wa.js</span>
         </nav>
 
-        <div class="main-content">
-            <div class="project-page">
-                <section class="project-inner">
-                    <h1 class="project-title">FFmpeg WebAssembly Thumbnail Clipper</h1>
-                    <p class="project-tagline">Client-side video thumbnail clipping using FFmpeg compiled to WebAssembly.</p>
-
-                    <picture>
-                        <source type="image/avif" srcset="../images/optimized/clipper-640.avif 640w, ../images/optimized/clipper-960.avif 960w, ../images/optimized/clipper-1280.avif 1280w, ../images/optimized/clipper-1600.avif 1600w, ../images/optimized/clipper-2200.avif 2200w" sizes="(min-width: 1200px) 1152px, 100vw" />
-                        <source type="image/webp" srcset="../images/optimized/clipper-640.webp 640w, ../images/optimized/clipper-960.webp 960w, ../images/optimized/clipper-1280.webp 1280w, ../images/optimized/clipper-1600.webp 1600w, ../images/optimized/clipper-2200.webp 2200w" sizes="(min-width: 1200px) 1152px, 100vw" />
-                        <img src="../images/optimized/clipper-1280.jpg" srcset="../images/optimized/clipper-640.jpg 640w, ../images/optimized/clipper-960.jpg 960w, ../images/optimized/clipper-1280.jpg 1280w, ../images/optimized/clipper-1600.jpg 1600w, ../images/optimized/clipper-2200.jpg 2200w" sizes="(min-width: 1200px) 1152px, 100vw" alt="FFmpeg Clipper cover" class="project-cover" width="4000" height="2666" decoding="async" />
-                    </picture>
-
-                    <div class="project-actions">
-                        <button class="btn btn-primary" onclick="window.open('https://thumbnail.iandavis.dev/', '_blank')">Live Demo</button>
-                        <button class="btn btn-secondary" onclick="window.open('https://github.com/davis-ian/ffmpeg_wa', '_blank')">GitHub</button>
-                    </div>
-
-                    <div class="project-description">
-                        <p>
-                            <strong>FFmpeg WebAssembly Clipper</strong> is a browser-based tool that allows users to clip thumbnails from local
-                            video files — entirely client-side. Built with <strong>FFmpeg.wasm</strong>, this project eliminates the need for file uploads or
-                            server processing by running FFmpeg directly in the browser via WebAssembly.
-                        </p>
-                        <p>
-                            This project explores the potential of high-performance native tools like FFmpeg being ported to the web.
-                            It demonstrates the power of WebAssembly for enabling complex video operations within the browser sandbox,
-                            without any backend dependencies.
-                        </p>
-                        <p>
-                            Users can load local video files, scrub through frames, and extract high-resolution thumbnail clips
-                            in seconds — ideal for developers, content creators, or media platforms seeking lightweight tooling.
-                        </p>
-                    </div>
-
-                    <div class="highlights">
-                        <h3>Highlights</h3>
-                        <div>
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M152,96H104a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V104A8,8,0,0,0,152,96Zm-8,48H112V112h32ZM228,128a100.11,100.11,0,0,1-100,100,8,8,0,0,1,0-16,84,84,0,0,0,0-168,8,8,0,0,1,0-16A100.11,100.11,0,0,1,228,128ZM128,28a100.11,100.11,0,0,0-100,100,8,8,0,0,0,16,0,84,84,0,0,1,84-84,8,8,0,0,0,0-16Z"/></svg>
-                                <p>100% client-side FFmpeg video processing using FFmpeg.wasm.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M164.44,105.34l-48-32A8,8,0,0,0,104,80v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,129.05V95l25.58,17ZM216,40H40A16,16,0,0,0,24,56V168a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,128H40V56H216V168Zm16,40a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16H224A8,8,0,0,1,232,208Z"/></svg>
-                                <p>Efficient video loading and frame extraction with zero upload delay.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,88Zm0,40a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm0,40a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,168Z"/></svg>
-                                <p>Interactive UI with real-time video scrubbing and frame preview.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40H48A16,16,0,0,0,32,56V200a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40Zm0,160H48V56H208V200Zm-42.34-93.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l42.34-42.35A8,8,0,0,1,165.66,106.34Z"/></svg>
-                                <p>No server — ideal for privacy and portability.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M165.78,224H208a16,16,0,0,0,16-16V170.35A8,8,0,0,0,220.24,163l-40.06-28.43a8,8,0,0,0-10.19.6l-16,15A76.35,76.35,0,0,1,112,112.51l15-16a8,8,0,0,0,.6-10.19L99.22,46.24A8,8,0,0,0,92,43.31L64,48A16,16,0,0,0,48,64,176.13,176.13,0,0,0,165.78,224Z"/></svg>
-                                <p>Modular setup ready for expanding to trim/crop/transcode workflows.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-meta">
-                        <div>
-                            <h3 class="accent">Tech Stack</h3>
-                            <div class="chip-group">
-                                <span class="chip">Vue 3</span>
-                                <span class="chip">FFmpeg.wasm</span>
-                                <span class="chip">TypeScript</span>
-                                <span class="chip">Vite</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="accent">My Role</h3>
-                            <p>Full-stack Developer (solo)</p>
-                        </div>
-                    </div>
-                </section>
+        <div class="page-content">
+          <section class="hero">
+            <div class="hero-header">
+              <h1 class="hero-title">ffmpeg-wa</h1>
+              <p class="hero-subtitle">WebAssembly Video Processing</p>
             </div>
+            <p class="hero-description">
+              A browser-based video thumbnail clipping tool using FFmpeg compiled
+              to WebAssembly. Process videos entirely client-side without uploads.
+            </p>
+            <div class="hero-meta">
+              <div class="meta-item">
+                <span class="meta-label">Stack</span>
+                <span class="meta-value">Vue 3, FFmpeg.wasm</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2024</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-value">Live</span>
+              </div>
+            </div>
+          </section>
 
-            <footer class="site-footer">
-                <p class="footer-label">Contact</p>
-                <div class="footer-links">
-                    <a class="email-nav">Mail</a>
-                    <a href="https://linkedin.com/in/iandaviswebdev" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/davis-ian" target="_blank">GitHub</a>
-                </div>
-                <div class="copyright" id="copyright"></div>
-            </footer>
+          <section class="section">
+            <h2 class="section-heading">Demo</h2>
+            <div style="background: var(--bg-secondary); border: 1px solid var(--color-border); overflow: hidden;">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    ../images/optimized/clipper-640.avif   640w,
+                    ../images/optimized/clipper-960.avif   960w,
+                    ../images/optimized/clipper-1280.avif 1280w,
+                    ../images/optimized/clipper-1600.avif 1600w,
+                    ../images/optimized/clipper-2200.avif 2200w
+                  "
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
+                    ../images/optimized/clipper-640.webp   640w,
+                    ../images/optimized/clipper-960.webp   960w,
+                    ../images/optimized/clipper-1280.webp 1280w,
+                    ../images/optimized/clipper-1600.webp 1600w,
+                    ../images/optimized/clipper-2200.webp 2200w
+                  "
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                />
+                <img
+                  src="../images/optimized/clipper-1280.jpg"
+                  srcset="
+                    ../images/optimized/clipper-640.jpg   640w,
+                    ../images/optimized/clipper-960.jpg   960w,
+                    ../images/optimized/clipper-1280.jpg 1280w,
+                    ../images/optimized/clipper-1600.jpg 1600w,
+                    ../images/optimized/clipper-2200.jpg 2200w
+                  "
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                  alt="FFmpeg Clipper cover"
+                  class="project-cover"
+                  width="4000"
+                  height="2666"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+            <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+              <a href="https://thumbnail.iandavis.dev/" target="_blank" class="btn btn-primary">
+                [>] Live Demo
+              </a>
+              <a href="../index.html" class="btn">
+                [<] Back
+              </a>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-heading">About</h2>
+            <p class="mb-4">
+              <strong>FFmpeg WebAssembly Clipper</strong> is a browser-based tool
+              that allows users to clip thumbnails from local video files —
+              entirely client-side. Built with <strong>FFmpeg.wasm</strong>, this
+              project eliminates the need for file uploads or server processing
+              by running FFmpeg directly in the browser via WebAssembly.
+            </p>
+            <p class="mb-4">
+              This project explores the potential of high-performance native tools
+              like FFmpeg being ported to the web. It demonstrates the power of
+              WebAssembly for enabling complex video operations within the browser
+              sandbox, without any backend dependencies.
+            </p>
+            <p class="mb-4">
+              Users can load local video files, scrub through frames, and extract
+              high-resolution thumbnail clips in seconds — ideal for developers,
+              content creators, or media platforms seeking lightweight tooling.
+            </p>
+            <div class="chip-group mt-4">
+              <span class="chip">Vue 3</span>
+              <span class="chip">FFmpeg.wasm</span>
+              <span class="chip">WebAssembly</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">Vite</span>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-heading">Features</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-date">Processing</span>
+                <h3 class="timeline-role">Client-Side FFmpeg</h3>
+                <p class="timeline-description">
+                  100% client-side FFmpeg video processing using FFmpeg.wasm
+                  with no server uploads required.
+                </p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">Performance</span>
+                <h3 class="timeline-role">Instant Loading</h3>
+                <p class="timeline-description">
+                  Efficient video loading and frame extraction with zero upload
+                  delay or bandwidth concerns.
+                </p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">Interface</span>
+                <h3 class="timeline-role">Interactive Scrubbing</h3>
+                <p class="timeline-description">
+                  Interactive UI with real-time video scrubbing and frame
+                  preview for precise thumbnail selection.
+                </p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">Privacy</span>
+                <h3 class="timeline-role">No Server Required</h3>
+                <p class="timeline-description">
+                  No server communication means complete privacy — videos never
+                  leave the user's device.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
+      </main>
+
+      <!-- Status Bar -->
+      <footer class="status-bar">
+        <div class="status-left">
+          <span class="status-item">design3</span>
+          <span class="status-item">ffmpeg-wa.js</span>
+          <span class="status-item">UTF-8</span>
+        </div>
+        <div class="status-right">
+          <span class="status-item">Ln 1, Col 1</span>
+          <span class="status-item">3.9 KB</span>
+          <span class="status-item">JavaScript</span>
+        </div>
+      </footer>
     </div>
 
-    <script src="../js/main.js" defer></script>
-</body>
+    <!-- Command Palette -->
+    <div class="command-palette-overlay" id="command-palette">
+      <div class="command-palette">
+        <div class="command-input-wrapper">
+          <input
+            type="text"
+            class="command-input"
+            id="command-input"
+            placeholder="Type a command or search..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="command-list" id="command-list"></div>
+      </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+      // Override commands for project page
+      COMMANDS.length = 0;
+      COMMANDS.push(
+        { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
+        { id: 'forma', label: 'Go to: Forma Project', action: () => window.location.href = 'forma.html', category: 'Projects' },
+        { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
+        { id: 'callsign', label: 'Go to: Callsign Project', action: () => window.location.href = 'callsign.html', category: 'Projects' },
+        { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
+        { id: 'demo', label: 'Open: Live Demo', action: () => window.open('https://thumbnail.iandavis.dev/', '_blank'), category: 'Actions' },
+        { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
+        { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
+        { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
+        { id: 'palette', label: 'Toggle: Command Palette', action: toggleCommandPalette, category: 'Actions', key: '⌘K' }
+      );
+    </script>
+  </body>
 </html>
