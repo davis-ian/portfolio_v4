@@ -1,124 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UpNext – Ian Davis</title>
-    <meta name="description" content="Track what you watch. Share what you love." />
+    <meta
+      name="description"
+      content="Track what you watch. Share what you love."
+    />
     <link rel="icon" href="../favicon.ico" />
-    <link rel="preload" href="../fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="../fonts/Satoshi-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="../fonts/Satoshi-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="../css/main.css" />
-</head>
-<body>
+  </head>
+  <body>
     <div class="site-wrapper">
+      <nav class="side-nav">
+        <header>
+          <div class="nav-links">
+            <p>
+              <a href="../index.html#featured" class="nav-link"
+                >Featured<span class="underline-bar"></span
+              ></a>
+            </p>
+            <p>
+              <a href="../index.html#work" class="nav-link"
+                >Work<span class="underline-bar"></span
+              ></a>
+            </p>
+            <p>
+              <a href="../index.html#about" class="nav-link"
+                >About<span class="underline-bar"></span
+              ></a>
+            </p>
+            <p>
+              <a href="../index.html#experience" class="nav-link"
+                >Experience<span class="underline-bar"></span
+              ></a>
+            </p>
+          </div>
+          <div class="contact-links">
+            <h3>Contact</h3>
+            <p>
+              <a href="mailto:iandaviswebdev@gmail.com" class="nav-link"
+                >Mail<span class="underline-bar"></span
+              ></a>
+            </p>
+            <p>
+              <a
+                href="https://www.linkedin.com/in/iandaviswebdev/"
+                class="nav-link"
+                target="_blank"
+                >LinkedIn<span class="underline-bar"></span
+              ></a>
+            </p>
+            <p>
+              <a
+                href="https://github.com/davis-ian"
+                class="nav-link"
+                target="_blank"
+                >Github<span class="underline-bar"></span
+              ></a>
+            </p>
+          </div>
+        </header>
+      </nav>
 
-        <nav class="side-nav">
-            <header>
-                <div class="nav-links">
-                    <p><a href="../index.html#featured" class="nav-link">Featured<span class="underline-bar"></span></a></p>
-                    <p><a href="../index.html#work" class="nav-link">Work<span class="underline-bar"></span></a></p>
-                    <p><a href="../index.html#about" class="nav-link">About<span class="underline-bar"></span></a></p>
-                    <p><a href="../index.html#experience" class="nav-link">Experience<span class="underline-bar"></span></a></p>
-                </div>
-                <div class="contact-links">
-                    <h3>Contact</h3>
-                    <p><a href="mailto:iandaviswebdev@gmail.com" class="nav-link">Mail<span class="underline-bar"></span></a></p>
-                    <p><a href="https://www.linkedin.com/in/iandaviswebdev/" class="nav-link" target="_blank">LinkedIn<span class="underline-bar"></span></a></p>
-                    <p><a href="https://github.com/davis-ian" class="nav-link" target="_blank">Github<span class="underline-bar"></span></a></p>
-                </div>
-            </header>
-        </nav>
+      <div class="main-content">
+        <div class="project-page">
+          <section class="project-inner">
+            <h1 class="project-title">UpNext</h1>
+            <p class="project-tagline">
+              Track what you watch. Share what you love.
+            </p>
 
-        <div class="main-content">
-            <div class="project-page">
-                <section class="project-inner">
-                    <h1 class="project-title">UpNext</h1>
-                    <p class="project-tagline">Track what you watch. Share what you love.</p>
+            <picture>
+              <source
+                type="image/avif"
+                srcset="
+                  ../images/optimized/upnext-640.avif   640w,
+                  ../images/optimized/upnext-960.avif   960w,
+                  ../images/optimized/upnext-1280.avif 1280w,
+                  ../images/optimized/upnext-1600.avif 1600w,
+                  ../images/optimized/upnext-2200.avif 2200w
+                "
+                sizes="(min-width: 1200px) 1152px, 100vw"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  ../images/optimized/upnext-640.webp   640w,
+                  ../images/optimized/upnext-960.webp   960w,
+                  ../images/optimized/upnext-1280.webp 1280w,
+                  ../images/optimized/upnext-1600.webp 1600w,
+                  ../images/optimized/upnext-2200.webp 2200w
+                "
+                sizes="(min-width: 1200px) 1152px, 100vw"
+              />
+              <img
+                src="../images/optimized/upnext-1280.jpg"
+                srcset="
+                  ../images/optimized/upnext-640.jpg   640w,
+                  ../images/optimized/upnext-960.jpg   960w,
+                  ../images/optimized/upnext-1280.jpg 1280w,
+                  ../images/optimized/upnext-1600.jpg 1600w,
+                  ../images/optimized/upnext-2200.jpg 2200w
+                "
+                sizes="(min-width: 1200px) 1152px, 100vw"
+                alt="UpNext cover"
+                class="project-cover"
+                width="4000"
+                height="2667"
+                decoding="async"
+              />
+            </picture>
 
-                    <picture>
-                        <source type="image/avif" srcset="../images/optimized/upnext-640.avif 640w, ../images/optimized/upnext-960.avif 960w, ../images/optimized/upnext-1280.avif 1280w, ../images/optimized/upnext-1600.avif 1600w, ../images/optimized/upnext-2200.avif 2200w" sizes="(min-width: 1200px) 1152px, 100vw" />
-                        <source type="image/webp" srcset="../images/optimized/upnext-640.webp 640w, ../images/optimized/upnext-960.webp 960w, ../images/optimized/upnext-1280.webp 1280w, ../images/optimized/upnext-1600.webp 1600w, ../images/optimized/upnext-2200.webp 2200w" sizes="(min-width: 1200px) 1152px, 100vw" />
-                        <img src="../images/optimized/upnext-1280.jpg" srcset="../images/optimized/upnext-640.jpg 640w, ../images/optimized/upnext-960.jpg 960w, ../images/optimized/upnext-1280.jpg 1280w, ../images/optimized/upnext-1600.jpg 1600w, ../images/optimized/upnext-2200.jpg 2200w" sizes="(min-width: 1200px) 1152px, 100vw" alt="UpNext cover" class="project-cover" width="4000" height="2667" decoding="async" />
-                    </picture>
-
-                    <div class="project-actions">
-                        <button class="btn btn-primary" onclick="window.open('https://upnext.iandavis.dev/', '_blank')">Live Demo</button>
-                        <button class="btn btn-secondary" onclick="window.open('https://github.com/davis-ian?tab=repositories&q=upnext&type=public&language=&sort=', '_blank')">GitHub</button>
-                    </div>
-
-                    <div class="project-description">
-                        <p><strong>UpNext</strong> is a collaborative watchlist platform where users can keep track of movies and shows they want to watch—and share lists with others. It's designed to be social and easy to use, combining the simplicity of a to-do list with the richness of a streaming companion app.</p>
-                        <p>Authentication is handled by <strong>Auth0</strong>, and data is persisted with <strong>PostgreSQL</strong> via Railway. The app fetches title metadata, trailers, and cover art using the TMDB API.</p>
-                        <p>The backend is written in <strong>TypeScript</strong> with <strong>Express</strong>, while the frontend is built using <strong>Vue 3</strong> and <strong>Tailwind CSS</strong>.</p>
-                    </div>
-
-                    <div class="highlights">
-                        <h3>Highlights</h3>
-                        <div>
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM64,112a24,24,0,1,0-23.24-30A8,8,0,1,1,25.26,78,40,40,0,1,1,91,117.51a67.94,67.94,0,0,1,27.43,21.68,8,8,0,0,1-13.84,8A51.6,51.6,0,0,0,64,128a8,8,0,0,1,0-16Z"/></svg>
-                                <p>Users can create shared watchlists to collaborate with friends.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
-                                <p>Tracks which shows and movies each user has watched.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H216v72l-2.64-2.64a16,16,0,0,0-22.63,0L138.09,178l-26.73-26.74a16,16,0,0,0-22.63,0L40,200V56Z"/></svg>
-                                <p>Integrates with TMDB for title data, images, and trailers.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M160,16A80.07,80.07,0,0,0,83.91,120.78L26.34,178.34A8,8,0,0,0,24,184v40a8,8,0,0,0,8,8H72a8,8,0,0,0,8-8V208H96a8,8,0,0,0,8-8V184h16a8,8,0,0,0,5.66-2.34l9.56-9.57A80,80,0,1,0,160,16Zm0,144a63.7,63.7,0,0,1-23.65-4.52,8,8,0,0,0-8.84,1.68L116.69,168H96a8,8,0,0,0-8,8v16H72a8,8,0,0,0-8,8v16H40V187.31l58.83-58.82a8,8,0,0,0,1.68-8.84A64,64,0,1,1,160,160Zm32-84a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg>
-                                <p>Auth0 handles secure authentication and session management.</p>
-                            </div>
-                            <hr class="highlight-divider" />
-                            <div class="highlight-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h72A8,8,0,0,1,176,128Zm0-32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h72A8,8,0,0,1,176,96Zm0,64a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h72A8,8,0,0,1,176,160Z"/></svg>
-                                <p>PostgreSQL hosted on Railway stores user lists and activity.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-meta">
-                        <div>
-                            <h3>Tech Stack</h3>
-                            <div class="chip-group">
-                                <span class="chip">TypeScript</span>
-                                <span class="chip">Node.js</span>
-                                <span class="chip">Express</span>
-                                <span class="chip">PostgreSQL (Railway)</span>
-                                <span class="chip">Auth0</span>
-                                <span class="chip">TMDB API</span>
-                                <span class="chip">Vue 3</span>
-                                <span class="chip">Tailwind CSS</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3>My Role</h3>
-                            <p>Full-stack Developer (Frontend + Backend)</p>
-                        </div>
-                    </div>
-                </section>
+            <div class="project-actions">
+              <button
+                class="btn btn-primary"
+                onclick="window.open('https://upnext.iandavis.dev/', '_blank')"
+              >
+                Live Demo
+              </button>
+              <button
+                class="btn btn-secondary"
+                onclick="
+                  window.open(
+                    'https://github.com/davis-ian?tab=repositories&q=upnext&type=public&language=&sort=',
+                    '_blank',
+                  )
+                "
+              >
+                GitHub
+              </button>
             </div>
 
-            <footer class="site-footer">
-                <p class="footer-label">Contact</p>
-                <div class="footer-links">
-                    <a href="mailto:iandaviswebdev@gmail.com">Mail</a>
-                    <a href="https://linkedin.com/in/iandaviswebdev" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/davis-ian" target="_blank">GitHub</a>
+            <div class="project-description">
+              <p>
+                <strong>UpNext</strong> is a collaborative watchlist platform
+                where users can keep track of movies and shows they want to
+                watch and share lists with others. It's designed to be social
+                and easy to use, combining the simplicity of a to-do list with
+                the richness of a streaming companion app.
+              </p>
+              <p>
+                Authentication is handled by <strong>Auth0</strong>, and data is
+                persisted with <strong>PostgreSQL</strong> via Railway. The app
+                fetches title metadata, trailers, and cover art using the TMDB
+                API.
+              </p>
+              <p>
+                The backend is written in <strong>TypeScript</strong> with
+                <strong>Express</strong>, while the frontend is built using
+                <strong>Vue 3</strong> and <strong>Tailwind CSS</strong>.
+              </p>
+            </div>
+
+            <div class="highlights">
+              <h3>Highlights</h3>
+              <div>
+                <div class="highlight-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 256 256"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM64,112a24,24,0,1,0-23.24-30A8,8,0,1,1,25.26,78,40,40,0,1,1,91,117.51a67.94,67.94,0,0,1,27.43,21.68,8,8,0,0,1-13.84,8A51.6,51.6,0,0,0,64,128a8,8,0,0,1,0-16Z"
+                    />
+                  </svg>
+                  <p>
+                    Users can create shared watchlists to collaborate with
+                    friends.
+                  </p>
                 </div>
-                <div class="copyright" id="copyright"></div>
-            </footer>
+                <hr class="highlight-divider" />
+                <div class="highlight-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 256 256"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"
+                    />
+                  </svg>
+                  <p>Tracks which shows and movies each user has watched.</p>
+                </div>
+                <hr class="highlight-divider" />
+                <div class="highlight-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 256 256"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H216v72l-2.64-2.64a16,16,0,0,0-22.63,0L138.09,178l-26.73-26.74a16,16,0,0,0-22.63,0L40,200V56Z"
+                    />
+                  </svg>
+                  <p>
+                    Integrates with TMDB for title data, images, and trailers.
+                  </p>
+                </div>
+                <hr class="highlight-divider" />
+                <div class="highlight-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 256 256"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M160,16A80.07,80.07,0,0,0,83.91,120.78L26.34,178.34A8,8,0,0,0,24,184v40a8,8,0,0,0,8,8H72a8,8,0,0,0,8-8V208H96a8,8,0,0,0,8-8V184h16a8,8,0,0,0,5.66-2.34l9.56-9.57A80,80,0,1,0,160,16Zm0,144a63.7,63.7,0,0,1-23.65-4.52,8,8,0,0,0-8.84,1.68L116.69,168H96a8,8,0,0,0-8,8v16H72a8,8,0,0,0-8,8v16H40V187.31l58.83-58.82a8,8,0,0,0,1.68-8.84A64,64,0,1,1,160,160Zm32-84a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
+                    />
+                  </svg>
+                  <p>
+                    Auth0 handles secure authentication and session management.
+                  </p>
+                </div>
+                <hr class="highlight-divider" />
+                <div class="highlight-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 256 256"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h72A8,8,0,0,1,176,128Zm0-32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h72A8,8,0,0,1,176,96Zm0,64a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h72A8,8,0,0,1,176,160Z"
+                    />
+                  </svg>
+                  <p>
+                    PostgreSQL hosted on Railway stores user lists and activity.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-meta">
+              <div>
+                <h3>Tech Stack</h3>
+                <div class="chip-group">
+                  <span class="chip">TypeScript</span>
+                  <span class="chip">Node.js</span>
+                  <span class="chip">Express</span>
+                  <span class="chip">PostgreSQL (Railway)</span>
+                  <span class="chip">Auth0</span>
+                  <span class="chip">TMDB API</span>
+                  <span class="chip">Vue 3</span>
+                  <span class="chip">Tailwind CSS</span>
+                </div>
+              </div>
+              <div>
+                <h3>My Role</h3>
+                <p>Full-stack Developer (Frontend + Backend)</p>
+              </div>
+            </div>
+          </section>
         </div>
+
+        <footer class="site-footer">
+          <p class="footer-label">Contact</p>
+          <div class="footer-links">
+            <a href="mailto:iandaviswebdev@gmail.com">Mail</a>
+            <a href="https://linkedin.com/in/iandaviswebdev" target="_blank"
+              >LinkedIn</a
+            >
+            <a href="https://github.com/davis-ian" target="_blank">GitHub</a>
+          </div>
+          <div class="copyright" id="copyright"></div>
+        </footer>
+      </div>
     </div>
 
     <script>
-        document.getElementById('copyright').textContent = '\u00A9 ' + new Date().getFullYear() + ' Ian Davis';
+      document.getElementById("copyright").textContent =
+        "\u00A9 " + new Date().getFullYear() + " Ian Davis";
     </script>
-</body>
+  </body>
 </html>

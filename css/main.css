@@ -54,7 +54,7 @@
 /* ---------- Dark theme ---------- */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-brand-bg: #121212;
+    --color-brand-bg: #0e0e0e;
     --color-surface: #1a1a1a;
     --color-text-primary: #e8e8e8;
     --color-text-secondary: #999999;
@@ -371,6 +371,13 @@ html {
   padding-left: 0;
 }
 
+@media (max-width: 767px) {
+  #featured .section-heading,
+  #work .section-heading {
+    padding-left: 1.25rem;
+  }
+}
+
 #featured .section-heading .lottie-arrow {
   width: 40px;
   height: 40px;
@@ -473,6 +480,13 @@ html {
 
 .featured-info {
   padding: 1rem 0;
+}
+
+@media (max-width: 767px) {
+  #featured .featured-info {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
 .featured-info p {
