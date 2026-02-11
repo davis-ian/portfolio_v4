@@ -147,6 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function openResume() {
+    window.open("iandavis_resume2026.pdf", "_blank", "noopener");
+  }
+
+  const resumebtn = document.getElementById("resume-btn");
+  if (resumebtn) {
+    resumebtn.addEventListener("click", openResume);
+  }
   // Initialize
   updateNavHighlight("featured");
 });
