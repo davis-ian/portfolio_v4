@@ -36,7 +36,11 @@
                     <h1 class="project-title">UpNext</h1>
                     <p class="project-tagline">Track what you watch. Share what you love.</p>
 
-                    <img src="../images/upnext.png" alt="UpNext cover" class="project-cover" width="4000" height="2667" />
+                    <picture>
+                        <source type="image/avif" srcset="../images/optimized/upnext-640.avif 640w, ../images/optimized/upnext-960.avif 960w, ../images/optimized/upnext-1280.avif 1280w, ../images/optimized/upnext-1600.avif 1600w, ../images/optimized/upnext-2200.avif 2200w" sizes="(min-width: 1200px) 1152px, 100vw" />
+                        <source type="image/webp" srcset="../images/optimized/upnext-640.webp 640w, ../images/optimized/upnext-960.webp 960w, ../images/optimized/upnext-1280.webp 1280w, ../images/optimized/upnext-1600.webp 1600w, ../images/optimized/upnext-2200.webp 2200w" sizes="(min-width: 1200px) 1152px, 100vw" />
+                        <img src="../images/optimized/upnext-1280.jpg" srcset="../images/optimized/upnext-640.jpg 640w, ../images/optimized/upnext-960.jpg 960w, ../images/optimized/upnext-1280.jpg 1280w, ../images/optimized/upnext-1600.jpg 1600w, ../images/optimized/upnext-2200.jpg 2200w" sizes="(min-width: 1200px) 1152px, 100vw" alt="UpNext cover" class="project-cover" width="4000" height="2667" decoding="async" />
+                    </picture>
 
                     <div class="project-actions">
                         <button class="btn btn-primary" onclick="window.open('https://upnext.iandavis.dev/', '_blank')">Live Demo</button>

@@ -85,13 +85,46 @@
             <h1 class="project-title">Callsign</h1>
             <p class="project-tagline">OpenAPI Explorer for VS Code</p>
 
-            <img
-              src="../images/callsign-mockup2.png"
-              alt="UpNext cover"
-              class="project-cover"
-              width="4000"
-              height="2667"
-            />
+            <picture>
+              <source
+                type="image/avif"
+                srcset="
+                  ../images/optimized/callsign-640.avif 640w,
+                  ../images/optimized/callsign-960.avif 960w,
+                  ../images/optimized/callsign-1280.avif 1280w,
+                  ../images/optimized/callsign-1600.avif 1600w,
+                  ../images/optimized/callsign-2200.avif 2200w
+                "
+                sizes="(min-width: 1200px) 1152px, 100vw"
+              />
+              <source
+                type="image/webp"
+                srcset="
+                  ../images/optimized/callsign-640.webp 640w,
+                  ../images/optimized/callsign-960.webp 960w,
+                  ../images/optimized/callsign-1280.webp 1280w,
+                  ../images/optimized/callsign-1600.webp 1600w,
+                  ../images/optimized/callsign-2200.webp 2200w
+                "
+                sizes="(min-width: 1200px) 1152px, 100vw"
+              />
+              <img
+                src="../images/optimized/callsign-1280.jpg"
+                srcset="
+                  ../images/optimized/callsign-640.jpg 640w,
+                  ../images/optimized/callsign-960.jpg 960w,
+                  ../images/optimized/callsign-1280.jpg 1280w,
+                  ../images/optimized/callsign-1600.jpg 1600w,
+                  ../images/optimized/callsign-2200.jpg 2200w
+                "
+                sizes="(min-width: 1200px) 1152px, 100vw"
+                alt="Callsign cover"
+                class="project-cover"
+                width="4000"
+                height="2250"
+                decoding="async"
+              />
+            </picture>
             <!--<video src="../videos/forma-demo.mp4" class="project-cover" width="1920" height="1080" style="aspect-ratio: 16/9;" autoplay muted loop playsinline></video>-->
 
             <div class="project-actions">
