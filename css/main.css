@@ -142,6 +142,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ---------- Utility ---------- */
+.accent {
+  color: var(--color-accent);
+}
+
 /* ---------- Side Nav (Desktop) ---------- */
 .side-nav {
   display: none;
@@ -979,8 +984,11 @@ html {
 
 .project-page .project-meta h3 {
   font-weight: 600;
-  color: var(--color-text-heading);
   margin-bottom: 0.5rem;
+}
+
+.project-page .project-meta h3:not(.accent) {
+  color: var(--color-text-heading);
 }
 
 .project-page .chip-group {
