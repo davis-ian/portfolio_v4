@@ -383,6 +383,11 @@ html {
   height: 40px;
   pointer-events: none;
   margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 #featured .section-heading .lottie-arrow svg path,
@@ -393,10 +398,6 @@ html {
 @media (min-width: 768px) {
   .section-heading {
     font-size: var(--text-3xl);
-  }
-
-  #featured .section-heading .lottie-arrow {
-    margin-top: 0.5rem;
   }
 }
 
