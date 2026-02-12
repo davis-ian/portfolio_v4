@@ -9,6 +9,8 @@
       content="A pixel-perfect roguelite dungeon crawler with real-time combat, built in Three.js and ECS."
     />
     <link rel="icon" href="../favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
@@ -71,9 +73,9 @@
       <main class="main-content">
         <!-- Breadcrumbs -->
         <nav class="breadcrumbs">
-          <span class="crumb">~/iandavis</span>
+          <a href="../index.html#hero" class="crumb">~/iandavis</a>
           <span class="crumb-separator">/</span>
-          <span class="crumb">projects</span>
+          <a href="../index.html#work" class="crumb">projects</a>
           <span class="crumb-separator">/</span>
           <span class="crumb active">forma.js</span>
         </nav>
@@ -130,24 +132,26 @@
               <a href="https://forma.iandavis.dev/" target="_blank" class="btn btn-primary">
                 [>] Live Demo
               </a>
-              <a href="../index.html" class="btn">
-                [<] Back
+              <a href="https://github.com/davis-ian/forma" target="_blank" class="btn">
+                [<>] GitHub Repo
               </a>
             </div>
           </section>
 
           <section class="section">
             <h2 class="section-heading">About</h2>
-            <p class="mb-4">
-              Forma is a passion project that explores the intersection of classic
-              roguelike gameplay and modern web technologies. Built entirely in the
-              browser using Three.js for 3D rendering and a custom ECS architecture
-              for game logic.
-            </p>
-            <p class="mb-4">
-              The game features procedurally generated dungeons, real-time combat,
-              and a unique visual style inspired by classic pixel art games.
-            </p>
+            <div class="content-text">
+              <p>
+                Forma is a passion project that explores the intersection of classic
+                roguelike gameplay and modern web technologies. Built entirely in the
+                browser using Three.js for 3D rendering and a custom ECS (Entity Component System) architecture
+                for game logic.
+              </p>
+              <p>
+                The game features procedurally generated dungeons (levels created algorithmically so no two are alike), real-time combat,
+                and a unique visual style inspired by classic pixel art games.
+              </p>
+            </div>
             <div class="chip-group mt-4">
               <span class="chip">Three.js</span>
               <span class="chip">Vue.js</span>
@@ -198,7 +202,7 @@
         </div>
         <div class="status-right">
           <span class="status-item">Ln 1, Col 1</span>
-          <span class="status-item">4.2 KB</span>
+          <span class="status-item" id="status-size">4.2 KB</span>
           <span class="status-item">JavaScript</span>
         </div>
       </footer>
@@ -222,19 +226,28 @@
 
     <script src="../js/main.js"></script>
     <script>
-      // Override commands for project page
-      COMMANDS.length = 0;
-      COMMANDS.push(
-        { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
-        { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
-        { id: 'callsign', label: 'Go to: Callsign Project', action: () => window.location.href = 'callsign.html', category: 'Projects' },
-        { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
-        { id: 'demo', label: 'Open: Live Demo', action: () => window.open('https://forma.iandavis.dev/', '_blank'), category: 'Actions' },
-        { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
-        { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
-        { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
-        { id: 'palette', label: 'Toggle: Command Palette', action: toggleCommandPalette, category: 'Actions', key: '⌘K' }
-      );
+      // Override commands for project page after DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        COMMANDS.length = 0;
+        COMMANDS.push(
+          { id: 'back', label: 'Go back to portfolio', action: () => window.location.href = '../index.html', category: 'Navigation', key: 'B' },
+          { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
+          { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
+          { id: 'callsign', label: 'Go to: Callsign Project', action: () => window.location.href = 'callsign.html', category: 'Projects' },
+          { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
+          { id: 'demo', label: 'Open: Live Demo', action: () => window.open('https://forma.iandavis.dev/', '_blank'), category: 'Actions' },
+          { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
+          { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
+          { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
+          { id: 'palette', label: 'Toggle: Command Palette', action: () => { if (commandPalette) commandPalette.toggle(); }, category: 'Actions', key: '⌘K' }
+        );
+        
+        // Refresh command palette with new commands
+        if (commandPalette) commandPalette.refreshCommands();
+        
+        // Update page size display
+        updatePageSize();
+      });
     </script>
   </body>
 </html>

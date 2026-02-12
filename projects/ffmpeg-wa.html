@@ -9,6 +9,8 @@
       content="Client-side video processing using FFmpeg compiled to WebAssembly."
     />
     <link rel="icon" href="../favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
@@ -71,9 +73,9 @@
       <main class="main-content">
         <!-- Breadcrumbs -->
         <nav class="breadcrumbs">
-          <span class="crumb">~/iandavis</span>
+          <a href="../index.html#hero" class="crumb">~/iandavis</a>
           <span class="crumb-separator">/</span>
-          <span class="crumb">projects</span>
+          <a href="../index.html#work" class="crumb">projects</a>
           <span class="crumb-separator">/</span>
           <span class="crumb active">ffmpeg-wa.js</span>
         </nav>
@@ -152,32 +154,34 @@
               <a href="https://thumbnail.iandavis.dev/" target="_blank" class="btn btn-primary">
                 [>] Live Demo
               </a>
-              <a href="../index.html" class="btn">
-                [<] Back
+              <a href="https://github.com/davis-ian/ffmpeg-wa" target="_blank" class="btn">
+                [<>] GitHub Repo
               </a>
             </div>
           </section>
 
           <section class="section">
             <h2 class="section-heading">About</h2>
-            <p class="mb-4">
-              <strong>FFmpeg WebAssembly Clipper</strong> is a browser-based tool
-              that allows users to clip thumbnails from local video files —
-              entirely client-side. Built with <strong>FFmpeg.wasm</strong>, this
-              project eliminates the need for file uploads or server processing
-              by running FFmpeg directly in the browser via WebAssembly.
-            </p>
-            <p class="mb-4">
-              This project explores the potential of high-performance native tools
-              like FFmpeg being ported to the web. It demonstrates the power of
-              WebAssembly for enabling complex video operations within the browser
-              sandbox, without any backend dependencies.
-            </p>
-            <p class="mb-4">
-              Users can load local video files, scrub through frames, and extract
-              high-resolution thumbnail clips in seconds — ideal for developers,
-              content creators, or media platforms seeking lightweight tooling.
-            </p>
+            <div class="content-text">
+              <p>
+                <strong>FFmpeg WebAssembly Clipper</strong> is a browser-based tool
+                that allows users to clip thumbnails from local video files —
+                entirely client-side. Built with <strong>FFmpeg.wasm</strong> (FFmpeg compiled to run in the browser), this
+                project eliminates the need for file uploads or server processing
+                by running FFmpeg directly in the browser via WebAssembly (a technology that lets you run high-performance code in the browser).
+              </p>
+              <p>
+                This project explores the potential of high-performance native tools
+                like FFmpeg being ported to the web. It demonstrates the power of
+                WebAssembly for enabling complex video operations within the browser
+                sandbox, without any backend dependencies.
+              </p>
+              <p>
+                Users can load local video files, scrub through frames, and extract
+                high-resolution thumbnail clips in seconds — ideal for developers,
+                content creators, or media platforms seeking lightweight tooling.
+              </p>
+            </div>
             <div class="chip-group mt-4">
               <span class="chip">Vue 3</span>
               <span class="chip">FFmpeg.wasm</span>
@@ -236,7 +240,7 @@
         </div>
         <div class="status-right">
           <span class="status-item">Ln 1, Col 1</span>
-          <span class="status-item">3.9 KB</span>
+          <span class="status-item" id="status-size">3.9 KB</span>
           <span class="status-item">JavaScript</span>
         </div>
       </footer>
@@ -260,20 +264,29 @@
 
     <script src="../js/main.js"></script>
     <script>
-      // Override commands for project page
-      COMMANDS.length = 0;
-      COMMANDS.push(
-        { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
-        { id: 'forma', label: 'Go to: Forma Project', action: () => window.location.href = 'forma.html', category: 'Projects' },
-        { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
-        { id: 'callsign', label: 'Go to: Callsign Project', action: () => window.location.href = 'callsign.html', category: 'Projects' },
-        { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
-        { id: 'demo', label: 'Open: Live Demo', action: () => window.open('https://thumbnail.iandavis.dev/', '_blank'), category: 'Actions' },
-        { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
-        { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
-        { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
-        { id: 'palette', label: 'Toggle: Command Palette', action: toggleCommandPalette, category: 'Actions', key: '⌘K' }
-      );
+      // Override commands for project page after DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        COMMANDS.length = 0;
+        COMMANDS.push(
+          { id: 'back', label: 'Go back to portfolio', action: () => window.location.href = '../index.html', category: 'Navigation', key: 'B' },
+          { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
+          { id: 'forma', label: 'Go to: Forma Project', action: () => window.location.href = 'forma.html', category: 'Projects' },
+          { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
+          { id: 'callsign', label: 'Go to: Callsign Project', action: () => window.location.href = 'callsign.html', category: 'Projects' },
+          { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
+          { id: 'demo', label: 'Open: Live Demo', action: () => window.open('https://thumbnail.iandavis.dev/', '_blank'), category: 'Actions' },
+          { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
+          { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
+          { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
+          { id: 'palette', label: 'Toggle: Command Palette', action: () => { if (commandPalette) commandPalette.toggle(); }, category: 'Actions', key: '⌘K' }
+        );
+        
+        // Refresh command palette with new commands
+        if (commandPalette) commandPalette.refreshCommands();
+        
+        // Update page size display
+        updatePageSize();
+      });
     </script>
   </body>
 </html>

@@ -1,339 +1,347 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ian Davis</title>
-    <meta
-      name="description"
-      content="Portfolio of Ian Davis – Software Engineer. Building performant, creative, and production-ready applications with C#, Vue.js, and modern tools."
-    />
-    <meta
-      name="keywords"
-      content="Ian Davis, Software Developer, Full Stack Engineer, C#, Vue, Portfolio"
-    />
-    <meta name="author" content="Ian Davis" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Ian Davis – Software Engineer" />
-    <meta
-      property="og:description"
-      content="Creative and technically solid software developer. Explore projects in full-stack development, dev tools, and game architecture."
-    />
-    <meta
-      property="og:image"
-      content="https://iandavis.dev/social-preview.png"
-    />
-    <meta property="og:url" content="https://iandavis.dev" />
-    <meta property="og:type" content="website" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ian Davis</title>
+  <meta name="description"
+    content="Portfolio of Ian Davis – Software Engineer. Building performant, creative, and production-ready applications with C#, Vue.js, and modern tools." />
+  <meta name="keywords" content="Ian Davis, Software Developer, Full Stack Engineer, C#, Vue, Portfolio" />
+  <meta name="author" content="Ian Davis" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ian Davis – Software Engineer" />
-    <meta
-      name="twitter:description"
-      content="Explore projects built by Ian Davis, a software engineer focused on high-quality frontend, backend, and creative tooling."
-    />
-    <meta
-      name="twitter:image"
-      content="https://iandavis.dev/social-preview.png"
-    />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ian Davis – Software Engineer" />
+  <meta property="og:description"
+    content="Creative and technically solid software developer. Explore projects in full-stack development, dev tools, and game architecture." />
+  <meta property="og:image" content="https://iandavis.dev/social-preview.png" />
+  <meta property="og:url" content="https://iandavis.dev" />
+  <meta property="og:type" content="website" />
 
-    <link rel="canonical" href="https://iandavis.dev" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="css/main.css" />
-  </head>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ian Davis – Software Engineer" />
+  <meta name="twitter:description"
+    content="Explore projects built by Ian Davis, a software engineer focused on high-quality frontend, backend, and creative tooling." />
+  <meta name="twitter:image" content="https://iandavis.dev/social-preview.png" />
 
-  <body>
-    <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
+  <link rel="canonical" href="https://iandavis.dev" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2"
+    as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2"
+    as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
 
-    <div class="site-wrapper">
-      <!-- ===== Sidebar – File Tree ===== -->
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <span class="explorer-label">EXPLORER</span>
-        </div>
-        <nav class="file-tree">
-          <div class="folder open" id="portfolio-folder">
-            <div class="folder-header" onclick="toggleFolder(this)">
-              <span class="folder-toggle">▼</span>
-              <span>PORTFOLIO</span>
-            </div>
-            <div class="folder-contents">
-              <a href="#hero" class="file active" data-section="hero">
-                <span class="file-prefix">-</span>
-                <span>README.md</span>
-              </a>
-              <div class="folder open">
-                <div class="folder-header" onclick="toggleFolder(this)">
-                  <span class="folder-toggle">▼</span>
-                  <span>src</span>
-                </div>
-                <div class="folder-contents">
-                  <a href="#featured" class="file" data-section="featured">
-                    <span class="file-prefix">-</span>
-                    <span>featured.js</span>
-                  </a>
-                  <a href="#work" class="file" data-section="work">
-                    <span class="file-prefix">-</span>
-                    <span>projects/</span>
-                  </a>
-                  <a href="#about" class="file" data-section="about">
-                    <span class="file-prefix">-</span>
-                    <span>about.md</span>
-                  </a>
-                  <a href="#experience" class="file" data-section="experience">
-                    <span class="file-prefix">-</span>
-                    <span>experience.json</span>
-                  </a>
-                </div>
+<body>
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="site-wrapper">
+    <!-- ===== Sidebar – File Tree ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span class="explorer-label">EXPLORER</span>
+      </div>
+      <nav class="file-tree">
+        <div class="folder open" id="portfolio-folder">
+          <div class="folder-header" onclick="toggleFolder(this)">
+            <span class="folder-toggle">▼</span>
+            <span>PORTFOLIO</span>
+          </div>
+          <div class="folder-contents">
+            <a href="#hero" class="file active" data-section="hero">
+              <span class="file-prefix">-</span>
+              <span>README.md</span>
+            </a>
+            <div class="folder open">
+              <div class="folder-header" onclick="toggleFolder(this)">
+                <span class="folder-toggle">▼</span>
+                <span>src</span>
               </div>
-              <div class="folder">
-                <div class="folder-header" onclick="toggleFolder(this)">
-                  <span class="folder-toggle">▶</span>
-                  <span>.github</span>
-                </div>
-                <div class="folder-contents">
-                  <a href="https://github.com/davis-ian" class="file" target="_blank" rel="noopener">
-                    <span class="file-prefix">-</span>
-                    <span>profile</span>
-                  </a>
-                </div>
+              <div class="folder-contents">
+                <a href="#featured" class="file" data-section="featured">
+                  <span class="file-prefix">-</span>
+                  <span>featured.js</span>
+                </a>
+                <a href="#work" class="file" data-section="work">
+                  <span class="file-prefix">-</span>
+                  <span>projects/</span>
+                </a>
+                <a href="#about" class="file" data-section="about">
+                  <span class="file-prefix">-</span>
+                  <span>about.md</span>
+                </a>
+                <a href="#experience" class="file" data-section="experience">
+                  <span class="file-prefix">-</span>
+                  <span>experience.json</span>
+                </a>
+              </div>
+            </div>
+            <div class="folder">
+              <div class="folder-header" onclick="toggleFolder(this)">
+                <span class="folder-toggle">▶</span>
+                <span>.github</span>
+              </div>
+              <div class="folder-contents">
+                <a href="https://github.com/davis-ian" class="file" target="_blank" rel="noopener">
+                  <span class="file-prefix">-</span>
+                  <span>profile</span>
+                </a>
               </div>
             </div>
           </div>
-        </nav>
-      </aside>
+        </div>
+      </nav>
+    </aside>
 
-      <!-- ===== Main Content ===== -->
-      <main class="main-content">
-        <!-- Breadcrumbs -->
-        <nav class="breadcrumbs" id="breadcrumbs">
-          <span class="crumb">~/iandavis</span>
-          <span class="crumb-separator">/</span>
-          <span class="crumb active" id="current-file">README.md</span>
-        </nav>
+    <!-- ===== Main Content ===== -->
+    <main class="main-content">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs" id="breadcrumbs">
+        <a href="#hero" class="crumb" data-section="hero">~/iandavis</a>
+        <span class="crumb-separator">/</span>
+        <a href="#hero" class="crumb active" id="current-file" data-section="hero">README.md</a>
+        <span style="margin-left: auto; font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
+          <span style="color: var(--accent-peach);">⌘</span>K or <span style="color: var(--accent-peach);">:</span> for
+          commands
+        </span>
+      </nav>
 
-        <div class="page-content">
-          <!-- Hero -->
-          <section class="hero" id="hero">
-            <div class="terminal-prompt">
-              <span class="prompt-user">guest</span>
-              <span class="prompt-at">@</span>
-              <span class="prompt-host">iandavis</span>
-              <span class="prompt-separator">:</span>
-              <span class="prompt-path">~</span>
-              <span class="prompt-symbol">$</span>
-              <span class="prompt-command"> cat README.md</span>
+      <div class="page-content">
+        <!-- Hero -->
+        <section class="hero" id="hero">
+          <div class="terminal-prompt">
+            <span class="prompt-user">guest</span>
+            <span class="prompt-at">@</span>
+            <span class="prompt-host">iandavis</span>
+            <span class="prompt-separator">:</span>
+            <span class="prompt-path">~</span>
+            <span class="prompt-symbol">$</span>
+            <span class="prompt-command"> cat README.md</span>
+          </div>
+          <div class="hero-header">
+            <h1 class="hero-title">Ian Davis</h1>
+            <p class="hero-subtitle">Software Engineer</p>
+          </div>
+          <p class="hero-description">
+            I build software that feels good to use and works hard behind the scenes.
+            I specialize in real-time applications, media processing pipelines,
+            and interfaces that developers actually enjoy.
+          </p>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-label">Experience</span>
+              <span class="meta-value">5+ years</span>
             </div>
-            <div class="hero-header">
-              <h1 class="hero-title">Ian Davis</h1>
-              <p class="hero-subtitle">Software Engineer</p>
+            <div class="meta-item">
+              <span class="meta-label">Focus</span>
+              <span class="meta-value">Full-stack</span>
             </div>
-            <p class="hero-description">
-              I build things that feel good and work hard. Real-time tools,
-              smart media workflows, and clean UI.
+            <div class="meta-item">
+              <span class="meta-label">Vibe</span>
+              <span class="meta-value">ships on fridays</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured -->
+        <section class="section" id="featured">
+          <h2 class="section-heading">Featured</h2>
+          <div class="project-list">
+            <a href="projects/forma.html" class="project-item">
+              <span class="project-prefix">></span>
+              <div class="project-info">
+                <span class="project-name">forma</span>
+                <span class="project-meta">Three.js, Vue, ECS • 3D roguelite sandbox</span>
+              </div>
+              <div class="project-actions">
+                <button class="btn-icon"
+                  onclick="event.preventDefault(); window.open('https://forma.iandavis.dev/', '_blank')">run</button>
+                <button class="btn-icon">-></button>
+              </div>
+            </a>
+          </div>
+          <div class="mt-4">
+            <p class="text-muted" style="font-family: var(--font-content); line-height: 1.7; max-width: 600px;">
+              A 3D dungeon crawler you can play in your browser. Built from scratch with Three.js
+              and a custom game engine. Features procedurally generated levels so every run feels fresh.
             </p>
-            <div class="hero-meta">
-              <div class="meta-item">
-                <span class="meta-label">Experience</span>
-                <span class="meta-value">5+ years</span>
-              </div>
-              <div class="meta-item">
-                <span class="meta-label">Projects</span>
-                <span class="meta-value">10+ shipped</span>
-              </div>
-              <div class="meta-item">
-                <span class="meta-label">Focus</span>
-                <span class="meta-value">Full-stack</span>
-              </div>
+            <div class="chip-group mt-4">
+              <span class="chip">Custom ECS Engine</span>
+              <span class="chip">Procedural Generation</span>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <!-- Featured -->
-          <section class="section" id="featured">
-            <h2 class="section-heading">Featured</h2>
-            <div class="project-list">
-              <a href="projects/forma.html" class="project-item">
-                <span class="project-prefix">></span>
-                <div class="project-info">
-                  <span class="project-name">forma</span>
-                  <span class="project-meta">Three.js, Vue, ECS • 3D roguelite sandbox</span>
-                </div>
-                <div class="project-actions">
-                  <button class="btn-icon" onclick="event.preventDefault(); window.open('https://forma.iandavis.dev/', '_blank')">run</button>
-                  <button class="btn-icon">-></button>
-                </div>
-              </a>
-            </div>
-            <div class="mt-4">
-              <p class="text-muted">
-                Forma is a 3D roguelite sandbox with custom ECS and procedurally generated dungeons.
-              </p>
-              <div class="chip-group mt-4">
-                <span class="chip">Custom ECS Engine</span>
-                <span class="chip">Procedural Generation</span>
+        <!-- Selected Works -->
+        <section class="section" id="work">
+          <h2 class="section-heading">Selected Works</h2>
+          <div class="project-list">
+            <a href="projects/upnext.html" class="project-item">
+              <span class="project-prefix">></span>
+              <div class="project-info">
+                <span class="project-name">upnext</span>
+                <span class="project-description"
+                  style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">Keep
+                  track of what to watch next—with friends</span>
+                <span class="project-meta">Vue 3, Express, Node.js • Collaborative watchlist</span>
               </div>
-            </div>
-          </section>
+              <div class="project-actions">
+                <button class="btn-icon">-></button>
+              </div>
+            </a>
+            <a href="projects/callsign.html" class="project-item">
+              <span class="project-prefix">></span>
+              <div class="project-info">
+                <span class="project-name">callsign</span>
+                <span class="project-description"
+                  style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">Test
+                  APIs without leaving your code editor</span>
+                <span class="project-meta">TypeScript, VS Code API • API exploration tool</span>
+              </div>
+              <div class="project-actions">
+                <button class="btn-icon">-></button>
+              </div>
+            </a>
+            <a href="projects/minigames.html" class="project-item">
+              <span class="project-prefix">></span>
+              <div class="project-info">
+                <span class="project-name">minigames</span>
+                <span class="project-description"
+                  style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">Quick
+                  games for quick breaks</span>
+                <span class="project-meta">Vue 3, TypeScript • Browser game collection</span>
+              </div>
+              <div class="project-actions">
+                <button class="btn-icon">-></button>
+              </div>
+            </a>
+          </div>
+        </section>
 
-          <!-- Selected Works -->
-          <section class="section" id="work">
-            <h2 class="section-heading">Selected Works</h2>
-            <div class="project-list">
-              <a href="projects/upnext.html" class="project-item">
-                <span class="project-prefix">></span>
-                <div class="project-info">
-                  <span class="project-name">upnext</span>
-                  <span class="project-meta">Vue.js, Firebase • Content discovery platform</span>
-                </div>
-                <div class="project-actions">
-                  <button class="btn-icon">-></button>
-                </div>
-              </a>
-              <a href="projects/callsign.html" class="project-item">
-                <span class="project-prefix">></span>
-                <div class="project-info">
-                  <span class="project-name">callsign</span>
-                  <span class="project-meta">SignalR, C# • Real-time communication tool</span>
-                </div>
-                <div class="project-actions">
-                  <button class="btn-icon">-></button>
-                </div>
-              </a>
-              <a href="projects/minigames.html" class="project-item">
-                <span class="project-prefix">></span>
-                <div class="project-info">
-                  <span class="project-name">minigames</span>
-                  <span class="project-meta">JavaScript, Canvas • Browser game collection</span>
-                </div>
-                <div class="project-actions">
-                  <button class="btn-icon">-></button>
-                </div>
-              </a>
-            </div>
-          </section>
-
-          <!-- About -->
-          <section class="section" id="about">
-            <h2 class="section-heading">About</h2>
-            <p class="mb-4">
-              I'm Ian Davis, a full-stack software engineer who thrives at the
-              intersection of creative UX and high-performance systems. I
-              design and build thoughtful web experiences, balancing clean
-              design with scalable backend architecture.
-            </p>
-            <p class="mb-4">
-              At <a href="https://memoryshare.com" target="_blank" rel="noopener">MemoryShare</a>,
-              I lead development across the entire stack, from Vue.js frontends to C# APIs,
-              background render pipelines, and real-time features powered by SignalR and Azure.
+        <!-- About -->
+        <section class="section" id="about">
+          <h2 class="section-heading">About</h2>
+          <div class="content-text">
+            <p>
+              I'm a full-stack engineer who bridges the gap between creative design
+              and high-performance systems. I care about code quality, but I care
+              more about shipping products that people love to use.
             </p>
             <p>
-              I've architected video rendering engines, built perceptual hashing systems, and shipped
-              real-time collaborative tools. Whether I'm crafting custom ECS engines for
-              game prototypes or shipping Stripe-integrated SaaS tools, I bring curiosity,
-              care, and end-to-end ownership to every project.
+              Currently, I lead development at <a href="https://memoryshare.com" target="_blank"
+                rel="noopener">MemoryShare</a>, where I work
+              across the entire stack—from Vue.js frontends to C# APIs, video rendering
+              pipelines, and real-time features powered by SignalR (think live
+              notifications and collaborative editing).
             </p>
-          </section>
+            <p>
+              My background spans video processing (FFmpeg), perceptual hashing
+              (finding similar images/videos), real-time communication tools, and
+              game engine architecture. Whether it's integrating Stripe for payments
+              or building custom ECS systems for game prototypes, I bring end-to-end
+              ownership and attention to detail.
+            </p>
+          </div>
+        </section>
 
-          <!-- Experience -->
-          <section class="section" id="experience">
-            <h2 class="section-heading">Experience</h2>
-            <div class="timeline">
-              <div class="timeline-item">
-                <span class="timeline-date">2022 - Present</span>
-                <h3 class="timeline-role">Software Engineer – MemoryShare</h3>
-                <p class="timeline-description">
-                  Design, build, and maintain scalable web applications spanning
-                  front-end, API, and background systems. Led architecture of
-                  real-time video rendering pipelines, internal tooling, and
-                  customer-facing features.
-                </p>
-                <div class="chip-group">
-                  <span class="chip">Vue.js</span>
-                  <span class="chip">C#</span>
-                  <span class="chip">FFmpeg</span>
-                  <span class="chip">MySQL</span>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <span class="timeline-date">2021 - 2022</span>
-                <h3 class="timeline-role">Instructor Assistant – PDX Code Guild</h3>
-                <p class="timeline-description">
-                  Supported developer bootcamp students in learning full-stack
-                  web development, with emphasis on JavaScript, Python, and
-                  debugging workflows. Facilitated code reviews and mentored
-                  students in real-world project execution.
-                </p>
-                <div class="chip-group">
-                  <span class="chip">JavaScript</span>
-                  <span class="chip">Python</span>
-                  <span class="chip">HTML/CSS</span>
-                </div>
+        <!-- Experience -->
+        <section class="section" id="experience">
+          <h2 class="section-heading">Experience</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-date">2022 - Present</span>
+              <h3 class="timeline-role">Software Engineer – MemoryShare</h3>
+              <p class="timeline-description">
+                Design, build, and maintain scalable web applications spanning
+                front-end, API, and background systems. Led architecture of
+                real-time video rendering pipelines, internal tooling, and
+                customer-facing features.
+              </p>
+              <div class="chip-group">
+                <span class="chip">Vue.js</span>
+                <span class="chip">C#</span>
+                <span class="chip">FFmpeg</span>
+                <span class="chip">MySQL</span>
               </div>
             </div>
-          </section>
 
-          <!-- Resume Download -->
-          <section class="section">
-            <button class="btn btn-primary" id="resume-btn">
-              Download Resume
-            </button>
-          </section>
+            <div class="timeline-item">
+              <span class="timeline-date">2021 - 2022</span>
+              <h3 class="timeline-role">Instructor Assistant – PDX Code Guild</h3>
+              <p class="timeline-description">
+                Supported developer bootcamp students in learning full-stack
+                web development, with emphasis on JavaScript, Python, and
+                debugging workflows. Facilitated code reviews and mentored
+                students in real-world project execution.
+              </p>
+              <div class="chip-group">
+                <span class="chip">JavaScript</span>
+                <span class="chip">Python</span>
+                <span class="chip">HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <!-- CTA -->
-          <section class="cta-section" id="contact">
-            <h2 class="cta-heading">Like what you see?</h2>
-            <p class="cta-text">
-              I'm open to new opportunities, collaborations, or just chatting dev tools.
-            </p>
-            <a href="#" class="email-link" id="email-link">Get in touch</a>
-          </section>
-        </div>
-      </main>
+        <!-- Resume Download -->
+        <section class="section" style="text-align: center;">
+          <button class="btn btn-primary" id="resume-btn">
+            Download Resume
+          </button>
+        </section>
 
-      <!-- ===== Status Bar (Vim Style) ===== -->
-      <footer class="status-bar">
-        <div class="status-left">
-          <span class="status-mode">NORMAL</span>
-          <span class="status-item" id="status-file">README.md</span>
-          <span class="status-separator">|</span>
-          <span class="status-item" id="status-branch">git:design3</span>
-        </div>
-        <div class="status-right">
-          <span class="status-item" id="status-position">1:1</span>
-          <span class="status-separator">|</span>
-          <span class="status-item">utf-8</span>
-          <span class="status-separator">|</span>
-          <span class="status-item">js</span>
-        </div>
-      </footer>
-    </div>
-
-    <!-- ===== Command Palette ===== -->
-    <div class="command-palette-overlay" id="command-palette">
-      <div class="command-palette">
-        <div class="command-input-wrapper">
-          <input
-            type="text"
-            class="command-input"
-            id="command-input"
-            placeholder="Type a command or search..."
-            autocomplete="off"
-          />
-        </div>
-        <div class="command-list" id="command-list"></div>
+        <!-- CTA -->
+        <section class="cta-section" id="contact">
+          <h2 class="cta-heading">Like what you see?</h2>
+          <p class="cta-text"
+            style="font-family: var(--font-content); font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+            I'm open to new opportunities, collaborations, or just chatting about dev tools and interesting problems.
+          </p>
+          <a href="#" class="email-link" id="email-link">Get in touch</a>
+        </section>
       </div>
-    </div>
+    </main>
 
-    <script src="js/main.js" defer></script>
-  </body>
+    <!-- ===== Status Bar (Vim Style) ===== -->
+    <footer class="status-bar">
+      <div class="status-left">
+        <span class="status-mode" id="status-mode">NORMAL</span>
+        <span class="status-item" id="status-file">README.md</span>
+        <span class="status-separator">|</span>
+        <span class="status-item" id="status-branch">git:design3</span>
+      </div>
+      <div class="status-right">
+        <span class="status-item" id="status-position">1:1</span>
+        <span class="status-separator">|</span>
+        <span class="status-item">utf-8</span>
+        <span class="status-separator">|</span>
+        <span class="status-item">js</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== Command Palette ===== -->
+  <div class="command-palette-overlay" id="command-palette">
+    <div class="command-palette">
+      <div class="command-input-wrapper">
+        <input type="text" class="command-input" id="command-input" placeholder="Type a command or search..."
+          autocomplete="off" />
+      </div>
+      <div class="command-list" id="command-list"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+
 </html>

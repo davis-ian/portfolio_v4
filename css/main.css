@@ -22,8 +22,8 @@
   --border-default: #282828;
   --border-muted: #1c1c1c;
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #505050;
+  --text-secondary: #b8b8b8;
+  --text-muted: #909090;
   --accent-peach: #ffc799;
   --accent-peach-dim: rgba(255, 199, 153, 0.15);
   --accent-mint: #99ffe4;
@@ -42,8 +42,9 @@
   --color-border: var(--border-default);
   --color-border-muted: var(--border-muted);
   
-  /* Typography – Monospace Everything */
+  /* Typography – Monospace for UI, System for Content */
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  --font-content: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   
   /* Type Scale */
   --text-xs: 0.75rem;
@@ -328,6 +329,17 @@ img, video {
   gap: 0.5rem;
 }
 
+a.crumb {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a.crumb:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
 .crumb-separator {
   color: var(--color-text-muted);
   margin: 0 0.25rem;
@@ -336,6 +348,10 @@ img, video {
 .crumb.active {
   color: var(--color-text-primary);
   font-weight: 600;
+}
+
+a.crumb.active {
+  color: var(--color-text-primary);
 }
 
 /* ---------- Status Bar ---------- */
@@ -363,6 +379,11 @@ img, video {
   height: 100%;
   display: flex;
   align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.status-mode.insert {
+  background-color: var(--accent-mint);
 }
 
 .status-separator {
@@ -540,10 +561,11 @@ img, video {
 }
 
 .hero-description {
-  font-size: var(--text-lg);
+  font-family: var(--font-content);
+  font-size: 1.0625rem;
   color: var(--color-text-secondary);
-  max-width: 600px;
-  line-height: 1.7;
+  max-width: 640px;
+  line-height: 1.75;
 }
 
 .hero-meta {
@@ -576,7 +598,7 @@ img, video {
 
 /* ---------- Section Styles ---------- */
 .section {
-  padding: 3rem 0;
+  padding: 4rem 0;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -646,6 +668,9 @@ img, video {
 .project-meta {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  opacity: 0.9;
 }
 
 .project-actions {
@@ -824,6 +849,22 @@ img, video {
 .mb-4 { margin-bottom: 1rem; }
 .mb-6 { margin-bottom: 1.5rem; }
 .mt-4 { margin-top: 1rem; }
+
+/* Content text - system-ui for readability */
+.content-text {
+  font-family: var(--font-content);
+  line-height: 1.75;
+  font-size: 0.9375rem;
+  max-width: 680px;
+}
+
+.content-text p {
+  margin-bottom: 1.25rem;
+}
+
+.content-text p:last-child {
+  margin-bottom: 0;
+}
 
 /* ---------- Scrollbar Styling ---------- */
 ::-webkit-scrollbar {

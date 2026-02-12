@@ -9,6 +9,8 @@
       content="A VS Code extension for real-time OpenAPI exploration and API testing."
     />
     <link rel="icon" href="../favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
@@ -71,9 +73,9 @@
       <main class="main-content">
         <!-- Breadcrumbs -->
         <nav class="breadcrumbs">
-          <span class="crumb">~/iandavis</span>
+          <a href="../index.html#hero" class="crumb">~/iandavis</a>
           <span class="crumb-separator">/</span>
-          <span class="crumb">projects</span>
+          <a href="../index.html#work" class="crumb">projects</a>
           <span class="crumb-separator">/</span>
           <span class="crumb active">callsign.js</span>
         </nav>
@@ -152,34 +154,36 @@
               <a href="https://marketplace.visualstudio.com/items?itemName=ian-davis.callsign" target="_blank" class="btn btn-primary">
                 [>] VS Code Marketplace
               </a>
-              <a href="../index.html" class="btn">
-                [<] Back
+              <a href="https://github.com/davis-ian/callsign" target="_blank" class="btn">
+                [<>] GitHub Repo
               </a>
             </div>
           </section>
 
           <section class="section">
             <h2 class="section-heading">About</h2>
-            <p class="mb-4">
-              <strong>Callsign</strong> is a VS Code extension that transforms
-              OpenAPI specifications into an interactive, developer-friendly
-              interface directly within your editor. It parses OpenAPI 3.x
-              documents and presents endpoints, schemas, and parameters in a
-              clean, navigable UI, eliminating context switching to external
-              tools.
-            </p>
-            <p class="mb-4">
-              Built with the VS Code Extension API, Callsign provides
-              real-time API exploration with features like endpoint filtering,
-              request building, and schema visualization. It's designed for
-              developers who want fast, local access to API documentation
-              without leaving their development environment.
-            </p>
-            <p class="mb-4">
-              Whether you're integrating third-party APIs or documenting your
-              own services, Callsign streamlines the workflow by keeping
-              everything in one place.
-            </p>
+            <div class="content-text">
+              <p>
+                <strong>Callsign</strong> is a VS Code extension that transforms
+                OpenAPI specifications (a standard for describing REST APIs) into an interactive, developer-friendly
+                interface directly within your editor. It parses OpenAPI 3.x
+                documents and presents endpoints, schemas, and parameters in a
+                clean, navigable UI, eliminating context switching to external
+                tools.
+              </p>
+              <p>
+                Built with the VS Code Extension API, Callsign provides
+                real-time API exploration with features like endpoint filtering,
+                request building, and schema visualization. It's designed for
+                developers who want fast, local access to API documentation
+                without leaving their development environment.
+              </p>
+              <p>
+                Whether you're integrating third-party APIs or documenting your
+                own services, Callsign streamlines the workflow by keeping
+                everything in one place.
+              </p>
+            </div>
             <div class="chip-group mt-4">
               <span class="chip">TypeScript</span>
               <span class="chip">VS Code Extension API</span>
@@ -237,7 +241,7 @@
         </div>
         <div class="status-right">
           <span class="status-item">Ln 1, Col 1</span>
-          <span class="status-item">3.2 KB</span>
+          <span class="status-item" id="status-size">3.2 KB</span>
           <span class="status-item">JavaScript</span>
         </div>
       </footer>
@@ -261,19 +265,28 @@
 
     <script src="../js/main.js"></script>
     <script>
-      // Override commands for project page
-      COMMANDS.length = 0;
-      COMMANDS.push(
-        { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
-        { id: 'forma', label: 'Go to: Forma Project', action: () => window.location.href = 'forma.html', category: 'Projects' },
-        { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
-        { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
-        { id: 'demo', label: 'Open: VS Code Marketplace', action: () => window.open('https://marketplace.visualstudio.com/items?itemName=ian-davis.callsign', '_blank'), category: 'Actions' },
-        { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
-        { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
-        { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
-        { id: 'palette', label: 'Toggle: Command Palette', action: toggleCommandPalette, category: 'Actions', key: '⌘K' }
-      );
+      // Override commands for project page after DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        COMMANDS.length = 0;
+        COMMANDS.push(
+          { id: 'back', label: 'Go back to portfolio', action: () => window.location.href = '../index.html', category: 'Navigation', key: 'B' },
+          { id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation' },
+          { id: 'forma', label: 'Go to: Forma Project', action: () => window.location.href = 'forma.html', category: 'Projects' },
+          { id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects' },
+          { id: 'minigames', label: 'Go to: Minigames Project', action: () => window.location.href = 'minigames.html', category: 'Projects' },
+          { id: 'demo', label: 'Open: VS Code Marketplace', action: () => window.open('https://marketplace.visualstudio.com/items?itemName=ian-davis.callsign', '_blank'), category: 'Actions' },
+          { id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External' },
+          { id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External' },
+          { id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions' },
+          { id: 'palette', label: 'Toggle: Command Palette', action: () => { if (commandPalette) commandPalette.toggle(); }, category: 'Actions', key: '⌘K' }
+        );
+        
+        // Refresh command palette with new commands
+        if (commandPalette) commandPalette.refreshCommands();
+        
+        // Update page size display
+        updatePageSize();
+      });
     </script>
   </body>
 </html>
