@@ -23,6 +23,7 @@ IMAGES=(
   "callsign:callsign-mockup2.png"
   "minigames:minigames1.png"
   "clipper:clipper2.png"
+  "clipforge:clipforge.png"
 )
 
 for entry in "${IMAGES[@]}"; do

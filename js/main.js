@@ -52,6 +52,12 @@ const COMMANDS = [
     category: "Projects",
   },
   {
+    id: "clipforge",
+    label: "Go to: ClipForge Project",
+    action: () => (window.location.href = "projects/clipforge.html"),
+    category: "Projects",
+  },
+  {
     id: "upnext",
     label: "Go to: UpNext Project",
     action: () => (window.location.href = "projects/upnext.html"),
