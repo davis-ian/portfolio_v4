@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>callsign – Ian Davis</title>
+    <title>media-toolkit - Ian Davis</title>
     <meta
       name="description"
-      content="A VS Code extension for real-time OpenAPI exploration and API testing."
+      content="Browser-first media toolkit featuring FFmpeg.wasm-powered video, audio, and image utilities."
     />
     <link rel="icon" href="../favicon.ico" />
     <link
@@ -25,6 +25,7 @@
     />
     <link rel="stylesheet" href="../css/main.css" />
   </head>
+
   <body>
     <!-- Mobile Menu Button -->
     <button
@@ -72,19 +73,19 @@
                   <span>projects</span>
                 </div>
                 <div class="folder-contents">
+                  <a href="media-toolkit.html" class="file active">
+                    <span class="file-prefix">-</span>
+                    <span>media-toolkit.js</span>
+                  </a>
                   <a href="forma.html" class="file">
                     <span class="file-prefix">-</span>
                     <span>forma.js</span>
-                  </a>
-                  <a href="media-toolkit.html" class="file">
-                    <span class="file-prefix">-</span>
-                    <span>media-toolkit.js</span>
                   </a>
                   <a href="upnext.html" class="file">
                     <span class="file-prefix">-</span>
                     <span>upnext.js</span>
                   </a>
-                  <a href="callsign.html" class="file active">
+                  <a href="callsign.html" class="file">
                     <span class="file-prefix">-</span>
                     <span>callsign.js</span>
                   </a>
@@ -107,32 +108,33 @@
           <span class="crumb-separator">/</span>
           <a href="../index.html#work" class="crumb">projects</a>
           <span class="crumb-separator">/</span>
-          <span class="crumb active">callsign.js</span>
+          <span class="crumb active">media-toolkit.js</span>
         </nav>
 
         <div class="page-content">
           <section class="hero">
             <div class="hero-header">
-              <h1 class="hero-title">callsign</h1>
-              <p class="hero-subtitle">OpenAPI Explorer for VS Code</p>
+              <h1 class="hero-title">media-toolkit</h1>
+              <p class="hero-subtitle">Browser media command line</p>
             </div>
             <p class="hero-description">
-              A VS Code extension that transforms OpenAPI specifications into an
-              interactive, developer-friendly interface for real-time API
-              exploration.
+              Media Toolkit is a browser-first media lab built with Vue + Vite
+              that delivers a catalog of FFmpeg.wasm utilities for clipping,
+              transcoding, metadata inspection, and lightweight image
+              workstreams directly in the client.
             </p>
             <div class="hero-meta">
               <div class="meta-item">
                 <span class="meta-label">Stack</span>
-                <span class="meta-value">TypeScript, VS Code API</span>
+                <span class="meta-value">Vue 3, Vite, FFmpeg.wasm</span>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Year</span>
-                <span class="meta-value">2024</span>
+                <span class="meta-value">2025</span>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Status</span>
-                <span class="meta-value">Published</span>
+                <span class="meta-value">In development</span>
               </div>
             </div>
           </section>
@@ -150,53 +152,61 @@
                 <source
                   type="image/avif"
                   srcset="
-                    ../images/optimized/callsign-640.avif   640w,
-                    ../images/optimized/callsign-960.avif   960w,
-                    ../images/optimized/callsign-1280.avif 1280w,
-                    ../images/optimized/callsign-1600.avif 1600w,
-                    ../images/optimized/callsign-2200.avif 2200w
+                    ../images/optimized/clipforge-640.avif   640w,
+                    ../images/optimized/clipforge-960.avif   960w,
+                    ../images/optimized/clipforge-1280.avif 1280w,
+                    ../images/optimized/clipforge-1600.avif 1600w,
+                    ../images/optimized/clipforge-2200.avif 2200w
                   "
                   sizes="(min-width: 1200px) 1152px, 100vw"
                 />
                 <source
                   type="image/webp"
                   srcset="
-                    ../images/optimized/callsign-640.webp   640w,
-                    ../images/optimized/callsign-960.webp   960w,
-                    ../images/optimized/callsign-1280.webp 1280w,
-                    ../images/optimized/callsign-1600.webp 1600w,
-                    ../images/optimized/callsign-2200.webp 2200w
+                    ../images/optimized/clipforge-640.webp   640w,
+                    ../images/optimized/clipforge-960.webp   960w,
+                    ../images/optimized/clipforge-1280.webp 1280w,
+                    ../images/optimized/clipforge-1600.webp 1600w,
+                    ../images/optimized/clipforge-2200.webp 2200w
                   "
                   sizes="(min-width: 1200px) 1152px, 100vw"
                 />
                 <img
-                  src="../images/optimized/callsign-1280.jpg"
+                  src="../images/optimized/clipforge-1280.jpg"
                   srcset="
-                    ../images/optimized/callsign-640.jpg   640w,
-                    ../images/optimized/callsign-960.jpg   960w,
-                    ../images/optimized/callsign-1280.jpg 1280w,
-                    ../images/optimized/callsign-1600.jpg 1600w,
-                    ../images/optimized/callsign-2200.jpg 2200w
+                    ../images/optimized/clipforge-640.jpg   640w,
+                    ../images/optimized/clipforge-960.jpg   960w,
+                    ../images/optimized/clipforge-1280.jpg 1280w,
+                    ../images/optimized/clipforge-1600.jpg 1600w,
+                    ../images/optimized/clipforge-2200.jpg 2200w
                   "
                   sizes="(min-width: 1200px) 1152px, 100vw"
-                  alt="Callsign cover"
+                  alt="ClipForge tool catalog mockup"
                   class="project-cover"
-                  width="4000"
-                  height="2250"
+                  width="2200"
+                  height="1238"
                   decoding="async"
+                  loading="lazy"
                 />
               </picture>
             </div>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem">
+            <div
+              style="
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+              "
+            >
               <a
-                href="https://marketplace.visualstudio.com/items?itemName=ian-davis.callsign"
+                href="https://mediatoolkit.iandavis.dev/"
                 target="_blank"
                 class="btn btn-primary"
               >
-                [>] VS Code Marketplace
+                [>] Live Site
               </a>
               <a
-                href="https://github.com/davis-ian/callsign"
+                href="https://github.com/davis-ian/ffmpeg_wa"
                 target="_blank"
                 class="btn"
               >
@@ -209,31 +219,42 @@
             <h2 class="section-heading">About</h2>
             <div class="content-text">
               <p>
-                <strong>Callsign</strong> is a VS Code extension that transforms
-                OpenAPI specifications (a standard for describing REST APIs)
-                into an interactive, developer-friendly interface directly
-                within your editor. It parses OpenAPI 3.x documents and presents
-                endpoints, schemas, and parameters in a clean, navigable UI,
-                eliminating context switching to external tools.
+                <strong>Media Toolkit</strong> is a modular media toolbox that
+                runs entirely in the browser. Every tool - from the thumbnail
+                clipper and trimmer to audio extractors and HLS downloaders - is
+                defined in a single registry so new workflows appear instantly
+                across the sidebar, routing, and runtime.
               </p>
               <p>
-                Built with the VS Code Extension API, Callsign provides
-                real-time API exploration with features like endpoint filtering,
-                request building, and schema visualization. It's designed for
-                developers who want fast, local access to API documentation
-                without leaving their development environment.
+                The UI is built with Vue 3 + Vuetify, while ffmpeg-powered
+                operations route through a shared
+                <code>ffmpegService</code> that manages loading cores, thread
+                counts, and fallback logic. Lightweight image tasks stay
+                browser-native so users get instant feedback without shipping
+                files to a backend.
               </p>
               <p>
-                Whether you're integrating third-party APIs or documenting your
-                own services, Callsign streamlines the workflow by keeping
-                everything in one place.
+                A persistent runtime status bar broadcasts FFmpeg health (core
+                mode, threads, isolation status, and last processing strategy)
+                so creators always understand what the WASM runtime is doing.
+                Cross-origin isolation headers are documented directly in the
+                project to keep multi-threaded execution stable during deploys.
+              </p>
+              <p>
+                Under the hood, Media Toolkit follows a safe-first strategy:
+                copy/remux/extract operations are attempted before heavy
+                transcodes, with clear warnings when the runtime needs to
+                escalate work. This keeps browser sessions responsive even when
+                working with long-form source material.
               </p>
             </div>
             <div class="chip-group mt-4">
-              <span class="chip">TypeScript</span>
-              <span class="chip">VS Code Extension API</span>
-              <span class="chip">Webview UI</span>
-              <span class="chip">OpenAPI 3.x</span>
+              <span class="chip">Vue 3</span>
+              <span class="chip">Vite</span>
+              <span class="chip">FFmpeg.wasm</span>
+              <span class="chip">Vuetify</span>
+              <span class="chip">HLS.js</span>
+              <span class="chip">Web Workers</span>
             </div>
           </section>
 
@@ -241,35 +262,37 @@
             <h2 class="section-heading">Features</h2>
             <div class="timeline">
               <div class="timeline-item">
-                <span class="timeline-date">Parsing</span>
-                <h3 class="timeline-role">OpenAPI 3.x Support</h3>
+                <span class="timeline-date">Catalog</span>
+                <h3 class="timeline-role">Registry-driven tools</h3>
                 <p class="timeline-description">
-                  Parses and visualizes OpenAPI 3.x specifications natively in
-                  VS Code with full schema validation.
+                  The tool registry defines every media utility and feeds the
+                  sidebar, routing, and icons so new workflows launch in one
+                  place.
                 </p>
               </div>
               <div class="timeline-item">
-                <span class="timeline-date">Search</span>
-                <h3 class="timeline-role">Endpoint Filtering</h3>
+                <span class="timeline-date">Runtime</span>
+                <h3 class="timeline-role">FFmpeg status bar</h3>
                 <p class="timeline-description">
-                  Search and filter endpoints by path, method, or tag to quickly
-                  find the API operations you need.
+                  A live status strip shows which FFmpeg core is loaded,
+                  isolation state, thread usage, and fallback strategy during
+                  every operation.
                 </p>
               </div>
               <div class="timeline-item">
-                <span class="timeline-date">Visualization</span>
-                <h3 class="timeline-role">Schema Explorer</h3>
+                <span class="timeline-date">Isolation</span>
+                <h3 class="timeline-role">COOP/COEP ready</h3>
                 <p class="timeline-description">
-                  Explore request/response schemas with expandable JSON views
-                  and detailed property documentation.
+                  Guidance for Cross-Origin Isolation headers ensures
+                  multi-threaded FFmpeg kernels stay enabled in Chromium builds.
                 </p>
               </div>
               <div class="timeline-item">
-                <span class="timeline-date">Testing</span>
-                <h3 class="timeline-role">Built-in HTTP Client</h3>
+                <span class="timeline-date">Strategy</span>
+                <h3 class="timeline-role">Safe-first execution</h3>
                 <p class="timeline-description">
-                  Built-in HTTP client for testing endpoints without leaving the
-                  editor or using external tools.
+                  Copy/remux/extract paths run first with automatic fallback to
+                  heavier transcode routines when absolutely required.
                 </p>
               </div>
             </div>
@@ -281,12 +304,12 @@
       <footer class="status-bar">
         <div class="status-left">
           <span class="status-item">design3</span>
-          <span class="status-item">callsign.js</span>
+          <span class="status-item">media-toolkit.js</span>
           <span class="status-item">UTF-8</span>
         </div>
         <div class="status-right">
           <span class="status-item">Ln 1, Col 1</span>
-          <span class="status-item" id="status-size">3.2 KB</span>
+          <span class="status-item" id="status-size">4.1 KB</span>
           <span class="status-item">JavaScript</span>
         </div>
       </footer>
@@ -346,6 +369,12 @@
             category: "Projects",
           },
           {
+            id: "callsign",
+            label: "Go to: Callsign Project",
+            action: () => (window.location.href = "callsign.html"),
+            category: "Projects",
+          },
+          {
             id: "minigames",
             label: "Go to: Minigames Project",
             action: () => (window.location.href = "minigames.html"),
@@ -353,12 +382,17 @@
           },
           {
             id: "demo",
-            label: "Open: VS Code Marketplace",
+            label: "Open: Live Site",
             action: () =>
-              window.open(
-                "https://marketplace.visualstudio.com/items?itemName=ian-davis.callsign",
-                "_blank",
-              ),
+              window.open("https://mediatoolkit.iandavis.dev/", "_blank"),
+            category: "Actions",
+          },
+          {
+            id: "request",
+            label: "Request: Beta Access",
+            action: () =>
+              (window.location.href =
+                "mailto:hello.iandavis@gmail.com?subject=MediaToolkit%20Access"),
             category: "Actions",
           },
           {

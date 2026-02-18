@@ -1,283 +1,403 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>minigames – Ian Davis</title>
+    <meta
+      name="description"
+      content="A collection of lightweight, interactive browser-based games built with Vue 3."
+    />
+    <link rel="icon" href="../favicon.ico" />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>minigames – Ian Davis</title>
-  <meta name="description" content="A collection of lightweight, interactive browser-based games built with Vue 3." />
-  <link rel="icon" href="../favicon.ico" />
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2"
-    as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2"
-    as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../css/main.css" />
-</head>
+  <body>
+    <!-- Mobile Menu Button -->
+    <button
+      class="mobile-menu-btn"
+      id="mobile-menu-btn"
+      aria-label="Toggle menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
 
-<body>
-  <!-- Mobile Menu Button -->
-  <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </button>
-
-  <div class="site-wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <span class="explorer-label">EXPLORER</span>
-      </div>
-      <nav class="file-tree">
-        <div class="folder open">
-          <div class="folder-header" onclick="toggleFolder(this)">
-            <span class="folder-toggle">▼</span>
-            <span>PORTFOLIO</span>
-          </div>
-          <div class="folder-contents">
-            <a href="../index.html" class="file">
-              <span class="file-prefix">-</span>
-              <span>README.md</span>
-            </a>
-            <div class="folder open">
-              <div class="folder-header" onclick="toggleFolder(this)">
-                <span class="folder-toggle">▼</span>
-                <span>projects</span>
-              </div>
-              <div class="folder-contents">
-                <a href="forma.html" class="file">
-                  <span class="file-prefix">-</span>
-                  <span>forma.js</span>
-                </a>
-                <a href="clipforge.html" class="file">
-                  <span class="file-prefix">-</span>
-                  <span>clipforge.js</span>
-                </a>
-                <a href="upnext.html" class="file">
-                  <span class="file-prefix">-</span>
-                  <span>upnext.js</span>
-                </a>
-                <a href="callsign.html" class="file">
-                  <span class="file-prefix">-</span>
-                  <span>callsign.js</span>
-                </a>
-                <a href="minigames.html" class="file active">
-                  <span class="file-prefix">-</span>
-                  <span>minigames.js</span>
-                </a>
-              </div>
-            </div>
-          </div>
+    <div class="site-wrapper">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <span class="explorer-label">EXPLORER</span>
         </div>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Breadcrumbs -->
-      <nav class="breadcrumbs">
-        <a href="../index.html#hero" class="crumb">~/iandavis</a>
-        <span class="crumb-separator">/</span>
-        <a href="../index.html#work" class="crumb">projects</a>
-        <span class="crumb-separator">/</span>
-        <span class="crumb active">minigames.js</span>
-      </nav>
-
-      <div class="page-content">
-        <section class="hero">
-          <div class="hero-header">
-            <h1 class="hero-title">minigames</h1>
-            <p class="hero-subtitle">Interactive Browser Games Collection</p>
+        <nav class="file-tree">
+          <div class="folder open">
+            <div class="folder-header" onclick="toggleFolder(this)">
+              <span class="folder-toggle">▼</span>
+              <span>PORTFOLIO</span>
+            </div>
+            <div class="folder-contents">
+              <a href="../index.html" class="file">
+                <span class="file-prefix">-</span>
+                <span>README.md</span>
+              </a>
+              <div class="folder open">
+                <div class="folder-header" onclick="toggleFolder(this)">
+                  <span class="folder-toggle">▼</span>
+                  <span>projects</span>
+                </div>
+                <div class="folder-contents">
+                  <a href="forma.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>forma.js</span>
+                  </a>
+                  <a href="media-toolkit.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>media-toolkit.js</span>
+                  </a>
+                  <a href="upnext.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>upnext.js</span>
+                  </a>
+                  <a href="callsign.html" class="file">
+                    <span class="file-prefix">-</span>
+                    <span>callsign.js</span>
+                  </a>
+                  <a href="minigames.html" class="file active">
+                    <span class="file-prefix">-</span>
+                    <span>minigames.js</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="hero-description">
-            A collection of lightweight, interactive web-based games built
-            to explore UI patterns, state management, and responsive design.
-          </p>
-          <div class="hero-meta">
-            <div class="meta-item">
-              <span class="meta-label">Stack</span>
-              <span class="meta-value">Vue 3, TypeScript</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Year</span>
-              <span class="meta-value">2024</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Status</span>
-              <span class="meta-value">Live</span>
-            </div>
-          </div>
-        </section>
+        </nav>
+      </aside>
 
-        <section class="section">
-          <h2 class="section-heading">Demo</h2>
-          <div style="background: var(--bg-secondary); border: 1px solid var(--color-border); overflow: hidden;">
-            <picture>
-              <source type="image/avif" srcset="
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+          <a href="../index.html#hero" class="crumb">~/iandavis</a>
+          <span class="crumb-separator">/</span>
+          <a href="../index.html#work" class="crumb">projects</a>
+          <span class="crumb-separator">/</span>
+          <span class="crumb active">minigames.js</span>
+        </nav>
+
+        <div class="page-content">
+          <section class="hero">
+            <div class="hero-header">
+              <h1 class="hero-title">minigames</h1>
+              <p class="hero-subtitle">Interactive Browser Games Collection</p>
+            </div>
+            <p class="hero-description">
+              A collection of lightweight, interactive web-based games built to
+              explore UI patterns, state management, and responsive design.
+            </p>
+            <div class="hero-meta">
+              <div class="meta-item">
+                <span class="meta-label">Stack</span>
+                <span class="meta-value">Vue 3, TypeScript</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2024</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-value">Live</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-heading">Demo</h2>
+            <div
+              style="
+                background: var(--bg-secondary);
+                border: 1px solid var(--color-border);
+                overflow: hidden;
+              "
+            >
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
                     ../images/optimized/minigames-640.avif   640w,
                     ../images/optimized/minigames-960.avif   960w,
                     ../images/optimized/minigames-1280.avif 1280w,
                     ../images/optimized/minigames-1600.avif 1600w,
                     ../images/optimized/minigames-2200.avif 2200w
-                  " sizes="(min-width: 1200px) 1152px, 100vw" />
-              <source type="image/webp" srcset="
+                  "
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
                     ../images/optimized/minigames-640.webp   640w,
                     ../images/optimized/minigames-960.webp   960w,
                     ../images/optimized/minigames-1280.webp 1280w,
                     ../images/optimized/minigames-1600.webp 1600w,
                     ../images/optimized/minigames-2200.webp 2200w
-                  " sizes="(min-width: 1200px) 1152px, 100vw" />
-              <img src="../images/optimized/minigames-1280.jpg" srcset="
+                  "
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                />
+                <img
+                  src="../images/optimized/minigames-1280.jpg"
+                  srcset="
                     ../images/optimized/minigames-640.jpg   640w,
                     ../images/optimized/minigames-960.jpg   960w,
                     ../images/optimized/minigames-1280.jpg 1280w,
                     ../images/optimized/minigames-1600.jpg 1600w,
                     ../images/optimized/minigames-2200.jpg 2200w
-                  " sizes="(min-width: 1200px) 1152px, 100vw" alt="Minigames cover" class="project-cover" width="4000"
-                height="2800" decoding="async" />
-            </picture>
-          </div>
-          <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-            <a href="https://minigames.iandavis.dev/" target="_blank" class="btn btn-primary">
-              [>] Live Demo
-            </a>
-            <a href="https://github.com/davis-ian/minigame" target="_blank" class="btn">
-              [<>] GitHub Repo
-            </a>
-          </div>
-        </section>
+                  "
+                  sizes="(min-width: 1200px) 1152px, 100vw"
+                  alt="Minigames cover"
+                  class="project-cover"
+                  width="4000"
+                  height="2800"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+            <div style="margin-top: 1rem; display: flex; gap: 1rem">
+              <a
+                href="https://minigames.iandavis.dev/"
+                target="_blank"
+                class="btn btn-primary"
+              >
+                [>] Live Demo
+              </a>
+              <a
+                href="https://github.com/davis-ian/minigame"
+                target="_blank"
+                class="btn"
+              >
+                [<>] GitHub Repo
+              </a>
+            </div>
+          </section>
 
-        <section class="section">
-          <h2 class="section-heading">About</h2>
-          <div class="content-text">
-            <p>
-              <strong>Minigames</strong> is a growing suite of playful
-              browser-based games built to explore interactive UI, state
-              management patterns, and responsive design using
-              <strong>Vue 3</strong>. Each game is a self-contained Vue
-              component with smooth animations, sound effects, and clean game
-              loop logic.
-            </p>
-            <p>
-              This project serves as a creative sandbox to test modern
-              frontend patterns like global state management with
-              <strong>Pinia</strong> (Vue's state management library), reactivity handling in game loops, and
-              performance optimization in real-time interactions. It's also a
-              visual playground - each game is styled using
-              <strong>TailwindCSS</strong> and adapts to mobile and desktop
-              layouts.
-            </p>
-            <p>
-              Beyond prototyping game logic, the goal was to write
-              production-quality component structure for each game, while
-              still preserving the joy and spontaneity of classic arcade
-              challenges.
-            </p>
-          </div>
-          <div class="chip-group mt-4">
-            <span class="chip">Vue 3</span>
-            <span class="chip">TypeScript</span>
-            <span class="chip">Vite</span>
-            <span class="chip">Pinia</span>
-            <span class="chip">TailwindCSS</span>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-heading">Games</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="timeline-date">Memory</span>
-              <h3 class="timeline-role">Memory Match</h3>
-              <p class="timeline-description">
-                Classic memory match game with animated tile flipping,
-                timer challenges, and high score saving to local storage.
+          <section class="section">
+            <h2 class="section-heading">About</h2>
+            <div class="content-text">
+              <p>
+                <strong>Minigames</strong> is a growing suite of playful
+                browser-based games built to explore interactive UI, state
+                management patterns, and responsive design using
+                <strong>Vue 3</strong>. Each game is a self-contained Vue
+                component with smooth animations, sound effects, and clean game
+                loop logic.
+              </p>
+              <p>
+                This project serves as a creative sandbox to test modern
+                frontend patterns like global state management with
+                <strong>Pinia</strong> (Vue's state management library),
+                reactivity handling in game loops, and performance optimization
+                in real-time interactions. It's also a visual playground - each
+                game is styled using <strong>TailwindCSS</strong> and adapts to
+                mobile and desktop layouts.
+              </p>
+              <p>
+                Beyond prototyping game logic, the goal was to write
+                production-quality component structure for each game, while
+                still preserving the joy and spontaneity of classic arcade
+                challenges.
               </p>
             </div>
-            <div class="timeline-item">
-              <span class="timeline-date">Architecture</span>
-              <h3 class="timeline-role">Vue Composables</h3>
-              <p class="timeline-description">
-                Clean separation between game loop logic and presentation
-                using Vue composables for reusable game mechanics.
-              </p>
+            <div class="chip-group mt-4">
+              <span class="chip">Vue 3</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">Vite</span>
+              <span class="chip">Pinia</span>
+              <span class="chip">TailwindCSS</span>
             </div>
-            <div class="timeline-item">
-              <span class="timeline-date">Platform</span>
-              <h3 class="timeline-role">Modular System</h3>
-              <p class="timeline-description">
-                Built as a modular platform for expanding new game types
-                without refactoring core structure or state management.
-              </p>
-            </div>
-            <div class="timeline-item">
-              <span class="timeline-date">Mobile</span>
-              <h3 class="timeline-role">Responsive Design</h3>
-              <p class="timeline-description">
-                Responsive mobile-friendly layout with touch controls and
-                minimal dependencies for fast loading.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
+          </section>
 
-    <!-- Status Bar -->
-    <footer class="status-bar">
-      <div class="status-left">
-        <span class="status-item">design3</span>
-        <span class="status-item">minigames.js</span>
-        <span class="status-item">UTF-8</span>
-      </div>
-      <div class="status-right">
-        <span class="status-item">Ln 1, Col 1</span>
-        <span class="status-item" id="status-size">3.5 KB</span>
-        <span class="status-item">JavaScript</span>
-      </div>
-    </footer>
-  </div>
+          <section class="section">
+            <h2 class="section-heading">Games</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-date">Memory</span>
+                <h3 class="timeline-role">Memory Match</h3>
+                <p class="timeline-description">
+                  Classic memory match game with animated tile flipping, timer
+                  challenges, and high score saving to local storage.
+                </p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">Architecture</span>
+                <h3 class="timeline-role">Vue Composables</h3>
+                <p class="timeline-description">
+                  Clean separation between game loop logic and presentation
+                  using Vue composables for reusable game mechanics.
+                </p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">Platform</span>
+                <h3 class="timeline-role">Modular System</h3>
+                <p class="timeline-description">
+                  Built as a modular platform for expanding new game types
+                  without refactoring core structure or state management.
+                </p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">Mobile</span>
+                <h3 class="timeline-role">Responsive Design</h3>
+                <p class="timeline-description">
+                  Responsive mobile-friendly layout with touch controls and
+                  minimal dependencies for fast loading.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
 
-  <!-- Command Palette -->
-  <div class="command-palette-overlay" id="command-palette">
-    <div class="command-palette">
-      <div class="command-input-wrapper">
-        <input type="text" class="command-input" id="command-input" placeholder="Type a command or search..."
-          autocomplete="off" />
-      </div>
-      <div class="command-list" id="command-list"></div>
+      <!-- Status Bar -->
+      <footer class="status-bar">
+        <div class="status-left">
+          <span class="status-item">design3</span>
+          <span class="status-item">minigames.js</span>
+          <span class="status-item">UTF-8</span>
+        </div>
+        <div class="status-right">
+          <span class="status-item">Ln 1, Col 1</span>
+          <span class="status-item" id="status-size">3.5 KB</span>
+          <span class="status-item">JavaScript</span>
+        </div>
+      </footer>
     </div>
-  </div>
 
-  <script src="../js/main.js"></script>
-  <script>
-    // Override commands for project page after DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-      COMMANDS.length = 0;
-      COMMANDS.push(
-        {id: 'back', label: 'Go back to portfolio', action: () => window.location.href = '../index.html', category: 'Navigation', key: 'B'},
-        {id: 'portfolio', label: 'Go to: Portfolio', action: () => window.location.href = '../index.html', category: 'Navigation'},
-        {id: 'clipforge', label: 'Go to: ClipForge Project', action: () => window.location.href = 'clipforge.html', category: 'Projects'},
-        {id: 'forma', label: 'Go to: Forma Project', action: () => window.location.href = 'forma.html', category: 'Projects'},
-        {id: 'upnext', label: 'Go to: UpNext Project', action: () => window.location.href = 'upnext.html', category: 'Projects'},
-        {id: 'callsign', label: 'Go to: Callsign Project', action: () => window.location.href = 'callsign.html', category: 'Projects'},
-        {id: 'demo', label: 'Open: Live Demo', action: () => window.open('https://minigames.iandavis.dev/', '_blank'), category: 'Actions'},
-        {id: 'github', label: 'Open: GitHub Profile', action: () => window.open('https://github.com/davis-ian', '_blank'), category: 'External'},
-        {id: 'linkedin', label: 'Open: LinkedIn Profile', action: () => window.open('https://linkedin.com/in/iandavisdev', '_blank'), category: 'External'},
-        {id: 'email', label: 'Copy: Email Address', action: copyEmail, category: 'Actions'},
-        {id: 'palette', label: 'Toggle: Command Palette', action: () => {if (commandPalette) commandPalette.toggle();}, category: 'Actions', key: '⌘K'}
-      );
+    <!-- Command Palette -->
+    <div class="command-palette-overlay" id="command-palette">
+      <div class="command-palette">
+        <div class="command-input-wrapper">
+          <input
+            type="text"
+            class="command-input"
+            id="command-input"
+            placeholder="Type a command or search..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="command-list" id="command-list"></div>
+      </div>
+    </div>
 
-      // Refresh command palette with new commands
-      if (commandPalette) commandPalette.refreshCommands();
+    <script src="../js/main.js"></script>
+    <script>
+      // Override commands for project page after DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        COMMANDS.length = 0;
+        COMMANDS.push(
+          {
+            id: "back",
+            label: "Go back to portfolio",
+            action: () => (window.location.href = "../index.html"),
+            category: "Navigation",
+            key: "B",
+          },
+          {
+            id: "portfolio",
+            label: "Go to: Portfolio",
+            action: () => (window.location.href = "../index.html"),
+            category: "Navigation",
+          },
+          {
+            id: "media-toolkit",
+            label: "Go to: Media Toolkit Project",
+            action: () => (window.location.href = "media-toolkit.html"),
+            category: "Projects",
+          },
+          {
+            id: "forma",
+            label: "Go to: Forma Project",
+            action: () => (window.location.href = "forma.html"),
+            category: "Projects",
+          },
+          {
+            id: "upnext",
+            label: "Go to: UpNext Project",
+            action: () => (window.location.href = "upnext.html"),
+            category: "Projects",
+          },
+          {
+            id: "callsign",
+            label: "Go to: Callsign Project",
+            action: () => (window.location.href = "callsign.html"),
+            category: "Projects",
+          },
+          {
+            id: "demo",
+            label: "Open: Live Demo",
+            action: () =>
+              window.open("https://minigames.iandavis.dev/", "_blank"),
+            category: "Actions",
+          },
+          {
+            id: "github",
+            label: "Open: GitHub Profile",
+            action: () => window.open("https://github.com/davis-ian", "_blank"),
+            category: "External",
+          },
+          {
+            id: "linkedin",
+            label: "Open: LinkedIn Profile",
+            action: () =>
+              window.open("https://linkedin.com/in/iandavisdev", "_blank"),
+            category: "External",
+          },
+          {
+            id: "email",
+            label: "Copy: Email Address",
+            action: copyEmail,
+            category: "Actions",
+          },
+          {
+            id: "palette",
+            label: "Toggle: Command Palette",
+            action: () => {
+              if (commandPalette) commandPalette.toggle();
+            },
+            category: "Actions",
+            key: "⌘K",
+          },
+        );
 
-      // Update page size display
-      updatePageSize();
-    });
-  </script>
-</body>
+        // Refresh command palette with new commands
+        if (commandPalette) commandPalette.refreshCommands();
 
+        // Update page size display
+        updatePageSize();
+      });
+    </script>
+  </body>
 </html>

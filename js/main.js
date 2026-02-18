@@ -52,9 +52,9 @@ const COMMANDS = [
     category: "Projects",
   },
   {
-    id: "clipforge",
-    label: "Go to: ClipForge Project",
-    action: () => (window.location.href = "projects/clipforge.html"),
+    id: "media-toolkit",
+    label: "Go to: Media Toolkit Project",
+    action: () => (window.location.href = "projects/media-toolkit.html"),
     category: "Projects",
   },
   {
@@ -119,7 +119,7 @@ const COMMANDS = [
   {
     id: "back",
     label: "Go back to portfolio",
-    action: () => window.location.href = "../index.html",
+    action: () => (window.location.href = "../index.html"),
     category: "Navigation",
     key: "B",
   },
@@ -414,12 +414,12 @@ function updateStatusBar() {
 function updatePageSize() {
   const pageSizeEl = document.getElementById("status-size");
   if (!pageSizeEl) return;
-  
+
   // Calculate page size from document HTML
   const htmlContent = document.documentElement.outerHTML;
   const sizeInBytes = new Blob([htmlContent]).size;
   const sizeInKB = (sizeInBytes / 1024).toFixed(1);
-  
+
   pageSizeEl.textContent = `${sizeInKB} KB`;
 }
 
@@ -476,7 +476,7 @@ function initNavigation() {
   });
 
   // Breadcrumb navigation
-  document.querySelectorAll('.crumb[data-section]').forEach((crumb) => {
+  document.querySelectorAll(".crumb[data-section]").forEach((crumb) => {
     crumb.addEventListener("click", (e) => {
       hasUserNavigated = true;
       const section = crumb.dataset.section;
@@ -761,18 +761,18 @@ function handleHashNavigation() {
   if (hash) {
     // Small delay to ensure DOM is fully ready
     setTimeout(() => {
-      const sectionId = hash.replace('#', '');
+      const sectionId = hash.replace("#", "");
       const element = document.getElementById(sectionId);
       if (element) {
         hasUserNavigated = true;
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
         // Update active states
-        const files = document.querySelectorAll('.file');
-        files.forEach(file => {
+        const files = document.querySelectorAll(".file");
+        files.forEach((file) => {
           if (file.dataset.section === sectionId) {
-            file.classList.add('active');
+            file.classList.add("active");
           } else {
-            file.classList.remove('active');
+            file.classList.remove("active");
           }
         });
         updateStatusBar();
