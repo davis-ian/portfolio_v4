@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/main.css";
 
 interface Props {
   title: string;
@@ -41,7 +42,6 @@ const canonical = Astro.url.href;
     <link rel="icon" href="/favicon.ico" />
     <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
     <slot />
