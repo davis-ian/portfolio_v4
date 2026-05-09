@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/projects/ffmpeg-wa.html");
+---
+
+<BaseLayout
+  title="ffmpeg-wa – Ian Davis"
+  description="In-browser FFmpeg workflows for video processing and media transforms."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

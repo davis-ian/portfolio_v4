@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/projects/callsign.html");
+---
+
+<BaseLayout
+  title="callsign – Ian Davis"
+  description="Test APIs without leaving your code editor using the Callsign VS Code extension."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

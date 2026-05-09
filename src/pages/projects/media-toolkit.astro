@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/projects/media-toolkit.html");
+---
+
+<BaseLayout
+  title="media-toolkit - Ian Davis"
+  description="Browser-first media toolkit featuring FFmpeg.wasm-powered video, audio, and image utilities."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

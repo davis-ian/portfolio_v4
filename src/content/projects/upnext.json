@@ -1,0 +1,9 @@
+{
+  "title": "upnext",
+  "slug": "upnext",
+  "description": "Collaborative watchlist app for tracking shows and movies with friends.",
+  "tags": ["Vue 3", "Express", "Node.js"],
+  "metrics": "Shared watch queue and social tracking workflows",
+  "repoUrl": "https://github.com/davis-ian",
+  "order": 3
+}

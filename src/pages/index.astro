@@ -1,0 +1,15 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/index.html");
+---
+
+<BaseLayout
+  title="Ian Davis"
+  description="Portfolio of Ian Davis – Software Engineer. Building performant, creative, and production-ready applications with C#, Vue.js, and modern tools."
+  ogTitle="Ian Davis – Software Engineer"
+  ogDescription="Creative and technically solid software developer. Explore projects in full-stack development, dev tools, and game architecture."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/projects/minigames.html");
+---
+
+<BaseLayout
+  title="minigames – Ian Davis"
+  description="A collection of browser-based mini games built with Vue and TypeScript."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

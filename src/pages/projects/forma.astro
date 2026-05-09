@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/projects/forma.html");
+---
+
+<BaseLayout
+  title="forma – Ian Davis"
+  description="A pixel-perfect roguelite dungeon crawler with real-time combat, built in Three.js and ECS."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { loadLegacyBody } from "@utils/legacyPage";
+
+const body = loadLegacyBody("src/legacy/projects/upnext.html");
+---
+
+<BaseLayout
+  title="upnext – Ian Davis"
+  description="A collaborative watchlist app for tracking what to watch next with friends."
+>
+  <Fragment set:html={body} />
+</BaseLayout>

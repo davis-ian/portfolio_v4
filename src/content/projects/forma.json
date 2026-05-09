@@ -1,0 +1,10 @@
+{
+  "title": "forma",
+  "slug": "forma",
+  "description": "3D roguelite dungeon crawler built with Three.js and a custom ECS engine.",
+  "tags": ["Three.js", "Vue", "ECS"],
+  "metrics": "Procedural dungeon runs with real-time combat in-browser",
+  "repoUrl": "https://github.com/davis-ian/forma",
+  "demoUrl": "https://forma.iandavis.dev/",
+  "order": 1
+}

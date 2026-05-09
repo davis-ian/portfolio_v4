@@ -1,0 +1,9 @@
+{
+  "title": "ffmpeg-wa",
+  "slug": "ffmpeg-wa",
+  "description": "In-browser FFmpeg utilities and media transform tooling.",
+  "tags": ["FFmpeg.wasm", "WebAssembly", "Media"],
+  "metrics": "Video pipeline tasks executed directly in the browser",
+  "repoUrl": "https://github.com/davis-ian/ffmpeg_wa",
+  "order": 6
+}
