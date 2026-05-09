@@ -55,6 +55,7 @@ export function initEmail(): void {
   const email = getEmail();
   emailLink.href = `mailto:${email}`;
   emailLink.textContent = email;
+  emailLink.setAttribute("aria-label", `Send email to ${email}`);
 }
 
 export function initResumeButton(): void {

@@ -33,15 +33,7 @@ const { home = false, activeSection = "hero", activeProject = "" } = Astro.props
               <a href="#about" class={`file ${activeSection === "about" ? "active" : ""}`} data-section="about"><span class="file-prefix">-</span><span>about.md</span></a>
             </div>
           </div>
-          <div class="folder">
-            <div class="folder-header" data-folder-toggle>
-              <span class="folder-toggle">▶</span>
-              <span>.github</span>
-            </div>
-            <div class="folder-contents">
-              <a href="https://github.com/davis-ian" class="file" target="_blank" rel="noopener"><span class="file-prefix">-</span><span>profile</span></a>
-            </div>
-          </div>
+          <a href="https://github.com/davis-ian" class="file" target="_blank" rel="noopener"><span class="file-prefix">-</span><span>.github</span></a>
         </div>
       </div>
     </nav>
@@ -60,12 +52,9 @@ const { home = false, activeSection = "hero", activeProject = "" } = Astro.props
               <span>projects</span>
             </div>
             <div class="folder-contents">
-              <a href="/projects/forma" class={`file ${activeProject === "forma" ? "active" : ""}`}><span class="file-prefix">-</span><span>forma.js</span></a>
               <a href="/projects/media-toolkit" class={`file ${activeProject === "media-toolkit" ? "active" : ""}`}><span class="file-prefix">-</span><span>media-toolkit.js</span></a>
-              <a href="/projects/upnext" class={`file ${activeProject === "upnext" ? "active" : ""}`}><span class="file-prefix">-</span><span>upnext.js</span></a>
               <a href="/projects/callsign" class={`file ${activeProject === "callsign" ? "active" : ""}`}><span class="file-prefix">-</span><span>callsign.js</span></a>
-              <a href="/projects/minigames" class={`file ${activeProject === "minigames" ? "active" : ""}`}><span class="file-prefix">-</span><span>minigames.js</span></a>
-              <a href="/projects/ffmpeg-wa" class={`file ${activeProject === "ffmpeg-wa" ? "active" : ""}`}><span class="file-prefix">-</span><span>ffmpeg-wa.js</span></a>
+              <a href="/projects/forma" class={`file ${activeProject === "forma" ? "active" : ""}`}><span class="file-prefix">-</span><span>forma.js</span></a>
             </div>
           </div>
         </div>

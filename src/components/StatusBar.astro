@@ -10,7 +10,16 @@ const { home = false, fileName = "README.md" } = Astro.props;
 {home ? (
   <footer class="status-bar">
     <div class="status-left">
-      <span class="status-mode" id="status-mode">NORMAL</span>
+      <span
+        class="status-mode"
+        id="status-mode"
+        role="button"
+        tabindex="0"
+        aria-label="Open command palette"
+        aria-controls="command-palette"
+      >
+        NORMAL
+      </span>
       <span class="status-item" id="status-file">{fileName}</span>
       <span class="status-separator">|</span>
       <span class="status-item" id="status-branch">git:design5</span>

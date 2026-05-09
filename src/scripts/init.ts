@@ -76,6 +76,21 @@ function initKeyboardShortcuts(): void {
   }, true);
 }
 
+function initStatusModeTrigger(): void {
+  const statusMode = document.getElementById("status-mode");
+  if (!statusMode) return;
+
+  statusMode.addEventListener("click", () => {
+    commandPalette?.toggle();
+  });
+
+  statusMode.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    commandPalette?.toggle();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   commandPalette = new CommandPalette(getCommands());
   initFolderToggles();
@@ -86,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initEmail();
   initResumeButton();
   initKeyboardShortcuts();
+  initStatusModeTrigger();
   window.addEventListener("scroll", () => {
     setHasUserNavigated(true);
     updateStatusBar();
