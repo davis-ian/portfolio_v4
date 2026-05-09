@@ -29,7 +29,55 @@
   --accent-mint: #99ffe4;
   --accent-mint-dim: rgba(153, 255, 228, 0.15);
   --accent-red: #ff8080;
-  
+
+  /* Catppuccin Mocha*/
+  /*--bg-primary: #1e1e2e;
+  --bg-secondary: #181825;
+  --bg-tertiary: #313244;
+  --bg-hover: #45475a;
+  --border-default: #45475a;
+  --border-muted: #313244;
+  --text-primary: #cdd6f4;
+  --text-secondary: #bac2de;
+  --text-muted: #a6adc8;
+  --accent-peach: #fab387;
+  --accent-peach-dim: rgba(250, 179, 135, 0.18);
+  --accent-mint: #94e2d5;
+  --accent-mint-dim: rgba(148, 226, 213, 0.18);
+  --accent-red: #f38ba8;*/
+
+  /* Tokyo Night */
+  /*--bg-primary: #1a1b26;
+  --bg-secondary: #16161e;
+  --bg-tertiary: #24283b;
+  --bg-hover: #2f334d;
+  --border-default: #3b4261;
+  --border-muted: #2f334d;
+  --text-primary: #c0caf5;
+  --text-secondary: #a9b1d6;
+  --text-muted: #7a83a8;
+  --accent-peach: #ff9e64;
+  --accent-peach-dim: rgba(255, 158, 100, 0.18);
+  --accent-mint: #73daca;
+  --accent-mint-dim: rgba(115, 218, 202, 0.18);
+  --accent-red: #f7768e;*/
+
+  /* Incognito */
+  /*--bg-primary: #171717;
+  --bg-secondary: #111111;
+  --bg-tertiary: #232323;
+  --bg-hover: #2c2c2c;
+  --border-default: #303030;
+  --border-muted: #262626;
+  --text-primary: #d1d0c5;
+  --text-secondary: #b7b5a8;
+  --text-muted: #7e7d74;
+  --accent-peach: #e2b714;
+  --accent-peach-dim: rgba(226, 183, 20, 0.18);
+  --accent-mint: #7bd88f;
+  --accent-mint-dim: rgba(123, 216, 143, 0.18);
+  --accent-red: #ca4754;*/
+
   /* Semantic Mapping */
   --color-brand-bg: var(--bg-primary);
   --color-surface: var(--bg-secondary);
@@ -41,9 +89,9 @@
   --color-accent-dim: var(--accent-peach-dim);
   --color-border: var(--border-default);
   --color-border-muted: var(--border-muted);
-  
+
   /* Typography tokens are defined in global.css */
-  
+
   /* Type Scale */
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -55,16 +103,84 @@
   --text-4xl: 2rem;
   --text-5xl: 2.5rem;
   --text-6xl: 3rem;
-  
+
   /* Layout */
   --sidebar-width: 280px;
   --status-bar-height: 28px;
   --breadcrumb-height: 40px;
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
 }
+
+/*
+  Alternate theme palettes:
+  1) Keep exactly one palette active at a time.
+  2) To test, comment out the active :root color tokens above (Vesper color + semantic mapping only)
+     and uncomment one of the :root blocks below.
+  3) Leave typography, type scale, layout, and transition tokens unchanged.
+*/
+
+/* ---------- Tokyo Night Dark ----------
+:root {
+  --bg-primary: #1a1b26;
+  --bg-secondary: #16161e;
+  --bg-tertiary: #24283b;
+  --bg-hover: #2f334d;
+  --border-default: #3b4261;
+  --border-muted: #2f334d;
+  --text-primary: #c0caf5;
+  --text-secondary: #a9b1d6;
+  --text-muted: #7a83a8;
+  --accent-peach: #ff9e64;
+  --accent-peach-dim: rgba(255, 158, 100, 0.18);
+  --accent-mint: #73daca;
+  --accent-mint-dim: rgba(115, 218, 202, 0.18);
+  --accent-red: #f7768e;
+
+  --color-brand-bg: var(--bg-primary);
+  --color-surface: var(--bg-secondary);
+  --color-surface-hover: var(--bg-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent-peach);
+  --color-accent-dim: var(--accent-peach-dim);
+  --color-border: var(--border-default);
+  --color-border-muted: var(--border-muted);
+}
+*/
+
+/* ---------- Monkeytype Incognito ----------
+:root {
+  --bg-primary: #171717;
+  --bg-secondary: #111111;
+  --bg-tertiary: #232323;
+  --bg-hover: #2c2c2c;
+  --border-default: #303030;
+  --border-muted: #262626;
+  --text-primary: #d1d0c5;
+  --text-secondary: #b7b5a8;
+  --text-muted: #7e7d74;
+  --accent-peach: #e2b714;
+  --accent-peach-dim: rgba(226, 183, 20, 0.18);
+  --accent-mint: #7bd88f;
+  --accent-mint-dim: rgba(123, 216, 143, 0.18);
+  --accent-red: #ca4754;
+
+  --color-brand-bg: var(--bg-primary);
+  --color-surface: var(--bg-secondary);
+  --color-surface-hover: var(--bg-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent-peach);
+  --color-accent-dim: var(--accent-peach-dim);
+  --color-border: var(--border-default);
+  --color-border-muted: var(--border-muted);
+}
+*/
 
 /* ---------- Base Styles ---------- */
 html {
@@ -77,8 +193,9 @@ body {
   color: var(--color-text-primary);
   font-size: var(--text-base);
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
   overflow-x: hidden;
 }
 
@@ -94,7 +211,8 @@ a:hover {
   text-underline-offset: 3px;
 }
 
-img, video {
+img,
+video {
   display: block;
   max-width: 100%;
 }
@@ -113,7 +231,7 @@ img, video {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   grid-template-rows: 1fr var(--status-bar-height);
-  grid-template-areas: 
+  grid-template-areas:
     "sidebar main"
     "status status";
   min-height: 100vh;
@@ -138,11 +256,11 @@ img, video {
 @media (max-width: 768px) {
   .site-wrapper {
     grid-template-columns: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
       "main"
       "status";
   }
-  
+
   .sidebar {
     position: fixed;
     left: 0;
@@ -153,15 +271,15 @@ img, video {
     transition: transform var(--transition-base);
     z-index: 100;
   }
-  
+
   .sidebar.open {
     transform: translateX(0);
   }
-  
+
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .page-content {
     padding: 1rem;
   }
@@ -283,7 +401,7 @@ img, video {
 }
 
 .folder-contents::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 1.25rem;
   top: 0;
@@ -419,7 +537,7 @@ a.crumb.active {
 }
 
 .command-input-wrapper::before {
-  content: ':';
+  content: ":";
   color: var(--accent-peach);
   font-weight: 700;
   font-size: var(--text-lg);
@@ -598,7 +716,7 @@ a.crumb.active {
 }
 
 .section-heading::before {
-  content: '# ';
+  content: "# ";
   color: var(--text-muted);
 }
 
@@ -683,7 +801,7 @@ a.crumb.active {
 }
 
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -698,7 +816,7 @@ a.crumb.active {
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -2rem;
   top: 0.5rem;
@@ -825,11 +943,21 @@ a.crumb.active {
   color: var(--accent-peach);
 }
 
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mt-4 { margin-top: 1rem; }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
 
 /* Content text - system-ui for readability */
 .content-text {
@@ -897,11 +1025,11 @@ a.crumb.active {
   .command-palette-overlay {
     display: none !important;
   }
-  
+
   .site-wrapper {
     display: block;
   }
-  
+
   .main-content {
     height: auto;
     overflow: visible;

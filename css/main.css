@@ -15,7 +15,7 @@
 /* ---------- CSS Variables – Vesper Theme ---------- */
 :root {
   /* Vesper Color Palette */
-  --bg-primary: #101010;
+  /*--bg-primary: #101010;
   --bg-secondary: #101010;
   --bg-tertiary: #161616;
   --bg-hover: #1c1c1c;
@@ -28,7 +28,7 @@
   --accent-peach-dim: rgba(255, 199, 153, 0.15);
   --accent-mint: #99ffe4;
   --accent-mint-dim: rgba(153, 255, 228, 0.15);
-  --accent-red: #ff8080;
+  --accent-red: #ff8080;*/
 
   /* Semantic Mapping */
   --color-brand-bg: var(--bg-primary);
