@@ -360,6 +360,15 @@ video {
   background-color: var(--bg-hover);
 }
 
+.file:hover {
+  text-decoration: none;
+}
+
+.file:hover span:not(.file-prefix) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .file.active {
   background-color: var(--accent-mint-dim);
   color: var(--accent-mint);
