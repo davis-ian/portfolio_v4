@@ -1,13 +1,32 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { loadLegacyBody } from "@utils/legacyPage";
-
-const body = loadLegacyBody("src/legacy/projects/forma.html");
+import ProjectPage from "@components/ProjectPage.astro";
 ---
 
 <BaseLayout
   title="forma – Ian Davis"
   description="A pixel-perfect roguelite dungeon crawler with real-time combat, built in Three.js and ECS."
 >
-  <Fragment set:html={body} />
+  <ProjectPage
+    slug="forma"
+    title="forma"
+    subtitle="3D roguelite dungeon crawler"
+    description="A browser-playable dungeon crawler with procedural runs and responsive combat loops."
+    stack="Three.js, Vue, ECS"
+    year="2024"
+    status="Playable"
+    videoName="forma-demo-720p30"
+    demoUrl="https://forma.iandavis.dev/"
+    repoUrl="https://github.com/davis-ian/forma"
+    tags={["Three.js", "Entity Component System", "Procedural generation", "Vue"]}
+  >
+    <p>
+      Forma is a game-engine-focused project built to explore clean ECS architecture for real-time
+      browser gameplay while maintaining tight input and combat feedback.
+    </p>
+    <p>
+      Every run is procedurally generated, creating replayability while keeping systems deterministic
+      and debuggable during rapid feature iteration.
+    </p>
+  </ProjectPage>
 </BaseLayout>

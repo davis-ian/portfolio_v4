@@ -1,0 +1,45 @@
+---
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import CommandPalette from "@components/CommandPalette.astro";
+import MobileMenuButton from "@components/MobileMenuButton.astro";
+import Sidebar from "@components/Sidebar.astro";
+import StatusBar from "@components/StatusBar.astro";
+
+interface Crumb {
+  href?: string;
+  label: string;
+  section?: string;
+  active?: boolean;
+}
+
+interface Props {
+  home?: boolean;
+  activeSection?: string;
+  activeProject?: string;
+  statusFile?: string;
+  crumbs: Crumb[];
+  showHint?: boolean;
+}
+
+const {
+  home = false,
+  activeSection = "hero",
+  activeProject = "",
+  statusFile = "README.md",
+  crumbs,
+  showHint = false,
+} = Astro.props;
+---
+
+<MobileMenuButton />
+<div class="site-wrapper">
+  <Sidebar home={home} activeSection={activeSection} activeProject={activeProject} />
+  <main class="main-content">
+    <Breadcrumbs crumbs={crumbs} showHint={showHint} />
+    <div class="page-content">
+      <slot />
+    </div>
+  </main>
+  <StatusBar home={home} fileName={statusFile} />
+</div>
+<CommandPalette />

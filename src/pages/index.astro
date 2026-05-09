@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { loadLegacyBody } from "@utils/legacyPage";
+import PageShell from "@components/PageShell.astro";
+import { getCollection } from "astro:content";
 
-const body = loadLegacyBody("src/legacy/index.html");
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const featured = projects.find((entry) => entry.data.slug === "forma") ?? projects[0];
 ---
 
 <BaseLayout
@@ -11,5 +13,118 @@ const body = loadLegacyBody("src/legacy/index.html");
   ogTitle="Ian Davis – Software Engineer"
   ogDescription="Creative and technically solid software developer. Explore projects in full-stack development, dev tools, and game architecture."
 >
-  <Fragment set:html={body} />
+  <PageShell
+    home
+    activeSection="hero"
+    statusFile="README.md"
+    showHint
+    crumbs={[
+      { href: "#hero", label: "~/iandavis", section: "hero" },
+      { href: "#hero", label: "README.md", section: "hero", active: true },
+    ]}
+  >
+    <section class="hero" id="hero">
+      <div class="terminal-prompt">
+        <span class="prompt-user">guest</span>
+        <span class="prompt-at">@</span>
+        <span class="prompt-host">iandavis</span>
+        <span class="prompt-separator">:</span>
+        <span class="prompt-path">~</span>
+        <span class="prompt-symbol">$</span>
+        <span class="prompt-command"> cat README.md</span>
+      </div>
+      <div class="hero-header">
+        <h1 class="hero-title">Ian Davis</h1>
+        <p class="hero-subtitle">Software Engineer</p>
+      </div>
+      <p class="hero-description">
+        I build software that feels good to use and works hard behind the scenes, with a focus on
+        interactive products, media workflows, and practical developer tools.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item"><span class="meta-label">Experience</span><span class="meta-value">5+ years</span></div>
+        <div class="meta-item"><span class="meta-label">Focus</span><span class="meta-value">Full-stack</span></div>
+        <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">Remote</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="featured">
+      <h2 class="section-heading">Featured</h2>
+      {featured && (
+        <>
+          <div class="project-list">
+            <a href={`/projects/${featured.data.slug}`} class="project-item">
+              <span class="project-prefix">&gt;</span>
+              <div class="project-info">
+                <span class="project-name">{featured.data.title}</span>
+                <span class="project-meta">{featured.data.tags.join(", ")} • featured build</span>
+              </div>
+              <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
+            </a>
+          </div>
+          <div class="mt-4">
+            <p class="text-muted" style="font-family: var(--font-content); line-height: 1.7; max-width: 600px;">
+              {featured.data.description}
+            </p>
+            <div class="chip-group mt-4">
+              {featured.data.tags.slice(0, 3).map((tag) => <span class="chip">{tag}</span>)}
+            </div>
+          </div>
+        </>
+      )}
+    </section>
+
+    <section class="section" id="work">
+      <h2 class="section-heading">Selected Works</h2>
+      <div class="project-list">
+        {projects.filter((entry) => entry.data.slug !== featured?.data.slug).map((entry) => (
+          <a href={`/projects/${entry.data.slug}`} class="project-item">
+            <span class="project-prefix">&gt;</span>
+            <div class="project-info">
+              <span class="project-name">{entry.data.title}</span>
+              <span class="project-description" style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
+              <span class="project-meta">{entry.data.tags.join(", ")}</span>
+            </div>
+            <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-heading">About</h2>
+      <div class="content-text">
+        <p>
+          I enjoy the seam between product design and engineering: shaping interfaces that are clear,
+          fast, and expressive while keeping architecture maintainable under real project constraints.
+        </p>
+        <p>
+          Most of my recent work centers on TypeScript applications, performance-minded frontend systems,
+          and tooling that helps teams move from idea to shipped features faster.
+        </p>
+      </div>
+      <div class="chip-group mt-4">
+        <span class="chip">TypeScript</span>
+        <span class="chip">Vue</span>
+        <span class="chip">C#</span>
+        <span class="chip">Astro</span>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2 class="section-heading">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">2023 - Present</span>
+          <h3 class="timeline-role">Senior Software Engineer</h3>
+          <p class="timeline-description">Building production web applications and internal tools with a focus on speed, reliability, and user experience.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2021 - 2023</span>
+          <h3 class="timeline-role">Full Stack Engineer</h3>
+          <p class="timeline-description">Delivered full-stack features across frontend and backend systems, including API integrations and workflow automation.</p>
+        </div>
+      </div>
+    </section>
+  </PageShell>
 </BaseLayout>

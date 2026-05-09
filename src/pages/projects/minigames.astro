@@ -1,13 +1,32 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { loadLegacyBody } from "@utils/legacyPage";
-
-const body = loadLegacyBody("src/legacy/projects/minigames.html");
+import ProjectPage from "@components/ProjectPage.astro";
 ---
 
 <BaseLayout
   title="minigames – Ian Davis"
   description="A collection of browser-based mini games built with Vue and TypeScript."
 >
-  <Fragment set:html={body} />
+  <ProjectPage
+    slug="minigames"
+    title="minigames"
+    subtitle="Browser game experiments"
+    description="A set of small interactive games exploring mechanics, pacing, and polish in short sessions."
+    stack="Vue 3, TypeScript"
+    year="2023"
+    status="Playable"
+    imageName="minigames"
+    imageAlt="Minigames collection"
+    repoUrl="https://github.com/davis-ian"
+    tags={["Vue 3", "TypeScript", "Game loops", "Interaction design"]}
+  >
+    <p>
+      Minigames is a playground for testing mechanics quickly and learning what makes small gameplay
+      moments feel responsive and rewarding.
+    </p>
+    <p>
+      Each prototype favors straightforward architecture so the focus stays on interaction quality,
+      timing, and visual feedback.
+    </p>
+  </ProjectPage>
 </BaseLayout>

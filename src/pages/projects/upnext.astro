@@ -1,13 +1,32 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { loadLegacyBody } from "@utils/legacyPage";
-
-const body = loadLegacyBody("src/legacy/projects/upnext.html");
+import ProjectPage from "@components/ProjectPage.astro";
 ---
 
 <BaseLayout
   title="upnext – Ian Davis"
   description="A collaborative watchlist app for tracking what to watch next with friends."
 >
-  <Fragment set:html={body} />
+  <ProjectPage
+    slug="upnext"
+    title="upnext"
+    subtitle="Collaborative watchlist app"
+    description="Track films and shows with friends using shared lists and lightweight social features."
+    stack="Vue 3, Express, Node.js"
+    year="2023"
+    status="Shipped"
+    imageName="upnext"
+    imageAlt="UpNext application view"
+    repoUrl="https://github.com/davis-ian"
+    tags={["Vue 3", "Express", "Node.js", "Collaborative UX"]}
+  >
+    <p>
+      UpNext is built around a familiar queue model with collaborative state, helping groups decide
+      what to watch without the friction of fragmented chats and notes.
+    </p>
+    <p>
+      The project emphasized pragmatic API design and a clean, fast UI for common list actions like
+      adding, ranking, and marking titles as watched.
+    </p>
+  </ProjectPage>
 </BaseLayout>

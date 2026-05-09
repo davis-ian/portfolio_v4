@@ -1,13 +1,33 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { loadLegacyBody } from "@utils/legacyPage";
-
-const body = loadLegacyBody("src/legacy/projects/media-toolkit.html");
+import ProjectPage from "@components/ProjectPage.astro";
 ---
 
 <BaseLayout
   title="media-toolkit - Ian Davis"
   description="Browser-first media toolkit featuring FFmpeg.wasm-powered video, audio, and image utilities."
 >
-  <Fragment set:html={body} />
+  <ProjectPage
+    slug="media-toolkit"
+    title="media-toolkit"
+    subtitle="Browser-first media lab"
+    description="A modular web app for video, audio, and image operations powered by FFmpeg.wasm."
+    stack="Vue 3, Vite, FFmpeg.wasm"
+    year="2024"
+    status="In Progress"
+    imageName="clipforge"
+    imageAlt="Media Toolkit interface"
+    demoUrl="https://mediatoolkit.iandavis.dev/"
+    repoUrl="https://github.com/davis-ian/ffmpeg_wa"
+    tags={["Vue 3", "Vite", "FFmpeg.wasm", "Web Workers"]}
+  >
+    <p>
+      Media Toolkit focuses on high-value media operations that usually require desktop software,
+      but delivers them directly in the browser with no upload requirement.
+    </p>
+    <p>
+      It is designed as a composable set of tools so workflows like trim, transcode, and conversion
+      can be chained quickly for creators and developers.
+    </p>
+  </ProjectPage>
 </BaseLayout>
