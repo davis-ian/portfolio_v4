@@ -29,7 +29,7 @@
   --accent-mint: #99ffe4;
   --accent-mint-dim: rgba(153, 255, 228, 0.15);
   --accent-red: #ff8080;
-  
+
   /* Semantic Mapping */
   --color-brand-bg: var(--bg-primary);
   --color-surface: var(--bg-secondary);
@@ -41,11 +41,15 @@
   --color-accent-dim: var(--accent-peach-dim);
   --color-border: var(--border-default);
   --color-border-muted: var(--border-muted);
-  
+
   /* Typography – Monospace for UI, System for Content */
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-  --font-content: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  
+  --font-mono:
+    "JetBrains Mono", "Fira Code", "Consolas", "Monaco", "Courier New",
+    monospace;
+  --font-content:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
   /* Type Scale */
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -57,12 +61,12 @@
   --text-4xl: 2rem;
   --text-5xl: 2.5rem;
   --text-6xl: 3rem;
-  
+
   /* Layout */
   --sidebar-width: 280px;
   --status-bar-height: 28px;
   --breadcrumb-height: 40px;
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
@@ -70,16 +74,18 @@
 
 /* ---------- Font Faces ---------- */
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
+  font-family: "JetBrains Mono";
+  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2') format('woff2');
+  font-family: "JetBrains Mono";
+  src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Bold.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -113,7 +119,8 @@ a:hover {
   text-underline-offset: 3px;
 }
 
-img, video {
+img,
+video {
   display: block;
   max-width: 100%;
 }
@@ -132,7 +139,7 @@ img, video {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   grid-template-rows: 1fr var(--status-bar-height);
-  grid-template-areas: 
+  grid-template-areas:
     "sidebar main"
     "status status";
   min-height: 100vh;
@@ -157,11 +164,11 @@ img, video {
 @media (max-width: 768px) {
   .site-wrapper {
     grid-template-columns: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
       "main"
       "status";
   }
-  
+
   .sidebar {
     position: fixed;
     left: 0;
@@ -172,15 +179,15 @@ img, video {
     transition: transform var(--transition-base);
     z-index: 100;
   }
-  
+
   .sidebar.open {
     transform: translateX(0);
   }
-  
+
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .page-content {
     padding: 1rem;
   }
@@ -302,7 +309,7 @@ img, video {
 }
 
 .folder-contents::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 1.25rem;
   top: 0;
@@ -438,7 +445,7 @@ a.crumb.active {
 }
 
 .command-input-wrapper::before {
-  content: ':';
+  content: ":";
   color: var(--accent-peach);
   font-weight: 700;
   font-size: var(--text-lg);
@@ -617,7 +624,7 @@ a.crumb.active {
 }
 
 .section-heading::before {
-  content: '# ';
+  content: "# ";
   color: var(--text-muted);
 }
 
@@ -702,7 +709,7 @@ a.crumb.active {
 }
 
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -717,7 +724,7 @@ a.crumb.active {
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -2rem;
   top: 0.5rem;
@@ -844,11 +851,21 @@ a.crumb.active {
   color: var(--accent-peach);
 }
 
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mt-4 { margin-top: 1rem; }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
 
 /* Content text - system-ui for readability */
 .content-text {
@@ -916,11 +933,11 @@ a.crumb.active {
   .command-palette-overlay {
     display: none !important;
   }
-  
+
   .site-wrapper {
     display: block;
   }
-  
+
   .main-content {
     height: auto;
     overflow: visible;

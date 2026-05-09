@@ -1,10 +1,11 @@
 {
   "title": "media-toolkit",
   "slug": "media-toolkit",
-  "description": "Browser-first media lab for video, audio, and image workflows with FFmpeg.wasm.",
+  "description": "Browser-first media toolkit for video, audio, and image workflows with FFmpeg.wasm.",
   "tags": ["Vue 3", "Vite", "FFmpeg.wasm"],
   "metrics": "Client-side media processing without backend uploads",
   "repoUrl": "https://github.com/davis-ian/ffmpeg_wa",
   "demoUrl": "https://mediatoolkit.iandavis.dev/",
-  "order": 2
+  "order": 2,
+  "published": true
 }

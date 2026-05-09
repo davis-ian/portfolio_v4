@@ -11,6 +11,7 @@ const projects = defineCollection({
     repoUrl: z.string().url().optional(),
     demoUrl: z.string().url().optional(),
     order: z.number(),
+    published: z.boolean().default(true),
   }),
 });
 

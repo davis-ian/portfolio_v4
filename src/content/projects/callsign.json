@@ -5,5 +5,6 @@
   "tags": ["TypeScript", "VS Code API", "Developer Tools"],
   "metrics": "Faster API iteration from inside editor workflows",
   "repoUrl": "https://github.com/davis-ian",
-  "order": 4
+  "order": 2,
+  "published": true
 }

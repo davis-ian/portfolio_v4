@@ -42,9 +42,7 @@
   --color-border: var(--border-default);
   --color-border-muted: var(--border-muted);
   
-  /* Typography – Monospace for UI, System for Content */
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-  --font-content: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Typography tokens are defined in global.css */
   
   /* Type Scale */
   --text-xs: 0.75rem;

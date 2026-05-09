@@ -5,5 +5,6 @@
   "tags": ["Vue 3", "Express", "Node.js"],
   "metrics": "Shared watch queue and social tracking workflows",
   "repoUrl": "https://github.com/davis-ian",
-  "order": 3
+  "order": 3,
+  "published": false
 }

@@ -6,5 +6,6 @@
   "metrics": "Procedural dungeon runs with real-time combat in-browser",
   "repoUrl": "https://github.com/davis-ian/forma",
   "demoUrl": "https://forma.iandavis.dev/",
-  "order": 1
+  "order": 3,
+  "published": true
 }

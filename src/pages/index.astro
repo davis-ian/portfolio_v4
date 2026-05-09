@@ -3,8 +3,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageShell from "@components/PageShell.astro";
 import { getCollection } from "astro:content";
 
-const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
-const featured = projects.find((entry) => entry.data.slug === "forma") ?? projects[0];
+const projects = (await getCollection("projects"))
+.filter((entry) => entry.data.published)
+.sort((a, b) => a.data.order - b.data.order);
+const featured = projects.find((entry) => entry.data.slug === "media-toolkit") ?? projects[0];
 ---
 
 <BaseLayout
@@ -38,13 +40,12 @@ const featured = projects.find((entry) => entry.data.slug === "forma") ?? projec
         <p class="hero-subtitle">Software Engineer</p>
       </div>
       <p class="hero-description">
-        I build software that feels good to use and works hard behind the scenes, with a focus on
-        interactive products, media workflows, and practical developer tools.
+        I build software that feels good to use and works hard behind the scenes. I specialize in real-time applications, media processing pipelines, and interfaces that developers actually enjoy.
       </p>
       <div class="hero-meta">
         <div class="meta-item"><span class="meta-label">Experience</span><span class="meta-value">5+ years</span></div>
-        <div class="meta-item"><span class="meta-label">Focus</span><span class="meta-value">Full-stack</span></div>
-        <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">Remote</span></div>
+        <div class="meta-item"><span class="meta-label">Focus</span><span class="meta-value">media infrastructure + real-time systems</span></div>
+        <div class="meta-item"><span class="meta-label">Vibe</span><span class="meta-value">Ships on fridays</span></div>
       </div>
     </section>
 
@@ -91,40 +92,47 @@ const featured = projects.find((entry) => entry.data.slug === "forma") ?? projec
       </div>
     </section>
 
-    <section class="section" id="about">
-      <h2 class="section-heading">About</h2>
-      <div class="content-text">
-        <p>
-          I enjoy the seam between product design and engineering: shaping interfaces that are clear,
-          fast, and expressive while keeping architecture maintainable under real project constraints.
-        </p>
-        <p>
-          Most of my recent work centers on TypeScript applications, performance-minded frontend systems,
-          and tooling that helps teams move from idea to shipped features faster.
-        </p>
-      </div>
-      <div class="chip-group mt-4">
-        <span class="chip">TypeScript</span>
-        <span class="chip">Vue</span>
-        <span class="chip">C#</span>
-        <span class="chip">Astro</span>
-      </div>
-    </section>
 
     <section class="section" id="experience">
       <h2 class="section-heading">Experience</h2>
       <div class="timeline">
         <div class="timeline-item">
           <span class="timeline-date">2023 - Present</span>
-          <h3 class="timeline-role">Senior Software Engineer</h3>
-          <p class="timeline-description">Building production web applications and internal tools with a focus on speed, reliability, and user experience.</p>
+          <h3 class="timeline-role">Lead Software Engineer - MemoryShare</h3>
+          <p class="timeline-description">Architected and delivered platform-scale solutions for a live memorial streaming service, including a video render pipeline rewrite <i>(20+ min to under 2 min)</i> and a flagship real-time collaborative video editor spanning frontend, backend, and system design. Owned all DevOps - CI/CD maintenance, incident response, and migration from Azure Pipelines to GitHub Actions.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">2021 - 2023</span>
-          <h3 class="timeline-role">Full Stack Engineer</h3>
-          <p class="timeline-description">Delivered full-stack features across frontend and backend systems, including API integrations and workflow automation.</p>
+          <span class="timeline-date">2022 - 2023</span>
+          <h3 class="timeline-role">Full Stack Software Engineer - MemoryShare</h3>
+          <p class="timeline-description">Delivered full-stack features across a C#/ASP.NET Core API and Vue.js frontend for a live memorial streaming platform. Contributed to video rendering workflows, background processing systems, and internal tooling.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2021 - 2022</span>
+          <h3 class="timeline-role">Instructor Assistant - PDX Code Guild</h3>
+          <p class="timeline-description">Supported developer bootcamp students in learning full-stack web development, with emphasis on JavaScript, Python, and debugging workflows. Facilitated code reviews and mentored students in real-world project execution. </p>
         </div>
       </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-heading">About</h2>
+      <div class="content-text">
+        <p>
+          I'm a full-stack engineer who bridges the gap between creative design and high-performance systems. I care about code quality, but I care more about shipping products that people love to use.
+        </p>
+        <p>
+          Currently, I lead development at <a href="https://www.memoryshare.com/" target="_blank">MemoryShare</a>, where I work across the entire stack - from Vue.js frontends to C# APIs, video rendering pipelines, and real-time features powered by SignalR <i>(think live notifications and collaborative editing)</i>.
+        </p>
+        <p>
+          My background spans video processing <i>(FFmpeg)</i>, perceptual hashing <i>(finding similar images/videos)</i>, real-time communication tools, and game engine architecture. Whether it's integrating Stripe for payments or building custom ECS systems for game prototypes, I bring end-to-end ownership and attention to detail.
+        </p>
+      </div>
+      <!-- <div class="chip-group mt-4">
+        <span class="chip">TypeScript</span>
+        <span class="chip">Vue</span>
+        <span class="chip">C#</span>
+        <span class="chip">Astro</span>
+      </div> -->
     </section>
   </PageShell>
 </BaseLayout>
