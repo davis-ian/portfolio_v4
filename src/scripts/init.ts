@@ -2,6 +2,7 @@ import { CommandPalette, getCommands } from "./command-palette";
 import { downloadResume, initDataActions, initEmail, initResumeButton } from "./actions";
 import { handleHashNavigation, initNavigation, setHasUserNavigated, updatePageSize, updateStatusBar } from "./navigation";
 import { initFolderToggles, initMobileMenu, initOpenFolderHeights } from "./mobile";
+import { initTheme } from "./themes";
 
 let commandPalette: CommandPalette | null = null;
 
@@ -92,6 +93,7 @@ function initStatusModeTrigger(): void {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   commandPalette = new CommandPalette(getCommands());
   initFolderToggles();
   initMobileMenu();

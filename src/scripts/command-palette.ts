@@ -1,5 +1,6 @@
-import { copyEmail, downloadResume } from "./actions";
+import { copyEmail, downloadResume, showNotification } from "./actions";
 import { scrollToSection } from "./navigation";
+import { applyTheme } from "./themes";
 
 interface Command {
   id: string;
@@ -30,6 +31,42 @@ export function getCommands(): Command[] {
     { id: "linkedin", label: "Open: LinkedIn Profile", action: () => window.open("https://linkedin.com/in/iandavisdev", "_blank"), category: "External" },
     { id: "email", label: "Copy: Email Address", action: copyEmail, category: "Actions" },
     { id: "resume", label: "Download: Resume", action: downloadResume, category: "Actions", key: "R" },
+    {
+      id: "theme-vesper",
+      label: "Theme: Vesper",
+      action: () => {
+        applyTheme("vesper");
+        showNotification("Theme set to Vesper");
+      },
+      category: "Themes",
+    },
+    {
+      id: "theme-catppuccin",
+      label: "Theme: Catppuccin",
+      action: () => {
+        applyTheme("catppuccin");
+        showNotification("Theme set to Catppuccin");
+      },
+      category: "Themes",
+    },
+    {
+      id: "theme-tokyo-night",
+      label: "Theme: Tokyo Night",
+      action: () => {
+        applyTheme("tokyo-night");
+        showNotification("Theme set to Tokyo Night");
+      },
+      category: "Themes",
+    },
+    {
+      id: "theme-incognito",
+      label: "Theme: Incognito",
+      action: () => {
+        applyTheme("incognito");
+        showNotification("Theme set to Incognito");
+      },
+      category: "Themes",
+    },
     { id: "back", label: "Go back to portfolio", action: () => (window.location.href = "/"), category: "Navigation", key: "B" },
   ];
 }
