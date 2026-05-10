@@ -1,0 +1,112 @@
+---
+import PageShell from "@components/PageShell.astro";
+
+interface Props {
+  slug: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  stack: string;
+  year: string;
+  status: string;
+  imageName?: string;
+  imageAlt?: string;
+  videoName?: string;
+  demoUrl?: string;
+  repoUrl?: string;
+  tags: string[];
+}
+
+const {
+  slug,
+  title,
+  subtitle,
+  description,
+  stack,
+  year,
+  status,
+  imageName,
+  imageAlt = `${title} cover`,
+  videoName,
+  demoUrl,
+  repoUrl,
+  tags,
+} = Astro.props;
+---
+
+<PageShell
+  activeProject={slug}
+  statusFile={`${slug}.js`}
+  crumbs={[
+    { href: "/#hero", label: "~/iandavis" },
+    { href: "/#work", label: "projects" },
+    { label: `${slug}.js`, active: true },
+  ]}
+>
+  <section class="hero">
+    <div class="hero-header">
+      <h1 class="hero-title">{title}</h1>
+      <p class="hero-subtitle">{subtitle}</p>
+    </div>
+    <p class="hero-description">{description}</p>
+    <div class="hero-meta">
+      <div class="meta-item"><span class="meta-label">Stack</span><span class="meta-value">{stack}</span></div>
+      <div class="meta-item"><span class="meta-label">Year</span><span class="meta-value">{year}</span></div>
+      <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">{status}</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-heading">Demo</h2>
+    {videoName ? (
+      <div style="background: var(--bg-secondary); border: 1px solid var(--color-border); overflow: hidden;">
+        <video class="project-cover" autoplay muted preload="metadata" width="1280" height="720">
+          <source src={`/videos/optimized/${videoName}.webm`} type="video/webm" />
+          <source src={`/videos/optimized/${videoName}.mp4`} type="video/mp4" />
+        </video>
+      </div>
+    ) : (
+      imageName && (
+        <div style="background: var(--bg-secondary); border: 1px solid var(--color-border); overflow: hidden;">
+          <picture>
+            <source
+              type="image/avif"
+              srcset={`/images/optimized/${imageName}-640.avif 640w, /images/optimized/${imageName}-960.avif 960w, /images/optimized/${imageName}-1280.avif 1280w, /images/optimized/${imageName}-1600.avif 1600w, /images/optimized/${imageName}-2200.avif 2200w`}
+              sizes="(min-width: 1200px) 1152px, 100vw"
+            />
+            <source
+              type="image/webp"
+              srcset={`/images/optimized/${imageName}-640.webp 640w, /images/optimized/${imageName}-960.webp 960w, /images/optimized/${imageName}-1280.webp 1280w, /images/optimized/${imageName}-1600.webp 1600w, /images/optimized/${imageName}-2200.webp 2200w`}
+              sizes="(min-width: 1200px) 1152px, 100vw"
+            />
+            <img
+              src={`/images/optimized/${imageName}-1280.jpg`}
+              srcset={`/images/optimized/${imageName}-640.jpg 640w, /images/optimized/${imageName}-960.jpg 960w, /images/optimized/${imageName}-1280.jpg 1280w, /images/optimized/${imageName}-1600.jpg 1600w, /images/optimized/${imageName}-2200.jpg 2200w`}
+              sizes="(min-width: 1200px) 1152px, 100vw"
+              alt={imageAlt}
+              class="project-cover"
+              width="4000"
+              height="2250"
+              decoding="async"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+      )
+    )}
+    <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+      {demoUrl && <a href={demoUrl} target="_blank" class="btn btn-primary">[&gt;] Live Demo</a>}
+      {repoUrl && <a href={repoUrl} target="_blank" class="btn">[&lt;&gt;] GitHub Repo</a>}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-heading">About</h2>
+    <div class="content-text">
+      <slot />
+    </div>
+    <div class="chip-group mt-4">
+      {tags.map((tag) => <span class="chip">{tag}</span>)}
+    </div>
+  </section>
+</PageShell>

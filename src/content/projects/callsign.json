@@ -1,0 +1,10 @@
+{
+  "title": "callsign",
+  "slug": "callsign",
+  "description": "VS Code extension to test APIs directly from your editor.",
+  "tags": ["TypeScript", "VS Code API", "Developer Tools"],
+  "metrics": "Faster API iteration from inside editor workflows",
+  "repoUrl": "https://github.com/davis-ian",
+  "order": 2,
+  "published": true
+}

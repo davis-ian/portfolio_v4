@@ -1,0 +1,174 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageShell from "@components/PageShell.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects"))
+.filter((entry) => entry.data.published)
+.sort((a, b) => a.data.order - b.data.order);
+const caseStudySlugs = new Set(["render-engine", "collaborative-video"]);
+const caseStudies = projects.filter((entry) => caseStudySlugs.has(entry.data.slug));
+const selectedWorks = projects.filter((entry) => !caseStudySlugs.has(entry.data.slug));
+const featured = selectedWorks.find((entry) => entry.data.slug === "media-toolkit") ?? selectedWorks[0];
+---
+
+<BaseLayout
+  title="Ian Davis"
+  description="Portfolio of Ian Davis – Software Engineer. Building performant, creative, and production-ready applications with C#, Vue.js, and modern tools."
+  ogTitle="Ian Davis – Software Engineer"
+  ogDescription="Creative and technically solid software developer. Explore projects in full-stack development, dev tools, and game architecture."
+>
+  <PageShell
+    home
+    activeSection="hero"
+    statusFile="README.md"
+    showHint
+    crumbs={[
+      { href: "#hero", label: "~/iandavis", section: "hero" },
+      { href: "#hero", label: "README.md", section: "hero", active: true },
+    ]}
+  >
+    <div class="home-flow">
+    <section class="hero home-section home-section-hero" id="hero">
+      <div class="terminal-prompt">
+        <span class="prompt-user">guest</span>
+        <span class="prompt-at">@</span>
+        <span class="prompt-host">iandavis</span>
+        <span class="prompt-separator">:</span>
+        <span class="prompt-path">~</span>
+        <span class="prompt-symbol">$</span>
+        <span class="prompt-command"> cat README.md</span>
+      </div>
+      <div class="hero-header">
+        <h1 class="hero-title">Ian Davis</h1>
+        <p class="hero-subtitle">Software Engineer</p>
+      </div>
+      <p class="hero-description">
+        I build software that feels good to use and works hard behind the scenes. I specialize in real-time applications, media processing pipelines, and interfaces that developers actually enjoy.
+      </p>
+      <p class="hero-impact-line">Led platform-scale delivery with measurable outcomes, including a render pipeline rewrite from 20+ minutes to under 2 minutes.</p>
+      <div class="hero-cta-row" aria-label="Primary recruiter actions">
+        <button class="btn" id="hero-resume-btn" type="button">Resume</button>
+        <a class="btn" href="/case-studies/render-engine">Case Study</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-item"><span class="meta-label">Years</span><span class="meta-value">5+ in production</span></div>
+        <div class="meta-item"><span class="meta-label">Domain</span><span class="meta-value">Real-time + media systems</span></div>
+        <div class="meta-item"><span class="meta-label">Biggest win</span><span class="meta-value">20+ min -> under 2 min</span></div>
+      </div>
+    </section>
+
+    <section class="section home-section home-section-featured" id="featured">
+      <h2 class="section-heading">Featured</h2>
+      {featured && (
+        <>
+          <div class="project-list">
+            <a href={`/projects/${featured.data.slug}`} class="project-item">
+              <span class="project-prefix">&gt;</span>
+              <div class="project-info">
+                <span class="project-name">{featured.data.title}</span>
+                <span class="project-meta">{featured.data.tags.join(", ")} • featured build</span>
+              </div>
+              <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
+            </a>
+          </div>
+          <div class="mt-4">
+            <p class="text-muted" style="font-family: var(--font-content); line-height: var(--leading-normal); max-width: 600px;">
+              {featured.data.description}
+            </p>
+            <div class="chip-group mt-4">
+              {featured.data.tags.slice(0, 3).map((tag) => <span class="chip">{tag}</span>)}
+            </div>
+          </div>
+        </>
+      )}
+    </section>
+
+    <section class="section home-section home-section-work" id="work">
+      <h2 class="section-heading">Selected Works</h2>
+      <div class="project-list">
+        {selectedWorks.filter((entry) => entry.data.slug !== featured?.data.slug).map((entry) => (
+          <a href={`/projects/${entry.data.slug}`} class="project-item">
+            <span class="project-prefix">&gt;</span>
+            <div class="project-info">
+              <span class="project-name">{entry.data.title}</span>
+              <span class="project-description" style="font-family: var(--font-content); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
+              <span class="project-meta">{entry.data.tags.join(", ")}</span>
+            </div>
+            <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section home-section home-section-case-studies" id="case-studies">
+      <h2 class="section-heading">Case Studies</h2>
+      <div class="project-list">
+        {caseStudies.map((entry) => (
+          <a href={`/case-studies/${entry.data.slug}`} class="project-item">
+            <span class="project-prefix">&gt;</span>
+            <div class="project-info">
+              <span class="project-name">{entry.data.title}</span>
+              <span class="project-description" style="font-family: var(--font-content); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
+              <span class="project-meta">{entry.data.tags.join(", ")} • deep dive</span>
+            </div>
+            <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+
+    <section class="section home-section home-section-experience" id="experience">
+      <h2 class="section-heading">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">2023 - Present</span>
+          <h3 class="timeline-role">Lead Software Engineer - MemoryShare</h3>
+          <p class="timeline-description">Architected and delivered platform-scale solutions for a live memorial streaming service, including a video render pipeline rewrite <i>(20+ min to under 2 min)</i> and a flagship real-time collaborative video editor spanning frontend, backend, and system design. Owned all DevOps - CI/CD maintenance, incident response, and migration from Azure Pipelines to GitHub Actions.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2022 - 2023</span>
+          <h3 class="timeline-role">Full Stack Software Engineer - MemoryShare</h3>
+          <p class="timeline-description">Delivered full-stack features across a C#/ASP.NET Core API and Vue.js frontend for a live memorial streaming platform. Contributed to video rendering workflows, background processing systems, and internal tooling.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2021 - 2022</span>
+          <h3 class="timeline-role">Instructor Assistant - PDX Code Guild</h3>
+          <p class="timeline-description">Supported developer bootcamp students in learning full-stack web development, with emphasis on JavaScript, Python, and debugging workflows. Facilitated code reviews and mentored students in real-world project execution. </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-section home-section-about" id="about">
+      <h2 class="section-heading">About</h2>
+      <div class="content-text">
+        <p>
+          I'm a full-stack engineer who bridges the gap between creative design and high-performance systems. I care about code quality, but I care more about shipping products that people love to use.
+        </p>
+        <p>
+          Currently, I lead development at <a href="https://www.memoryshare.com/" target="_blank">MemoryShare</a>, where I work across the entire stack - from Vue.js frontends to C# APIs, video rendering pipelines, and real-time features powered by SignalR <i>(think live notifications and collaborative editing)</i>.
+        </p>
+        <p>
+          My background spans video processing <i>(FFmpeg)</i>, perceptual hashing <i>(finding similar images/videos)</i>, real-time communication tools, and game engine architecture. Whether it's integrating Stripe for payments or building custom ECS systems for game prototypes, I bring end-to-end ownership and attention to detail.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-resume" id="resume">
+      <div class="resume-action-wrap">
+        <button class="btn btn-primary resume-cta" id="resume-btn" type="button">Download Resume</button>
+      </div>
+    </section>
+
+    <section class="section cta-section" id="contact">
+      <h2 class="cta-heading">Like what you see?</h2>
+      <p class="cta-text contact-copy">
+        I'm open to new opportunities, collaborations, or just chatting about dev tools and interesting problems.
+      </p>
+      <a id="email-link" class="email-link" href="#contact" aria-label="Email contact link">hello.iandavis@gmail.com</a>
+    </section>
+    </div>
+  </PageShell>
+</BaseLayout>

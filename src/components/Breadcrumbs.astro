@@ -1,0 +1,57 @@
+---
+interface Crumb {
+  href?: string;
+  label: string;
+  section?: string;
+  active?: boolean;
+}
+
+interface Props {
+  crumbs: Crumb[];
+  showHint?: boolean;
+}
+
+const { crumbs, showHint = false } = Astro.props;
+---
+
+<nav class="breadcrumbs" id="breadcrumbs">
+  {crumbs.map((crumb, index) => (
+    <>
+      {crumb.href ? (
+        <a href={crumb.href} class={`crumb ${crumb.active ? "active" : ""}`} id={crumb.active ? "current-file" : undefined} data-section={crumb.section}>{crumb.label}</a>
+      ) : (
+        <span class={`crumb ${crumb.active ? "active" : ""}`}>{crumb.label}</span>
+      )}
+      {index < crumbs.length - 1 && <span class="crumb-separator">/</span>}
+    </>
+  ))}
+  {showHint && (
+    <span class="cmd-hint">
+      <span class="hint-key">⌘</span>K or <span class="hint-key">:</span> for commands
+    </span>
+  )}
+  <button
+    type="button"
+    class="palette-trigger"
+    id="command-palette-trigger"
+    aria-label="Open command palette"
+    aria-controls="command-palette"
+    aria-haspopup="dialog"
+  >
+    Command
+  </button>
+</nav>
+
+<style>
+  .cmd-hint {
+    margin-left: auto;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    line-height: var(--leading-normal);
+  }
+
+  .hint-key {
+    color: var(--accent-peach);
+  }
+</style>

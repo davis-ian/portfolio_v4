@@ -1,0 +1,164 @@
+---
+import "../styles/global.css";
+import "../styles/main.css";
+import TerminalLauncher from "@components/Terminal/TerminalLauncher.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = "/social-preview.png",
+} = Astro.props;
+
+const canonical = Astro.url.href;
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const shouldLoadUmami = Boolean(umamiWebsiteId);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Ian Davis" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site ?? Astro.url.origin).href} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site ?? Astro.url.origin).href} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    {
+      shouldLoadUmami && (
+        <script
+          is:inline
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={umamiWebsiteId}
+          data-do-not-track="true"
+        ></script>
+      )
+    }
+    <script is:inline>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const themes = {
+          vesper: {
+            "--bg-primary": "#101010",
+            "--bg-secondary": "#101010",
+            "--bg-tertiary": "#161616",
+            "--bg-hover": "#1c1c1c",
+            "--border-default": "#282828",
+            "--border-muted": "#1c1c1c",
+            "--text-primary": "#ffffff",
+            "--text-secondary": "#b8b8b8",
+            "--text-muted": "#909090",
+            "--accent-peach": "#ffc799",
+            "--accent-peach-dim": "rgba(255, 199, 153, 0.15)",
+            "--accent-mint": "#99ffe4",
+            "--accent-mint-dim": "rgba(153, 255, 228, 0.15)",
+            "--accent-red": "#ff8080",
+          },
+          catppuccin: {
+            "--bg-primary": "#1e1e2e",
+            "--bg-secondary": "#181825",
+            "--bg-tertiary": "#313244",
+            "--bg-hover": "#45475a",
+            "--border-default": "#45475a",
+            "--border-muted": "#313244",
+            "--text-primary": "#cdd6f4",
+            "--text-secondary": "#bac2de",
+            "--text-muted": "#a6adc8",
+            "--accent-peach": "#fab387",
+            "--accent-peach-dim": "rgba(250, 179, 135, 0.18)",
+            "--accent-mint": "#94e2d5",
+            "--accent-mint-dim": "rgba(148, 226, 213, 0.18)",
+            "--accent-red": "#f38ba8",
+          },
+          "tokyo-night": {
+            "--bg-primary": "#1a1b26",
+            "--bg-secondary": "#16161e",
+            "--bg-tertiary": "#24283b",
+            "--bg-hover": "#2f334d",
+            "--border-default": "#3b4261",
+            "--border-muted": "#2f334d",
+            "--text-primary": "#c0caf5",
+            "--text-secondary": "#a9b1d6",
+            "--text-muted": "#7a83a8",
+            "--accent-peach": "#ff9e64",
+            "--accent-peach-dim": "rgba(255, 158, 100, 0.18)",
+            "--accent-mint": "#73daca",
+            "--accent-mint-dim": "rgba(115, 218, 202, 0.18)",
+            "--accent-red": "#f7768e",
+          },
+          incognito: {
+            "--bg-primary": "#0b0b0d",
+            "--bg-secondary": "#101014",
+            "--bg-tertiary": "#15151a",
+            "--bg-hover": "#1a1a20",
+            "--border-default": "#24242b",
+            "--border-muted": "#1a1a20",
+            "--text-primary": "#cfcfd3",
+            "--text-secondary": "#9a9aa3",
+            "--text-muted": "#6f6f78",
+            "--accent-peach": "#ff9900",
+            "--accent-peach-dim": "rgba(255, 153, 0, 0.2)",
+            "--accent-mint": "#ff9900",
+            "--accent-mint-dim": "rgba(255, 153, 0, 0.2)",
+            "--accent-red": "#ca4754",
+          },
+          "miami-nights": {
+            "--bg-primary": "#12131a",
+            "--bg-secondary": "#171923",
+            "--bg-tertiary": "#090b12",
+            "--bg-hover": "#1f2230",
+            "--border-default": "#1f2330",
+            "--border-muted": "#171b27",
+            "--text-primary": "#f2f2f2",
+            "--text-secondary": "#c7cad6",
+            "--text-muted": "#8e94a8",
+            "--accent-peach": "#e15ca8",
+            "--accent-peach-dim": "rgba(225, 92, 168, 0.2)",
+            "--accent-mint": "#4ac9d6",
+            "--accent-mint-dim": "rgba(74, 201, 214, 0.2)",
+            "--accent-red": "#ff6b87",
+          },
+        };
+        const stored = localStorage.getItem(storageKey);
+        const themeId = stored && stored in themes ? stored : "vesper";
+        const root = document.documentElement;
+        const theme = themes[themeId];
+        Object.entries(theme).forEach(([token, value]) => {
+          root.style.setProperty(token, value);
+        });
+        root.dataset.theme = themeId;
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+    <TerminalLauncher />
+    <script>
+      import "../scripts/init";
+    </script>
+  </body>
+</html>

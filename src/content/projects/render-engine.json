@@ -1,0 +1,9 @@
+{
+  "title": "render-engine",
+  "slug": "render-engine",
+  "description": "Case study on rewriting a synchronous render pipeline into parallel job types for dramatically faster ready-to-watch delivery.",
+  "tags": ["C#", "FFmpeg", "Docker"],
+  "metrics": "20+ min render time reduced to under 2 min",
+  "order": 1,
+  "published": true
+}

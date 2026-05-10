@@ -1,0 +1,10 @@
+{
+  "title": "minigames",
+  "slug": "minigames",
+  "description": "Collection of short browser games and interaction experiments.",
+  "tags": ["Vue 3", "TypeScript", "Games"],
+  "metrics": "Playable mini experiences tuned for quick sessions",
+  "repoUrl": "https://github.com/davis-ian",
+  "order": 5,
+  "published": false
+}

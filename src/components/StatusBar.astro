@@ -1,0 +1,48 @@
+---
+interface Props {
+  home?: boolean;
+  fileName?: string;
+}
+
+const { home = false, fileName = "README.md" } = Astro.props;
+---
+
+{home ? (
+  <footer class="status-bar">
+    <div class="status-left">
+      <span
+        class="status-mode"
+        id="status-mode"
+        role="button"
+        tabindex="0"
+        aria-label="Open command palette"
+        aria-controls="command-palette"
+      >
+        NORMAL
+      </span>
+      <span class="status-item" id="status-file">{fileName}</span>
+      <span class="status-separator">|</span>
+      <span class="status-item" id="status-branch">git:design5</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item" id="status-position">1:1</span>
+      <span class="status-separator">|</span>
+      <span class="status-item">utf-8</span>
+      <span class="status-separator">|</span>
+      <span class="status-item">js</span>
+    </div>
+  </footer>
+) : (
+  <footer class="status-bar">
+    <div class="status-left">
+      <span class="status-item">design5</span>
+      <span class="status-item">{fileName}</span>
+      <span class="status-item">UTF-8</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item">Ln 1, Col 1</span>
+      <span class="status-item" id="status-size">4.2 KB</span>
+      <span class="status-item">JavaScript</span>
+    </div>
+  </footer>
+)}

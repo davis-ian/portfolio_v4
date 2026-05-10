@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ProjectPage from "@components/ProjectPage.astro";
+---
+
+<BaseLayout
+  title="ffmpeg-wa – Ian Davis"
+  description="In-browser FFmpeg workflows for video processing and media transforms."
+>
+  <ProjectPage
+    slug="ffmpeg-wa"
+    title="ffmpeg-wa"
+    subtitle="In-browser FFmpeg workflows"
+    description="Experimentation ground for running practical FFmpeg pipelines through WebAssembly."
+    stack="FFmpeg.wasm, TypeScript"
+    year="2024"
+    status="Active"
+    imageName="clipper"
+    imageAlt="FFmpeg WA interface"
+    repoUrl="https://github.com/davis-ian/ffmpeg_wa"
+    tags={["FFmpeg.wasm", "Media transforms", "TypeScript"]}
+  >
+    <p>
+      This project validates how far client-side media processing can go with careful worker usage,
+      predictable memory handling, and task-oriented interfaces.
+    </p>
+    <p>
+      The work feeds directly into larger media products where responsive in-browser processing is a
+      key part of the user experience.
+    </p>
+  </ProjectPage>
+</BaseLayout>

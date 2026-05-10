@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ProjectPage from "@components/ProjectPage.astro";
+---
+
+<BaseLayout
+  title="callsign – Ian Davis"
+  description="Test APIs without leaving your code editor using the Callsign VS Code extension."
+>
+  <ProjectPage
+    slug="callsign"
+    title="callsign"
+    subtitle="OpenAPI Explorer for VS Code"
+    description="A VS Code extension that turns OpenAPI specs into an interactive API explorer directly in your editor."
+    stack="TypeScript, VS Code API"
+    year="2024"
+    status="Published"
+    imageName="callsign"
+    imageAlt="Callsign extension interface"
+    repoUrl="https://github.com/davis-ian/callsign"
+    demoUrl="https://marketplace.visualstudio.com/items?itemName=ian-davis.callsign"
+    tags={["TypeScript", "VS Code Extension API", "OpenAPI 3.x", "Webview UI"]}
+  >
+    <p>
+      Callsign parses OpenAPI 3.x documents and presents endpoints, schemas, and parameters in a
+      browsable interface that feels native to editor workflows.
+    </p>
+    <p>
+      The goal was to reduce context switching for backend and frontend teams by keeping API
+      exploration, request composition, and response inspection inside VS Code.
+    </p>
+  </ProjectPage>
+</BaseLayout>

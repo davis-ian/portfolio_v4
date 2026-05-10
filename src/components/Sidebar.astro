@@ -1,0 +1,75 @@
+---
+interface Props {
+  home?: boolean;
+  activeSection?: string;
+  activeProject?: string;
+}
+
+const { home = false, activeSection = "hero", activeProject = "" } = Astro.props;
+---
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="explorer-label">EXPLORER</span>
+  </div>
+  {home ? (
+    <nav class="file-tree">
+      <div class="folder open">
+        <div class="folder-header" data-folder-toggle>
+          <span class="folder-toggle">▼</span>
+          <span>PORTFOLIO</span>
+        </div>
+        <div class="folder-contents">
+          <a href="#hero" class={`file ${activeSection === "hero" ? "active" : ""}`} data-section="hero"><span class="file-prefix">-</span><span>README.md</span></a>
+          <div class="folder open">
+            <div class="folder-header" data-folder-toggle>
+              <span class="folder-toggle">▼</span>
+              <span>src</span>
+            </div>
+            <div class="folder-contents">
+              <a href="#featured" class={`file ${activeSection === "featured" ? "active" : ""}`} data-section="featured"><span class="file-prefix">-</span><span>featured.js</span></a>
+              <a href="#case-studies" class={`file ${activeSection === "case-studies" ? "active" : ""}`} data-section="case-studies"><span class="file-prefix">-</span><span>case-studies/</span></a>
+              <a href="#work" class={`file ${activeSection === "work" ? "active" : ""}`} data-section="work"><span class="file-prefix">-</span><span>projects/</span></a>
+              <a href="#experience" class={`file ${activeSection === "experience" ? "active" : ""}`} data-section="experience"><span class="file-prefix">-</span><span>experience.json</span></a>
+              <a href="#about" class={`file ${activeSection === "about" ? "active" : ""}`} data-section="about"><span class="file-prefix">-</span><span>about.md</span></a>
+            </div>
+          </div>
+          <a href="https://github.com/davis-ian" class="file" target="_blank" rel="noopener"><span class="file-prefix">-</span><span>.github</span></a>
+        </div>
+      </div>
+    </nav>
+  ) : (
+    <nav class="file-tree">
+      <div class="folder open">
+        <div class="folder-header" data-folder-toggle>
+          <span class="folder-toggle">▼</span>
+          <span>PORTFOLIO</span>
+        </div>
+        <div class="folder-contents">
+          <a href="/" class="file"><span class="file-prefix">-</span><span>README.md</span></a>
+          <div class="folder open">
+            <div class="folder-header" data-folder-toggle>
+              <span class="folder-toggle">▼</span>
+              <span>projects</span>
+            </div>
+            <div class="folder-contents">
+              <a href="/projects/media-toolkit" class={`file ${activeProject === "media-toolkit" ? "active" : ""}`}><span class="file-prefix">-</span><span>media-toolkit.js</span></a>
+              <a href="/projects/callsign" class={`file ${activeProject === "callsign" ? "active" : ""}`}><span class="file-prefix">-</span><span>callsign.js</span></a>
+              <a href="/projects/forma" class={`file ${activeProject === "forma" ? "active" : ""}`}><span class="file-prefix">-</span><span>forma.js</span></a>
+            </div>
+          </div>
+          <div class="folder open">
+            <div class="folder-header" data-folder-toggle>
+              <span class="folder-toggle">▼</span>
+              <span>case-studies</span>
+            </div>
+            <div class="folder-contents">
+              <a href="/case-studies/render-engine" class={`file ${activeProject === "render-engine" ? "active" : ""}`}><span class="file-prefix">-</span><span>render-engine.js</span></a>
+              <a href="/case-studies/collaborative-video" class={`file ${activeProject === "collaborative-video" ? "active" : ""}`}><span class="file-prefix">-</span><span>collaborative-video.js</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  )}
+</aside>

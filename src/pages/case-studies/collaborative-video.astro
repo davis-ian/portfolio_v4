@@ -1,0 +1,384 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageShell from "@components/PageShell.astro";
+---
+
+<BaseLayout
+  title="collaborative-video - Ian Davis"
+  description="Case study: collaborative memorial video builder with role-based contribution and manager-led creative control."
+>
+  <PageShell
+    activeProject="collaborative-video"
+    statusFile="collaborative-video.ts"
+    crumbs={[
+      { href: "/#hero", label: "~/iandavis" },
+      { href: "/#case-studies", label: "case-studies" },
+      { label: "collaborative-video.md", active: true },
+    ]}
+  >
+    <section class="hero">
+      <div class="hero-header">
+        <h1 class="hero-title">Collaborative Video Builder</h1>
+        <p class="hero-subtitle">Ship a two-role editor for family contribution at scale</p>
+      </div>
+      <p class="hero-description">
+        This project introduced a collaborative workflow for memorial videos where contributors can upload and manage
+        their own media while a manager retains final creative authority. The goal was reducing collection friction,
+        keeping access simple, and preserving editorial quality in the final output.
+      </p>
+    </section>
+
+    <section class="section case-metrics">
+      <h2 class="section-heading">Key Metrics</h2>
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <p class="metric-label">Memorial videos created (beta)</p>
+          <p class="metric-value">500+</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Access model</p>
+          <p class="metric-value metric-value-compact">2 roles, no account needed</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Built</p>
+          <p class="metric-value metric-value-accent">0 -&gt; shipped</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Engineering Highlight</h2>
+      <article class="highlight-card">
+        <div class="highlight-head">
+          <h3 class="highlight-title">Perceptual hashing for duplicate detection</h3>
+        </div>
+        <p class="highlight-body">
+          Families scanning boxes of physical photos often upload near-identical images without realizing it.
+          Each uploaded image runs through a perceptual hashing and Hamming distance pipeline to detect
+          duplicates and visually similar matches. Instead of auto-rejecting flagged uploads, the system
+          surfaces them with cleanup tooling so managers can consolidate safely without losing meaningful content.
+        </p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">System Flow</h2>
+      <figure class="diagram-frame">
+        <img
+          src="/images/case-studies/collaborative-video-flow.svg"
+          alt="Collaborative video workflow showing contributor upload, manager curation, real-time updates, and background render completion delivery"
+          width="1280"
+          height="560"
+          loading="lazy"
+          decoding="async"
+          class="diagram-image"
+        />
+        <figcaption class="diagram-caption">
+          The workflow separates immediate user feedback from background processing: SignalR delivers live editor updates,
+          Service Bus handles async work, and webhook plus long-poll fallback keeps render completion reliable.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Access Model</h2>
+      <div class="access-grid">
+        <article class="access-card">
+          <div class="access-head">
+            <h3 class="access-title">Contributor</h3>
+            <span class="access-badge access-badge-contributor">invite link / QR</span>
+          </div>
+          <ul class="access-list access-list-contributor">
+            <li>Upload photos and video clips</li>
+            <li>View, edit, and delete own contributions</li>
+            <li>iOS app for mass photo scanning</li>
+            <li>No account creation required</li>
+          </ul>
+        </article>
+
+        <article class="access-card">
+          <div class="access-head">
+            <h3 class="access-title">Manager</h3>
+            <span class="access-badge access-badge-manager">full creative control</span>
+          </div>
+          <ul class="access-list access-list-manager">
+            <li>All contributor permissions</li>
+            <li>Set intro and outro videos</li>
+            <li>Curate music playlist (library or custom upload)</li>
+            <li>Final slide arrangement and creative decisions</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Key Decisions</h2>
+      <div class="decision-list">
+        <article class="decision-item">
+          <h3 class="decision-title">No account required for contributors</h3>
+          <p class="decision-body">
+            Asking a grieving family member to create an account before uploading a photo introduces friction that hurts
+            participation. Contributors join via invite link or QR code with session-based auth, while media ownership and
+            permissions remain enforced server-side.
+          </p>
+        </article>
+        <article class="decision-item">
+          <h3 class="decision-title">Service Bus for async tail, SignalR for immediacy</h3>
+          <p class="decision-body">
+            Not every event should block the UI. SignalR handles the live events users need right now while Service Bus
+            handles changelog writes and background processing. This split prevents slower backend work from degrading the
+            real-time editing experience.
+          </p>
+        </article>
+        <article class="decision-item">
+          <h3 class="decision-title">Webhook plus long polling for render completions</h3>
+          <p class="decision-body">
+            Webhooks are fast but not guaranteed. A missed delivery can leave families waiting on a render that is already
+            complete. Long polling as a fallback closes that gap without forcing aggressive polling on the happy path.
+          </p>
+        </article>
+      </div>
+      <div class="chip-group mt-4">
+        <span class="chip">Vue</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">SignalR</span>
+        <span class="chip">Azure Service Bus</span>
+        <span class="chip">C# / .NET</span>
+        <span class="chip">Perceptual hashing</span>
+        <span class="chip">Webhooks</span>
+        <span class="chip">Long polling</span>
+      </div>
+    </section>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .case-metrics {
+    padding-top: 2.5rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .metric-card {
+    /*background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));*/
+    border: 1px solid var(--color-border);
+    border-radius: 0.875rem;
+    padding: 1.5rem;
+  }
+
+  .metric-label {
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    margin-bottom: 0.75rem;
+    line-height: var(--leading-snug);
+  }
+
+  .metric-value {
+    color: var(--color-text-primary);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+  }
+
+  .metric-value-compact {
+    font-size: var(--text-2xl);
+  }
+
+  .metric-value-accent {
+    color: var(--accent-mint);
+  }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .access-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: color-mix(in srgb, var(--bg-secondary) 94%, transparent);
+  }
+
+  .access-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .access-title {
+    font-size: var(--text-lg);
+    line-height: var(--leading-tight);
+  }
+
+  .access-badge {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    line-height: var(--leading-snug);
+  }
+
+  .access-badge-contributor {
+    color: var(--accent-mint);
+    background: var(--accent-mint-dim);
+  }
+
+  .access-badge-manager {
+    color: color-mix(in srgb, var(--accent-mint) 65%, var(--color-text-primary));
+    background: color-mix(in srgb, var(--accent-mint) 25%, transparent);
+  }
+
+  .access-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-left: 0;
+  }
+
+  .access-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+  }
+
+  .access-list li::before {
+    content: "";
+    position: absolute;
+    left: 0.1rem;
+    top: 0.53em;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+  }
+
+  .access-list-contributor li::before {
+    background: var(--accent-mint);
+  }
+
+  .access-list-manager li::before {
+    background: color-mix(in srgb, var(--accent-mint) 70%, var(--color-text-primary));
+  }
+
+  .highlight-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    /*background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));*/
+    padding: 1.5rem;
+  }
+
+  .highlight-head {
+    margin-bottom: 0.85rem;
+  }
+
+  .highlight-title {
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+  }
+
+  .highlight-body {
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    max-width: 68ch;
+  }
+
+  .diagram-frame {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: color-mix(in srgb, var(--bg-secondary) 94%, transparent);
+  }
+
+  .diagram-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.625rem;
+    /*border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);*/
+    background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
+  }
+
+  .diagram-caption {
+    margin-top: 0.85rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    max-width: 76ch;
+  }
+
+  .decision-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .decision-item {
+    border-left: 3px solid color-mix(in srgb, var(--accent-mint) 60%, var(--accent-peach) 40%);
+    padding-left: 1rem;
+  }
+
+  .decision-title {
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+    margin-bottom: 0.4rem;
+    line-height: var(--leading-snug);
+  }
+
+  .decision-body {
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    max-width: 68ch;
+  }
+
+  @media (max-width: 980px) {
+    .metrics-grid,
+    .access-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .metric-card,
+    .access-card {
+      padding: 1.25rem;
+    }
+
+    .access-title {
+      font-size: var(--text-lg);
+    }
+
+    .access-list li {
+      font-size: var(--text-base);
+    }
+
+    .decision-title {
+      font-size: var(--text-lg);
+    }
+
+    .decision-body {
+      font-size: var(--text-base);
+    }
+
+    .highlight-card,
+    .diagram-frame {
+      padding: 1.25rem;
+    }
+
+    .highlight-body {
+      font-size: var(--text-base);
+    }
+  }
+</style>
