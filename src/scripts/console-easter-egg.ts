@@ -6,6 +6,7 @@ declare global {
       resume: () => "opening...";
       stack: () => string[];
       help: () => "good luck out there";
+      terminal?: () => true;
     };
   }
 }
@@ -45,6 +46,7 @@ export function initConsoleEasterEgg(): void {
   const stackValues = ["C#", "Vue", "FFmpeg", "Azure", "Docker"];
 
   window.ian = {
+    ...window.ian,
     hire: () => {
       console.log("%c", "");
       console.log("%c  ✓ ian.hire() executed successfully", styles.hireSuccess);
@@ -71,6 +73,7 @@ export function initConsoleEasterEgg(): void {
       console.log("%c  ian.hire()    -- the right move", styles.helpLine);
       console.log("%c  ian.resume()  -- open resume", styles.helpLine);
       console.log("%c  ian.stack()   -- print stack", styles.helpLine);
+      console.log("%c  ian.terminal() -- open integrated terminal", styles.helpLine);
       return "good luck out there";
     },
   };
@@ -88,6 +91,7 @@ export function initConsoleEasterEgg(): void {
   console.log(`%c   email:   ${getEmail()}`, styles.details);
   console.log("%c", "");
   console.log("%c   > ian.hire()  // returns: true", styles.hire);
+  console.log("%c   > ian.terminal()  // open integrated terminal", styles.hire);
 }
 
 export {};

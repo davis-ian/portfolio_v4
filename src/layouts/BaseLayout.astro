@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/main.css";
+import TerminalLauncher from "@components/Terminal/TerminalLauncher.astro";
 
 interface Props {
   title: string;
@@ -155,6 +156,7 @@ const shouldLoadUmami = Boolean(umamiWebsiteId);
   </head>
   <body>
     <slot />
+    <TerminalLauncher />
     <script>
       import "../scripts/init";
     </script>
