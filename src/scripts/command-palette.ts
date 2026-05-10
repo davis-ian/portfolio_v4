@@ -23,6 +23,7 @@ export function getCommands(): Command[] {
     { id: "experience", label: "Open: experience.json", action: () => scrollToSection("experience"), category: "Navigation", key: "5" },
     { id: "forma", label: "Go to: Forma Project", action: () => (window.location.href = projectPath("forma")), category: "Projects" },
     { id: "media-toolkit", label: "Go to: Media Toolkit Project", action: () => (window.location.href = projectPath("media-toolkit")), category: "Projects" },
+    { id: "render-engine", label: "Go to: Render Engine Case Study", action: () => (window.location.href = projectPath("render-engine")), category: "Projects" },
     { id: "upnext", label: "Go to: UpNext Project", action: () => (window.location.href = projectPath("upnext")), category: "Projects" },
     { id: "callsign", label: "Go to: Callsign Project", action: () => (window.location.href = projectPath("callsign")), category: "Projects" },
     { id: "minigames", label: "Go to: Minigames Project", action: () => (window.location.href = projectPath("minigames")), category: "Projects" },
@@ -64,6 +65,15 @@ export function getCommands(): Command[] {
       action: () => {
         applyTheme("incognito");
         showNotification("Theme set to Incognito");
+      },
+      category: "Themes",
+    },
+    {
+      id: "theme-miami-nights",
+      label: "Theme: Miami Nights",
+      action: () => {
+        applyTheme("miami-nights");
+        showNotification("Theme set to Miami Nights");
       },
       category: "Themes",
     },

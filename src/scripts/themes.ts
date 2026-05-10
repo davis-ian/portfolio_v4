@@ -1,4 +1,4 @@
-type ThemeId = "vesper" | "catppuccin" | "tokyo-night" | "incognito";
+type ThemeId = "vesper" | "catppuccin" | "tokyo-night" | "incognito" | "miami-nights";
 
 type ThemeTokens = Record<string, string>;
 
@@ -68,6 +68,22 @@ const THEMES: Record<ThemeId, ThemeTokens> = {
     "--accent-mint": "#ff9900",
     "--accent-mint-dim": "rgba(255, 153, 0, 0.2)",
     "--accent-red": "#ca4754",
+  },
+  "miami-nights": {
+    "--bg-primary": "#12131a",
+    "--bg-secondary": "#171923",
+    "--bg-tertiary": "#090b12",
+    "--bg-hover": "#1f2230",
+    "--border-default": "#1f2330",
+    "--border-muted": "#171b27",
+    "--text-primary": "#f2f2f2",
+    "--text-secondary": "#c7cad6",
+    "--text-muted": "#8e94a8",
+    "--accent-peach": "#e15ca8",
+    "--accent-peach-dim": "rgba(225, 92, 168, 0.2)",
+    "--accent-mint": "#4ac9d6",
+    "--accent-mint-dim": "rgba(74, 201, 214, 0.2)",
+    "--accent-red": "#ff6b87",
   },
 };
 

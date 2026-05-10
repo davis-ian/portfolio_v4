@@ -1,0 +1,297 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageShell from "@components/PageShell.astro";
+---
+
+<BaseLayout
+  title="render-engine - Ian Davis"
+  description="Case study: rewriting a synchronous video render pipeline into parallel job types, cutting turnaround from 20+ minutes to under 2 minutes for ready-to-watch output."
+>
+  <PageShell
+    activeProject="render-engine"
+    statusFile="render-engine.cs"
+    crumbs={[
+      { href: "/#hero", label: "~/iandavis" },
+      { href: "/#work", label: "projects" },
+      { label: "render-engine.md", active: true },
+    ]}
+  >
+    <section class="hero">
+      <div class="hero-header">
+        <h1 class="hero-title">Render Engine Rewrite</h1>
+        <p class="hero-subtitle">From serial bottlenecks to parallel job types</p>
+      </div>
+      <p class="hero-description">
+        I rewrote a production render pipeline used for post-event video delivery. The legacy flow forced
+        users to wait for every processing step to finish before a video could be marked ready. The rewrite
+        split critical and non-critical work into separate job paths, reduced ready-time to under two minutes,
+        and moved runtime infrastructure from a Windows service to Dockerized workers.
+      </p>
+    </section>
+
+    <section class="section case-metrics">
+      <h2 class="section-heading">Key Metrics</h2>
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <p class="metric-label">Render time before</p>
+          <p class="metric-value">20+ min</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Render time after</p>
+          <p class="metric-value metric-value-accent">&lt; 2 min</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Deployment model</p>
+          <p class="metric-value metric-value-compact">Windows svc -&gt; Docker</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Before vs After</h2>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-head">
+            <h3 class="compare-title">Before</h3>
+            <span class="compare-badge compare-badge-before">Synchronous</span>
+          </div>
+          <ul class="step-list step-list-before">
+            <li>Download raw sources from live stream</li>
+            <li>Normalize and stitch multiple files</li>
+            <li>Generate intro slate (if selected)</li>
+            <li>Compress for player delivery</li>
+            <li>Upload player version to storage</li>
+            <li>Compress for archive storage</li>
+            <li>Upload archive version</li>
+            <li>Run copyright detection on audio</li>
+            <li>Extract and store flagged segments</li>
+          </ul>
+          <p class="compare-note compare-note-before">-&gt; Video marked ready only after all 9 steps</p>
+        </article>
+
+        <article class="compare-card">
+          <div class="compare-head">
+            <h3 class="compare-title">After</h3>
+            <span class="compare-badge compare-badge-after">Parallel job types</span>
+          </div>
+
+          <h4 class="lane-title">Standard render (critical path)</h4>
+          <ul class="step-list step-list-after">
+            <li>Download and stitch sources</li>
+            <li>Normalize audio and bitrates</li>
+            <li>Generate intro slate (if selected)</li>
+            <li>Compress and upload player version</li>
+          </ul>
+          <p class="compare-note compare-note-after">-&gt; Video marked ready here</p>
+
+          <h4 class="lane-title lane-title-muted">Archive render (background)</h4>
+          <ul class="step-list step-list-muted">
+            <li>Compress and upload archive version</li>
+            <li>Copyright audio detection</li>
+            <li>Extract and store flagged segments</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Engineering Decisions</h2>
+      <div class="content-text">
+        <p>
+          The key architectural shift was separating user-visible readiness from long-running compliance and
+          archival tasks. Instead of treating every operation as one blocking pipeline, I introduced parallel
+          job types with explicit handoff points and shared metadata contracts between workers.
+        </p>
+        <p>
+          This let the player-ready artifact complete first while archive and copyright jobs continued safely in
+          the background. Operationally, the migration from a Windows service to Docker also improved deploy
+          consistency, worker scaling, and failure recovery in CI/CD environments.
+        </p>
+      </div>
+      <div class="chip-group mt-4">
+        <span class="chip">C#</span>
+        <span class="chip">FFmpeg</span>
+        <span class="chip">Distributed jobs</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Pipeline design</span>
+      </div>
+    </section>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .case-metrics {
+    padding-top: 2.5rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .metric-card {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));
+    border: 1px solid var(--color-border);
+    border-radius: 0.875rem;
+    padding: 1.5rem;
+  }
+
+  .metric-label {
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    margin-bottom: 0.75rem;
+  }
+
+  .metric-value {
+    color: var(--color-text-primary);
+    font-size: clamp(1.75rem, 2.4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .metric-value-accent {
+    color: var(--accent-mint);
+  }
+
+  .metric-value-compact {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .compare-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: color-mix(in srgb, var(--bg-secondary) 94%, transparent);
+  }
+
+  .compare-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .compare-title {
+    font-size: var(--text-4xl);
+    line-height: 1;
+  }
+
+  .compare-badge {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+  }
+
+  .compare-badge-before {
+    color: color-mix(in srgb, var(--accent-red) 70%, var(--color-text-primary));
+    background: color-mix(in srgb, var(--accent-red) 25%, transparent);
+  }
+
+  .compare-badge-after {
+    color: var(--accent-mint);
+    background: var(--accent-mint-dim);
+  }
+
+  .lane-title {
+    color: var(--color-text-secondary);
+    font-size: var(--text-2xl);
+    margin-bottom: 0.75rem;
+  }
+
+  .lane-title-muted {
+    margin-top: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-left: 0;
+  }
+
+  .step-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--color-text-secondary);
+    font-size: var(--text-3xl);
+    line-height: 1.35;
+  }
+
+  .step-list li::before {
+    content: "";
+    position: absolute;
+    left: 0.2rem;
+    top: 0.54em;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--color-text-muted);
+  }
+
+  .step-list-before li::before {
+    background: color-mix(in srgb, var(--accent-red) 65%, var(--bg-secondary));
+  }
+
+  .step-list-after li {
+    color: var(--color-text-primary);
+  }
+
+  .step-list-after li::before {
+    background: var(--accent-mint);
+  }
+
+  .step-list-muted li {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .step-list-muted li::before {
+    background: color-mix(in srgb, var(--color-text-muted) 60%, transparent);
+  }
+
+  .compare-note {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+  }
+
+  .compare-note-before {
+    color: color-mix(in srgb, var(--accent-red) 60%, var(--color-text-primary));
+  }
+
+  .compare-note-after {
+    color: var(--accent-mint);
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 980px) {
+    .metrics-grid,
+    .compare-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .metric-card,
+    .compare-card {
+      padding: 1.25rem;
+    }
+
+    .compare-title {
+      font-size: var(--text-3xl);
+    }
+
+    .step-list li {
+      font-size: var(--text-2xl);
+    }
+
+  }
+</style>
