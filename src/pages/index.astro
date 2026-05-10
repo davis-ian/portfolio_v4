@@ -74,7 +74,7 @@ const featured = selectedWorks.find((entry) => entry.data.slug === "media-toolki
             </a>
           </div>
           <div class="mt-4">
-            <p class="text-muted" style="font-family: var(--font-content); line-height: 1.7; max-width: 600px;">
+            <p class="text-muted" style="font-family: var(--font-content); line-height: var(--leading-normal); max-width: 600px;">
               {featured.data.description}
             </p>
             <div class="chip-group mt-4">
@@ -93,7 +93,7 @@ const featured = selectedWorks.find((entry) => entry.data.slug === "media-toolki
             <span class="project-prefix">&gt;</span>
             <div class="project-info">
               <span class="project-name">{entry.data.title}</span>
-              <span class="project-description" style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
+              <span class="project-description" style="font-family: var(--font-content); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
               <span class="project-meta">{entry.data.tags.join(", ")}</span>
             </div>
             <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
@@ -110,7 +110,7 @@ const featured = selectedWorks.find((entry) => entry.data.slug === "media-toolki
             <span class="project-prefix">&gt;</span>
             <div class="project-info">
               <span class="project-name">{entry.data.title}</span>
-              <span class="project-description" style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
+              <span class="project-description" style="font-family: var(--font-content); font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
               <span class="project-meta">{entry.data.tags.join(", ")} • deep dive</span>
             </div>
             <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
@@ -167,7 +167,7 @@ const featured = selectedWorks.find((entry) => entry.data.slug === "media-toolki
       <p class="cta-text contact-copy">
         I'm open to new opportunities, collaborations, or just chatting about dev tools and interesting problems.
       </p>
-      <a id="email-link" class="email-link" href="#contact" aria-label="Email contact link">...</a>
+      <a id="email-link" class="email-link" href="#contact" aria-label="Email contact link">hello.iandavis@gmail.com</a>
     </section>
     </div>
   </PageShell>
