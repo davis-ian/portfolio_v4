@@ -10,11 +10,12 @@ export function updateStatusBar(): void {
   const statusPositionEl = document.getElementById("status-position");
   if (!currentFileEl || !statusFileEl) return;
 
-  const sections = ["hero", "featured", "work", "about", "experience"];
+  const sections = ["hero", "featured", "work", "case-studies", "about", "experience"];
   const fileNames: Record<string, string> = {
     hero: "README.md",
     featured: "featured.js",
     work: "projects/",
+    "case-studies": "case-studies/",
     about: "about.md",
     experience: "experience.json",
   };
@@ -64,7 +65,7 @@ export function scrollToSection(id: string): void {
 
 export function initNavigation(): void {
   const files = document.querySelectorAll<HTMLElement>(".file");
-  const sections = ["hero", "featured", "work", "about", "experience"];
+  const sections = ["hero", "featured", "work", "case-studies", "about", "experience"];
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

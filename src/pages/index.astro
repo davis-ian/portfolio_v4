@@ -6,7 +6,10 @@ import { getCollection } from "astro:content";
 const projects = (await getCollection("projects"))
 .filter((entry) => entry.data.published)
 .sort((a, b) => a.data.order - b.data.order);
-const featured = projects.find((entry) => entry.data.slug === "media-toolkit") ?? projects[0];
+const caseStudySlugs = new Set(["render-engine", "collaborative-video"]);
+const caseStudies = projects.filter((entry) => caseStudySlugs.has(entry.data.slug));
+const selectedWorks = projects.filter((entry) => !caseStudySlugs.has(entry.data.slug));
+const featured = selectedWorks.find((entry) => entry.data.slug === "media-toolkit") ?? selectedWorks[0];
 ---
 
 <BaseLayout
@@ -78,13 +81,30 @@ const featured = projects.find((entry) => entry.data.slug === "media-toolkit") ?
     <section class="section" id="work">
       <h2 class="section-heading">Selected Works</h2>
       <div class="project-list">
-        {projects.filter((entry) => entry.data.slug !== featured?.data.slug).map((entry) => (
+        {selectedWorks.filter((entry) => entry.data.slug !== featured?.data.slug).map((entry) => (
           <a href={`/projects/${entry.data.slug}`} class="project-item">
             <span class="project-prefix">&gt;</span>
             <div class="project-info">
               <span class="project-name">{entry.data.title}</span>
               <span class="project-description" style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
               <span class="project-meta">{entry.data.tags.join(", ")}</span>
+            </div>
+            <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="case-studies">
+      <h2 class="section-heading">Case Studies</h2>
+      <div class="project-list">
+        {caseStudies.map((entry) => (
+          <a href={`/case-studies/${entry.data.slug}`} class="project-item">
+            <span class="project-prefix">&gt;</span>
+            <div class="project-info">
+              <span class="project-name">{entry.data.title}</span>
+              <span class="project-description" style="font-family: var(--font-content); font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">{entry.data.description}</span>
+              <span class="project-meta">{entry.data.tags.join(", ")} • deep dive</span>
             </div>
             <div class="project-actions"><span class="btn-icon">-&gt;</span></div>
           </a>

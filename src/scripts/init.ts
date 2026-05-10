@@ -13,7 +13,7 @@ function showKeyboardHelp(): void {
   overlay.className = "command-palette-overlay";
   overlay.id = "keyboard-help";
   overlay.style.display = "flex";
-  overlay.innerHTML = '<div class="command-palette" style="max-width:500px;"><div style="padding:1rem;border-bottom:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">-- KEYBOARD SHORTCUTS --</span><button id="close-help" style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:1.25rem;padding:0.25rem;">x</button></div><div style="padding:1rem;font-family:var(--font-mono);"><div style="margin-bottom:1rem;"><div style="font-size:0.75rem;color:var(--accent-peach);text-transform:uppercase;margin-bottom:0.5rem;">:: Navigation</div><div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;line-height:1.8;"><span style="color:var(--text-muted);">1-5</span><span>Jump to section</span><span style="color:var(--text-muted);">^K</span><span>Command palette (:)</span><span style="color:var(--text-muted);">?</span><span>Show help</span></div></div><div style="margin-bottom:1rem;"><div style="font-size:0.75rem;color:var(--accent-peach);text-transform:uppercase;margin-bottom:0.5rem;">:: Actions</div><div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;line-height:1.8;"><span style="color:var(--text-muted);">R</span><span>Download resume</span><span style="color:var(--text-muted);">Esc</span><span>Close/Quit</span></div></div><div style="font-size:0.75rem;color:var(--text-muted);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border);">:help for more info</div></div></div>';
+  overlay.innerHTML = '<div class="command-palette" style="max-width:500px;"><div style="padding:1rem;border-bottom:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">-- KEYBOARD SHORTCUTS --</span><button id="close-help" style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:1.25rem;padding:0.25rem;">x</button></div><div style="padding:1rem;font-family:var(--font-mono);"><div style="margin-bottom:1rem;"><div style="font-size:0.75rem;color:var(--accent-peach);text-transform:uppercase;margin-bottom:0.5rem;">:: Navigation</div><div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;line-height:1.8;"><span style="color:var(--text-muted);">1-6</span><span>Jump to section</span><span style="color:var(--text-muted);">^K</span><span>Command palette (:)</span><span style="color:var(--text-muted);">?</span><span>Show help</span></div></div><div style="margin-bottom:1rem;"><div style="font-size:0.75rem;color:var(--accent-peach);text-transform:uppercase;margin-bottom:0.5rem;">:: Actions</div><div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;line-height:1.8;"><span style="color:var(--text-muted);">R</span><span>Download resume</span><span style="color:var(--text-muted);">Esc</span><span>Close/Quit</span></div></div><div style="font-size:0.75rem;color:var(--text-muted);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border);">:help for more info</div></div></div>';
   document.body.appendChild(overlay);
   document.getElementById("close-help")?.addEventListener("click", () => overlay.remove());
   overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.remove(); });
@@ -56,10 +56,10 @@ function initKeyboardShortcuts(): void {
       commandPalette?.toggle();
       return;
     }
-    if (!isMod && !isShift && /^[1-5]$/.test(key)) {
+    if (!isMod && !isShift && /^[1-6]$/.test(key)) {
       e.preventDefault();
       setHasUserNavigated(true);
-      const sections = ["hero", "featured", "work", "about", "experience"];
+      const sections = ["hero", "featured", "work", "case-studies", "about", "experience"];
       const idx = Number(key) - 1;
       const section = sections[idx];
       if (section) document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" });
