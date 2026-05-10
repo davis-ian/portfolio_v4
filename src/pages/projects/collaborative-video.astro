@@ -1,0 +1,284 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageShell from "@components/PageShell.astro";
+---
+
+<BaseLayout
+  title="collaborative-video - Ian Davis"
+  description="Case study: collaborative memorial video builder with role-based contribution and manager-led creative control."
+>
+  <PageShell
+    activeProject="collaborative-video"
+    statusFile="collaborative-video.ts"
+    crumbs={[
+      { href: "/#hero", label: "~/iandavis" },
+      { href: "/#work", label: "projects" },
+      { label: "collaborative-video.md", active: true },
+    ]}
+  >
+    <section class="hero">
+      <div class="hero-header">
+        <h1 class="hero-title">Collaborative Video Builder</h1>
+        <p class="hero-subtitle">Ship a two-role editor for family contribution at scale</p>
+      </div>
+      <p class="hero-description">
+        This project introduced a collaborative workflow for memorial videos where contributors can upload and manage
+        their own media while a manager retains final creative authority. The goal was reducing collection friction,
+        keeping access simple, and preserving editorial quality in the final output.
+      </p>
+    </section>
+
+    <section class="section case-metrics">
+      <h2 class="section-heading">Key Metrics</h2>
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <p class="metric-label">Memorial videos created (beta)</p>
+          <p class="metric-value">500+</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Access model</p>
+          <p class="metric-value metric-value-compact">2 roles, no account needed</p>
+        </article>
+        <article class="metric-card">
+          <p class="metric-label">Built</p>
+          <p class="metric-value metric-value-accent">0 -&gt; shipped</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Access Model</h2>
+      <div class="access-grid">
+        <article class="access-card">
+          <div class="access-head">
+            <h3 class="access-title">Contributor</h3>
+            <span class="access-badge access-badge-contributor">invite link / QR</span>
+          </div>
+          <ul class="access-list access-list-contributor">
+            <li>Upload photos and video clips</li>
+            <li>View, edit, and delete own contributions</li>
+            <li>iOS app for mass photo scanning</li>
+            <li>No account creation required</li>
+          </ul>
+        </article>
+
+        <article class="access-card">
+          <div class="access-head">
+            <h3 class="access-title">Manager</h3>
+            <span class="access-badge access-badge-manager">full creative control</span>
+          </div>
+          <ul class="access-list access-list-manager">
+            <li>All contributor permissions</li>
+            <li>Set intro and outro videos</li>
+            <li>Curate music playlist (library or custom upload)</li>
+            <li>Final slide arrangement and creative decisions</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">What Made It Work</h2>
+      <div class="decision-list">
+        <article class="decision-item">
+          <h3 class="decision-title">Permission model optimized for families, not teams</h3>
+          <p class="decision-body">
+            The access split avoided enterprise-style complexity. Contributors got low-friction upload and self-service
+            controls, while managers had final authority over assembly and publish decisions.
+          </p>
+        </article>
+        <article class="decision-item">
+          <h3 class="decision-title">No-account onboarding via invite URL and QR</h3>
+          <p class="decision-body">
+            The funnel focused on immediate contribution from mobile devices, where most family media already lived.
+            Reducing setup steps materially improved participation rate during emotionally time-sensitive windows.
+          </p>
+        </article>
+        <article class="decision-item">
+          <h3 class="decision-title">Creative governance stayed centralized</h3>
+          <p class="decision-body">
+            Collaboration did not mean losing artistic direction. Managers retained sequencing, soundtrack, and intro/outro
+            decisions so the final video stayed coherent, even with many parallel contributors.
+          </p>
+        </article>
+      </div>
+      <div class="chip-group mt-4">
+        <span class="chip">Vue</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Role-based access</span>
+        <span class="chip">Mobile onboarding</span>
+        <span class="chip">Media workflows</span>
+      </div>
+    </section>
+  </PageShell>
+</BaseLayout>
+
+<style>
+  .case-metrics {
+    padding-top: 2.5rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .metric-card {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));
+    border: 1px solid var(--color-border);
+    border-radius: 0.875rem;
+    padding: 1.5rem;
+  }
+
+  .metric-label {
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    margin-bottom: 0.75rem;
+  }
+
+  .metric-value {
+    color: var(--color-text-primary);
+    font-size: clamp(1.75rem, 2.4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .metric-value-compact {
+    font-size: clamp(1.2rem, 2vw, 2rem);
+  }
+
+  .metric-value-accent {
+    color: var(--accent-mint);
+  }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .access-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: color-mix(in srgb, var(--bg-secondary) 94%, transparent);
+  }
+
+  .access-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .access-title {
+    font-size: var(--text-4xl);
+    line-height: 1;
+  }
+
+  .access-badge {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+  }
+
+  .access-badge-contributor {
+    color: var(--accent-mint);
+    background: var(--accent-mint-dim);
+  }
+
+  .access-badge-manager {
+    color: color-mix(in srgb, var(--accent-mint) 65%, var(--color-text-primary));
+    background: color-mix(in srgb, var(--accent-mint) 25%, transparent);
+  }
+
+  .access-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-left: 0;
+  }
+
+  .access-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--color-text-secondary);
+    font-size: var(--text-3xl);
+    line-height: 1.35;
+  }
+
+  .access-list li::before {
+    content: "";
+    position: absolute;
+    left: 0.1rem;
+    top: 0.53em;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+  }
+
+  .access-list-contributor li::before {
+    background: var(--accent-mint);
+  }
+
+  .access-list-manager li::before {
+    background: color-mix(in srgb, var(--accent-mint) 70%, var(--color-text-primary));
+  }
+
+  .decision-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .decision-item {
+    border-left: 3px solid color-mix(in srgb, var(--accent-mint) 60%, var(--accent-peach) 40%);
+    padding-left: 1rem;
+  }
+
+  .decision-title {
+    color: var(--color-text-primary);
+    font-size: clamp(1.4rem, 1.7vw, 2rem);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .decision-body {
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+
+  @media (max-width: 980px) {
+    .metrics-grid,
+    .access-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .metric-card,
+    .access-card {
+      padding: 1.25rem;
+    }
+
+    .access-title {
+      font-size: var(--text-3xl);
+    }
+
+    .access-list li {
+      font-size: var(--text-2xl);
+    }
+
+    .decision-title {
+      font-size: var(--text-3xl);
+    }
+
+    .decision-body {
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,9 @@
+{
+  "title": "collaborative-video",
+  "slug": "collaborative-video",
+  "description": "Case study on launching a collaborative memorial video workflow with role-based contribution and manager-controlled editing.",
+  "tags": ["Vue", "TypeScript", "Collaboration"],
+  "metrics": "500+ memorial videos created during beta",
+  "order": 2,
+  "published": true
+}

@@ -24,6 +24,7 @@ export function getCommands(): Command[] {
     { id: "forma", label: "Go to: Forma Project", action: () => (window.location.href = projectPath("forma")), category: "Projects" },
     { id: "media-toolkit", label: "Go to: Media Toolkit Project", action: () => (window.location.href = projectPath("media-toolkit")), category: "Projects" },
     { id: "render-engine", label: "Go to: Render Engine Case Study", action: () => (window.location.href = projectPath("render-engine")), category: "Projects" },
+    { id: "collaborative-video", label: "Go to: Collaborative Video Case Study", action: () => (window.location.href = projectPath("collaborative-video")), category: "Projects" },
     { id: "upnext", label: "Go to: UpNext Project", action: () => (window.location.href = projectPath("upnext")), category: "Projects" },
     { id: "callsign", label: "Go to: Callsign Project", action: () => (window.location.href = projectPath("callsign")), category: "Projects" },
     { id: "minigames", label: "Go to: Minigames Project", action: () => (window.location.href = projectPath("minigames")), category: "Projects" },
