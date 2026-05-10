@@ -19,6 +19,8 @@ const {
 } = Astro.props;
 
 const canonical = Astro.url.href;
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const shouldLoadUmami = Boolean(umamiWebsiteId);
 ---
 
 <!doctype html>
@@ -44,6 +46,16 @@ const canonical = Astro.url.href;
     <link rel="preload" href="/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    {
+      shouldLoadUmami && (
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={umamiWebsiteId}
+          data-do-not-track="true"
+        ></script>
+      )
+    }
     <script is:inline>
       (() => {
         const storageKey = "portfolio-theme";
