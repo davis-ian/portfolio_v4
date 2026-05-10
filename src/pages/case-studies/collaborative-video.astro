@@ -47,6 +47,40 @@ import PageShell from "@components/PageShell.astro";
     </section>
 
     <section class="section">
+      <h2 class="section-heading">Engineering Highlight</h2>
+      <article class="highlight-card">
+        <div class="highlight-head">
+          <h3 class="highlight-title">Perceptual hashing for duplicate detection</h3>
+        </div>
+        <p class="highlight-body">
+          Families scanning boxes of physical photos often upload near-identical images without realizing it.
+          Each uploaded image runs through a perceptual hashing and Hamming distance pipeline to detect
+          duplicates and visually similar matches. Instead of auto-rejecting flagged uploads, the system
+          surfaces them with cleanup tooling so managers can consolidate safely without losing meaningful content.
+        </p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">System Flow</h2>
+      <figure class="diagram-frame">
+        <img
+          src="/images/case-studies/collaborative-video-flow.svg"
+          alt="Collaborative video workflow showing contributor upload, manager curation, real-time updates, and background render completion delivery"
+          width="1280"
+          height="560"
+          loading="lazy"
+          decoding="async"
+          class="diagram-image"
+        />
+        <figcaption class="diagram-caption">
+          The workflow separates immediate user feedback from background processing: SignalR delivers live editor updates,
+          Service Bus handles async work, and webhook plus long-poll fallback keeps render completion reliable.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
       <h2 class="section-heading">Access Model</h2>
       <div class="access-grid">
         <article class="access-card">
@@ -78,36 +112,41 @@ import PageShell from "@components/PageShell.astro";
     </section>
 
     <section class="section">
-      <h2 class="section-heading">What Made It Work</h2>
+      <h2 class="section-heading">Key Decisions</h2>
       <div class="decision-list">
         <article class="decision-item">
-          <h3 class="decision-title">Permission model optimized for families, not teams</h3>
+          <h3 class="decision-title">No account required for contributors</h3>
           <p class="decision-body">
-            The access split avoided enterprise-style complexity. Contributors got low-friction upload and self-service
-            controls, while managers had final authority over assembly and publish decisions.
+            Asking a grieving family member to create an account before uploading a photo introduces friction that hurts
+            participation. Contributors join via invite link or QR code with session-based auth, while media ownership and
+            permissions remain enforced server-side.
           </p>
         </article>
         <article class="decision-item">
-          <h3 class="decision-title">No-account onboarding via invite URL and QR</h3>
+          <h3 class="decision-title">Service Bus for async tail, SignalR for immediacy</h3>
           <p class="decision-body">
-            The funnel focused on immediate contribution from mobile devices, where most family media already lived.
-            Reducing setup steps materially improved participation rate during emotionally time-sensitive windows.
+            Not every event should block the UI. SignalR handles the live events users need right now while Service Bus
+            handles changelog writes and background processing. This split prevents slower backend work from degrading the
+            real-time editing experience.
           </p>
         </article>
         <article class="decision-item">
-          <h3 class="decision-title">Creative governance stayed centralized</h3>
+          <h3 class="decision-title">Webhook plus long polling for render completions</h3>
           <p class="decision-body">
-            Collaboration did not mean losing artistic direction. Managers retained sequencing, soundtrack, and intro/outro
-            decisions so the final video stayed coherent, even with many parallel contributors.
+            Webhooks are fast but not guaranteed. A missed delivery can leave families waiting on a render that is already
+            complete. Long polling as a fallback closes that gap without forcing aggressive polling on the happy path.
           </p>
         </article>
       </div>
       <div class="chip-group mt-4">
         <span class="chip">Vue</span>
         <span class="chip">TypeScript</span>
-        <span class="chip">Role-based access</span>
-        <span class="chip">Mobile onboarding</span>
-        <span class="chip">Media workflows</span>
+        <span class="chip">SignalR</span>
+        <span class="chip">Azure Service Bus</span>
+        <span class="chip">C# / .NET</span>
+        <span class="chip">Perceptual hashing</span>
+        <span class="chip">Webhooks</span>
+        <span class="chip">Long polling</span>
       </div>
     </section>
   </PageShell>
@@ -228,6 +267,56 @@ import PageShell from "@components/PageShell.astro";
     background: color-mix(in srgb, var(--accent-mint) 70%, var(--color-text-primary));
   }
 
+  .highlight-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));
+    padding: 1.5rem;
+  }
+
+  .highlight-head {
+    margin-bottom: 0.85rem;
+  }
+
+  .highlight-title {
+    color: var(--color-text-primary);
+    font-size: clamp(1.45rem, 1.9vw, 2.2rem);
+    line-height: 1.25;
+  }
+
+  .highlight-body {
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+
+  .diagram-frame {
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: color-mix(in srgb, var(--bg-secondary) 94%, transparent);
+  }
+
+  .diagram-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.625rem;
+    border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+    background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
+  }
+
+  .diagram-caption {
+    margin-top: 0.85rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 76ch;
+  }
+
   .decision-list {
     display: flex;
     flex-direction: column;
@@ -279,6 +368,15 @@ import PageShell from "@components/PageShell.astro";
 
     .decision-body {
       font-size: 1rem;
+    }
+
+    .highlight-card,
+    .diagram-frame {
+      padding: 1.25rem;
+    }
+
+    .highlight-body {
+      font-size: 1.05rem;
     }
   }
 </style>
