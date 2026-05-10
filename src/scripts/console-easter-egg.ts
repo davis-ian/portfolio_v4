@@ -1,0 +1,45 @@
+declare global {
+  interface Window {
+    __portfolioConsoleEggShown?: boolean;
+  }
+}
+
+import { getEmail } from "./actions";
+
+const ASCII_ART = String.raw`
+  ██╗ █████╗ ███╗   ██╗
+  ██║██╔══██╗████╗  ██║
+  ██║███████║██╔██╗ ██║
+  ██║██╔══██║██║╚██╗██║
+  ██║██║  ██║██║ ╚████║
+  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+`;
+
+export function initConsoleEasterEgg(): void {
+  if (typeof window === "undefined") return;
+  if (window.__portfolioConsoleEggShown) return;
+
+  window.__portfolioConsoleEggShown = true;
+
+  const styles = {
+    banner: "color: var(--accent-mint); font-family: monospace;",
+    greeting:
+      "color: var(--text-primary); font-size: 13px; font-family: monospace;",
+    nod: "color: var(--text-muted); font-size: 13px; font-family: monospace;",
+    details:
+      "color: var(--text-secondary); font-size: 12px; font-family: monospace;",
+    hire: "color: var(--accent-mint); font-size: 12px; font-family: monospace;",
+  };
+
+  console.log("%c" + ASCII_ART, styles.banner);
+  console.log("%c👋 hey, you found the source.", styles.greeting);
+  // console.log("%c   i see you know where to look.", styles.nod);
+  console.log("%c", "");
+  console.log("%c   stack:   C# · Vue · FFmpeg · AWS · Docker", styles.details);
+  console.log("%c   github:  github.com/davis-ian", styles.details);
+  console.log(`%c   email:   ${getEmail()}`, styles.details);
+  console.log("%c", "");
+  console.log("%c   > ian.hire()  // returns: true", styles.hire);
+}
+
+export {};

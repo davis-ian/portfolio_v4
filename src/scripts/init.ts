@@ -2,6 +2,7 @@ import { CommandPalette, getCommands } from "./command-palette";
 import { downloadResume, initDataActions, initEmail, initResumeButton } from "./actions";
 import { handleHashNavigation, initNavigation, setHasUserNavigated, updatePageSize, updateStatusBar } from "./navigation";
 import { initFolderToggles, initMobileMenu } from "./mobile";
+import { initConsoleEasterEgg } from "./console-easter-egg";
 import { initTheme } from "./themes";
 
 let commandPalette: CommandPalette | null = null;
@@ -145,6 +146,7 @@ function initStatusModeTrigger(): void {
 
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
+  initConsoleEasterEgg();
   commandPalette = new CommandPalette(getCommands());
   initFolderToggles();
   initMobileMenu();
