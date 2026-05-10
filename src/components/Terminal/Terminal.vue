@@ -5,17 +5,39 @@
     :class="{ 'is-visible': visible }"
     :aria-hidden="(!visible).toString()"
   >
-    <section class="terminal-panel" role="dialog" aria-label="Integrated terminal">
+    <section
+      class="terminal-panel"
+      role="dialog"
+      aria-label="Integrated terminal"
+    >
       <header class="terminal-header">
         <div class="terminal-tab">TERMINAL</div>
         <div class="terminal-actions">
-          <button type="button" class="terminal-action" aria-label="New terminal">+</button>
-          <button type="button" class="terminal-action" aria-label="Close terminal" @click="closeTerminal">x</button>
+          <button
+            type="button"
+            class="terminal-action"
+            aria-label="New terminal"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            class="terminal-action"
+            aria-label="Close terminal"
+            @click="closeTerminal"
+          >
+            x
+          </button>
         </div>
       </header>
 
       <div ref="outputRef" class="terminal-output" @click="focusInput">
-        <div v-for="(line, index) in output" :key="`${index}-${line.text}`" class="terminal-line" :class="line.className">
+        <div
+          v-for="(line, index) in output"
+          :key="`${index}-${line.text}`"
+          class="terminal-line"
+          :class="line.className"
+        >
           {{ line.text }}
         </div>
 
@@ -167,32 +189,29 @@ const sshOdinLines = [
 ];
 
 const gitLogLines = [
-  "commit a3f9d2c  2026-02-01",
   "Author: Ian Davis <ian@iandavis.dev>",
+  "commit 8a1cc94  2026-02-15",
+  "    feat(ci-cd): migrate render enging Windows service -> Docker service",
+  "",
+  "commit a3f9d2c  2025-12-30",
   "    feat: welcomed first child, updated priorities.md",
   "",
-  "commit b81e4f1  2025-08-01",
-  "    chore: relocating to Bay Area",
-  "",
-  "commit 9c2a771  2025-03-01",
-  "    feat(render-engine): 20min -> sub-2min, closes #frustration",
-  "",
-  "commit 4d18c3b  2024-11-01",
-  "    feat(hls): migrate 160k assets, -90% support tickets",
+  "commit 8a1cc94  2025-04-01",
+  "    feat(ci-cd): migrate Azure DevOps -> GitHub Actions",
   "",
   "commit 2f93a10  2024-06-01",
   "    feat(collab-editor): ship collaborative memorial video editor",
   "",
-  "commit e7b3dd5  2023-09-01",
+  "commit 9c2a771  2023-06-10",
+  "    feat(render-engine): 20min -> sub-2min, closes #frustration",
+  "",
+  "commit e7b3dd5  2023-02-01",
   "    chore: promoted to Lead Software Engineer",
   "",
-  "commit 8a1cc94  2022-04-01",
-  "    feat(ci-cd): migrate Azure DevOps -> GitHub Actions",
-  "",
-  "commit 3b72f19  2021-01-01",
+  "commit 3b72f19  2022-02-01",
   "    fix: joined MemoryShare, began owning full stack",
   "",
-  "commit 1f0e832  2019-06-01",
+  "commit 1f0e832  2021-06-01",
   "    feat: completed PDX Code Guild, selected as TA",
   "",
   "commit 09d4a11  2018-03-01",
@@ -240,9 +259,9 @@ const fantasyStartLines = [
   "[fantasy-draft] your pick: Round 1, Pick 7",
   "",
   "available:",
-  "  1. CeeDee Lamb        WR  DAL",
-  "  2. Justin Jefferson   WR  MIN",
-  "  3. Saquon Barkley     RB  PHI",
+  "  1. Jahmyr Gibbs       RB  DET",
+  "  2. Bijan Robinson     RB  ATL",
+  "  3. Puka Nacua         WR  LAR",
   "",
   "enter pick (1-3): _",
 ];
@@ -284,7 +303,11 @@ function pushLines(lines: string[], className?: string): void {
   });
 }
 
-async function typeLines(lines: string[], delay: number, className?: string): Promise<void> {
+async function typeLines(
+  lines: string[],
+  delay: number,
+  className?: string,
+): Promise<void> {
   isStreaming.value = true;
   const token = ++streamToken.value;
 
@@ -359,7 +382,25 @@ function runCat(args: string[]): void {
 
   if (target === ".secret") {
     if (flag === "--force") {
-      pushLine("// todo: take over the world", "line-comment");
+      pushLines(
+        [
+          "# playlist: BEAST MODE.m3u",
+          "# last shuffle: 2:47am",
+          "",
+          "01. Adele - Someone Like You",
+          "02. Taylor Swift - All Too Well (10 Min Version)",
+          "03. Adele - Hello",
+          "04. Taylor Swift - tolerate it",
+          "05. Celine Dion - My Heart Will Go On",
+          "06. Phoebe Bridgers - Funeral",
+          "07. Taylor Swift - champagne problems",
+          "08. Adele - When We Were Young",
+          "",
+          "# shuffle: on",
+          "# repeat: on",
+        ],
+        "line-comment",
+      );
       return;
     }
     pushLine("permission denied", "line-error");
@@ -388,7 +429,10 @@ async function runSsh(host: string | undefined): Promise<void> {
       return;
     }
 
-    pushLine(`ssh: Could not resolve hostname ${host}: Name or service not known`, "line-error");
+    pushLine(
+      `ssh: Could not resolve hostname ${host}: Name or service not known`,
+      "line-error",
+    );
     return;
   }
 
@@ -433,7 +477,10 @@ async function runCommand(rawInput: string): Promise<void> {
   const [command, ...args] = input.split(/\s+/);
 
   if (isStreaming.value) {
-    pushLine("terminal busy: wait for current command to finish", "line-comment");
+    pushLine(
+      "terminal busy: wait for current command to finish",
+      "line-comment",
+    );
     return;
   }
 
@@ -524,8 +571,12 @@ function submitCommand(): void {
 
 function handleGlobalKeydown(event: KeyboardEvent): void {
   const target = event.target as HTMLElement | null;
-  const inInput = target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable;
-  const isBacktickKey = event.code === "Backquote" || event.key === "`" || event.key === "Dead";
+  const inInput =
+    target?.tagName === "INPUT" ||
+    target?.tagName === "TEXTAREA" ||
+    target?.isContentEditable;
+  const isBacktickKey =
+    event.code === "Backquote" || event.key === "`" || event.key === "Dead";
   const isToggle = isBacktickKey && (event.ctrlKey || event.metaKey);
 
   if (visible.value && event.key === "Escape") {
@@ -571,7 +622,9 @@ watch([visible, () => output.value.length, inputValue], () => {
   transform: translateY(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
   z-index: 120;
 }
 
