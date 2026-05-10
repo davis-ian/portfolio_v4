@@ -24,10 +24,3 @@ export function initMobileMenu(): void {
     });
   });
 }
-
-export function initOpenFolderHeights(): void {
-  document.querySelectorAll<HTMLElement>(".folder.open").forEach((folder) => {
-    const contents = folder.querySelector<HTMLElement>(".folder-contents");
-    if (contents) contents.style.maxHeight = "1000px";
-  });
-}
