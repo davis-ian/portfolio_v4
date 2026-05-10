@@ -321,6 +321,9 @@ video {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 30;
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--color-border);
   font-size: var(--text-sm);
@@ -1099,7 +1102,7 @@ a.crumb.active {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: calc(var(--status-bar-height) + env(safe-area-inset-bottom));
+    bottom: var(--status-bar-height);
     z-index: 110;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
