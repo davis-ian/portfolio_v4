@@ -57,7 +57,10 @@ export function initConsoleEasterEgg(): void {
   console.log("%c👋 hey, you found the source.", styles.greeting);
   // console.log("%c   i see you know where to look.", styles.nod);
   console.log("%c", "");
-  console.log("%c   stack:   C# · Vue · FFmpeg · AWS · Docker", styles.details);
+  console.log(
+    "%c   stack:   C# · Vue · FFmpeg · AWS · Azure · SQL · Docker",
+    styles.details,
+  );
   console.log("%c   github:  github.com/davis-ian", styles.details);
   console.log(`%c   email:   ${getEmail()}`, styles.details);
   console.log("%c", "");
