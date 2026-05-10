@@ -1,6 +1,9 @@
 declare global {
   interface Window {
     __portfolioConsoleEggShown?: boolean;
+    ian?: {
+      hire: () => true;
+    };
   }
 }
 
@@ -17,9 +20,6 @@ const ASCII_ART = String.raw`
 
 export function initConsoleEasterEgg(): void {
   if (typeof window === "undefined") return;
-  if (window.__portfolioConsoleEggShown) return;
-
-  window.__portfolioConsoleEggShown = true;
 
   const styles = {
     banner: "color: var(--accent-mint); font-family: monospace;",
@@ -29,7 +29,29 @@ export function initConsoleEasterEgg(): void {
     details:
       "color: var(--text-secondary); font-size: 12px; font-family: monospace;",
     hire: "color: var(--accent-mint); font-size: 12px; font-family: monospace;",
+    hireSuccess:
+      "color: var(--accent-mint); font-size: 13px; font-family: monospace;",
+    hireOpening:
+      "color: var(--text-muted); font-size: 12px; font-family: monospace;",
   };
+
+  window.ian = {
+    hire: () => {
+      console.log("%c", "");
+      console.log("%c  ✓ ian.hire() executed successfully", styles.hireSuccess);
+      console.log("%c  > opening mail client...", styles.hireOpening);
+      console.log("%c", "");
+      const subject = encodeURIComponent("Let's talk");
+      setTimeout(() => {
+        window.location.href = `mailto:${getEmail()}?subject=${subject}`;
+      }, 1500);
+      return true;
+    },
+  };
+
+  if (window.__portfolioConsoleEggShown) return;
+
+  window.__portfolioConsoleEggShown = true;
 
   console.log("%c" + ASCII_ART, styles.banner);
   console.log("%c👋 hey, you found the source.", styles.greeting);
