@@ -33,7 +33,7 @@ import PageShell from "@components/PageShell.astro";
       <h2 class="section-heading">Key Metrics</h2>
       <div class="metrics-grid">
         <article class="metric-card">
-          <p class="metric-label">Render time before</p>
+          <p class="metric-label">Render tie before</p>
           <p class="metric-value">20+ min</p>
         </article>
         <article class="metric-card">
@@ -95,25 +95,59 @@ import PageShell from "@components/PageShell.astro";
     </section>
 
     <section class="section">
-      <h2 class="section-heading">Engineering Decisions</h2>
-      <div class="content-text">
-        <p>
-          The key architectural shift was separating user-visible readiness from long-running compliance and
-          archival tasks. Instead of treating every operation as one blocking pipeline, I introduced parallel
-          job types with explicit handoff points and shared metadata contracts between workers.
-        </p>
-        <p>
-          This let the player-ready artifact complete first while archive and copyright jobs continued safely in
-          the background. Operationally, the migration from a Windows service to Docker also improved deploy
-          consistency, worker scaling, and failure recovery in CI/CD environments.
-        </p>
+      <h2 class="section-heading">System Flow</h2>
+      <figure class="diagram-frame">
+        <img
+          src="/images/case-studies/render-engine-flow.svg"
+          alt="Render workflow from live stream and queue into Dockerized render engine, then split into standard critical path and deferred archive rendering"
+          width="1280"
+          height="560"
+          loading="lazy"
+          decoding="async"
+          class="diagram-image"
+        />
+        <figcaption class="diagram-caption">
+          The ingest path stays unified through queueing and worker orchestration, then execution splits by urgency:
+          fast player readiness on the critical path and deferred archive/compliance processing in the background.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading">Key Decisions</h2>
+      <div class="decision-list">
+        <article class="decision-item">
+          <h3 class="decision-title">Split on urgency, not process type</h3>
+          <p class="decision-body">
+            Archive compression and copyright detection are valuable, but they do not share the same deadline as
+            player readiness. Reframing work by urgency removed non-critical tasks from the blocking path and made
+            the "ready to watch" milestone both faster and more predictable.
+          </p>
+        </article>
+        <article class="decision-item">
+          <h3 class="decision-title">Treat job types as an extension point</h3>
+          <p class="decision-body">
+            I introduced an explicit job model so new render variants could be added without changing core orchestration.
+            That abstraction later supported ISO and audio-only outputs while preserving the existing pipeline contracts.
+          </p>
+        </article>
+        <article class="decision-item">
+          <h3 class="decision-title">Docker over Windows service runtime</h3>
+          <p class="decision-body">
+            Moving FFmpeg and codec dependencies into the container image aligned dev, staging, and production behavior.
+            Operations shifted from VM-level provisioning to container-level scaling, with cleaner rollback and better
+            incident recovery characteristics.
+          </p>
+        </article>
       </div>
       <div class="chip-group mt-4">
-        <span class="chip">C#</span>
+        <span class="chip">C# / .NET</span>
         <span class="chip">FFmpeg</span>
-        <span class="chip">Distributed jobs</span>
         <span class="chip">Docker</span>
-        <span class="chip">Pipeline design</span>
+        <span class="chip">Azure Blob Storage</span>
+        <span class="chip">HLS</span>
+        <span class="chip">NVENC</span>
+        <span class="chip">Worker Service</span>
       </div>
     </section>
   </PageShell>
@@ -131,7 +165,7 @@ import PageShell from "@components/PageShell.astro";
   }
 
   .metric-card {
-    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));
+    /*background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 92%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));*/
     border: 1px solid var(--color-border);
     border-radius: 0.875rem;
     padding: 1.5rem;
@@ -274,6 +308,56 @@ import PageShell from "@components/PageShell.astro";
     margin-bottom: 0.5rem;
   }
 
+  .diagram-frame {
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    /*background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 95%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent));*/
+    overflow: hidden;
+  }
+
+  .diagram-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 16px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .diagram-caption {
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: 1rem 1.25rem;
+  }
+
+  .decision-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .decision-item {
+    border-left: 3px solid color-mix(in srgb, var(--accent-mint) 60%, var(--accent-peach) 40%);
+    padding-left: 1rem;
+  }
+
+  .decision-title {
+    color: var(--color-text-primary);
+    font-size: clamp(1.4rem, 1.7vw, 2rem);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .decision-body {
+    color: var(--color-text-secondary);
+    font-family: var(--font-content);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+
   @media (max-width: 980px) {
     .metrics-grid,
     .compare-grid {
@@ -291,6 +375,18 @@ import PageShell from "@components/PageShell.astro";
 
     .step-list li {
       font-size: var(--text-2xl);
+    }
+
+    .diagram-caption {
+      font-size: 0.9375rem;
+    }
+
+    .decision-title {
+      font-size: var(--text-3xl);
+    }
+
+    .decision-body {
+      font-size: 1rem;
     }
 
   }
