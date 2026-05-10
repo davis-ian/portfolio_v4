@@ -527,6 +527,12 @@ a.crumb.active {
   outline: none;
 }
 
+@media (max-width: 48rem) {
+  .command-input {
+    font-size: 1rem;
+  }
+}
+
 .command-input::placeholder {
   color: var(--color-text-muted);
 }
