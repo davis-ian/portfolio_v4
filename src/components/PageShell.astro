@@ -42,4 +42,11 @@ const {
   </main>
   <StatusBar home={home} fileName={statusFile} />
 </div>
+{home && (
+  <div class="recruiter-actions" aria-label="Recruiter quick actions">
+    <button class="recruiter-action" id="quick-resume-btn" type="button">View Resume</button>
+    <a class="recruiter-action" href="/case-studies/render-engine">Top Case Study</a>
+    <a class="recruiter-action" id="quick-email-link" href="#contact">Email</a>
+  </div>
+)}
 <CommandPalette />

@@ -51,16 +51,27 @@ export function downloadResume(): void {
 
 export function initEmail(): void {
   const emailLink = document.getElementById("email-link") as HTMLAnchorElement | null;
-  if (!emailLink) return;
+  const quickEmailLink = document.getElementById("quick-email-link") as HTMLAnchorElement | null;
+  if (!emailLink && !quickEmailLink) return;
   const email = getEmail();
-  emailLink.href = `mailto:${email}`;
-  emailLink.textContent = email;
-  emailLink.setAttribute("aria-label", `Send email to ${email}`);
+  if (emailLink) {
+    emailLink.href = `mailto:${email}`;
+    emailLink.textContent = email;
+    emailLink.setAttribute("aria-label", `Send email to ${email}`);
+  }
+  if (quickEmailLink) {
+    quickEmailLink.href = `mailto:${email}`;
+    quickEmailLink.setAttribute("aria-label", `Send email to ${email}`);
+  }
 }
 
 export function initResumeButton(): void {
-  const btn = document.getElementById("resume-btn");
-  if (btn) btn.addEventListener("click", downloadResume);
+  const buttons = [
+    document.getElementById("resume-btn"),
+    document.getElementById("hero-resume-btn"),
+    document.getElementById("quick-resume-btn"),
+  ];
+  buttons.forEach((button) => button?.addEventListener("click", downloadResume));
 }
 
 export function initDataActions(): void {
