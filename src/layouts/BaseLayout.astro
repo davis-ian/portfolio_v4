@@ -49,6 +49,7 @@ const shouldLoadUmami = Boolean(umamiWebsiteId);
     {
       shouldLoadUmami && (
         <script
+          is:inline
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id={umamiWebsiteId}
