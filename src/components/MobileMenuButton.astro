@@ -1,4 +1,10 @@
-<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+<button
+  class="mobile-menu-btn"
+  id="mobile-menu-btn"
+  aria-label="Open menu"
+  aria-controls="sidebar"
+  aria-expanded="false"
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -14,4 +20,6 @@
     <line x1="3" y1="6" x2="21" y2="6"></line>
     <line x1="3" y1="18" x2="21" y2="18"></line>
   </svg>
+  <span class="mobile-menu-label">Menu</span>
+  <span class="mobile-menu-active" id="mobile-menu-active" aria-hidden="true">README.md</span>
 </button>

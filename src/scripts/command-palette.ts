@@ -87,24 +87,32 @@ export class CommandPalette {
   private overlay: HTMLElement | null;
   private input: HTMLInputElement | null;
   private list: HTMLElement | null;
+  private closeButton: HTMLButtonElement | null;
   private selectedIndex: number;
   private filteredCommands: Command[];
   isOpen: boolean;
   private commands: Command[];
+  private previousFocus: HTMLElement | null;
 
   constructor(commands: Command[]) {
     this.overlay = document.getElementById("command-palette");
     this.input = document.getElementById("command-input") as HTMLInputElement | null;
     this.list = document.getElementById("command-list");
+    this.closeButton = document.getElementById("command-palette-close") as HTMLButtonElement | null;
     this.selectedIndex = -1;
     this.filteredCommands = [];
     this.isOpen = false;
     this.commands = commands;
+    this.previousFocus = null;
     if (this.overlay && this.input && this.list) this.init();
   }
 
   private init(): void {
     this.input?.addEventListener("input", () => this.filter(this.input?.value ?? ""));
+    this.closeButton?.addEventListener("click", () => this.close());
+    document.querySelectorAll<HTMLElement>("#command-palette-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => this.toggle());
+    });
     this.overlay?.addEventListener("click", (e) => {
       if (e.target === this.overlay) this.close();
       const item = (e.target as HTMLElement).closest(".command-item") as HTMLButtonElement | null;
@@ -114,6 +122,10 @@ export class CommandPalette {
     });
     this.overlay?.addEventListener("keydown", (e) => {
       if (!this.isOpen) return;
+      if (e.key === "Tab") {
+        this.handleFocusTrap(e);
+        return;
+      }
       if (e.key === "ArrowDown") {
         e.preventDefault();
         this.selectedIndex = Math.min(this.selectedIndex + 1, this.filteredCommands.length - 1);
@@ -134,8 +146,12 @@ export class CommandPalette {
 
   toggle(): void { this.isOpen ? this.close() : this.open(); }
   open(): void {
+    this.previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     this.isOpen = true;
     this.overlay?.classList.add("active");
+    this.overlay?.setAttribute("aria-hidden", "false");
+    this.overlay?.setAttribute("data-open", "true");
+    document.body.classList.add("dialog-open");
     if (this.input) {
       this.input.value = "";
       this.input.focus();
@@ -148,8 +164,34 @@ export class CommandPalette {
   close(): void {
     this.isOpen = false;
     this.overlay?.classList.remove("active");
+    this.overlay?.setAttribute("aria-hidden", "true");
+    this.overlay?.setAttribute("data-open", "false");
+    document.body.classList.remove("dialog-open");
     this.input?.blur();
+    this.previousFocus?.focus();
     this.updateStatusMode("NORMAL");
+  }
+
+  private handleFocusTrap(event: KeyboardEvent): void {
+    if (!this.overlay) return;
+    const focusables = this.overlay.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+    );
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+      return;
+    }
+
+    if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   private updateStatusMode(mode: "INSERT" | "NORMAL"): void {

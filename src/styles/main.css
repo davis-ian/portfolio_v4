@@ -139,10 +139,21 @@ video {
 
   .mobile-menu-btn {
     display: flex;
+    max-width: calc(100vw - 2rem);
   }
 
   .page-content {
     padding: 1rem;
+  }
+
+  .mobile-menu-active,
+  .cmd-hint {
+    display: none;
+  }
+
+  .palette-trigger {
+    min-height: 36px;
+    padding: 0.375rem 0.625rem;
   }
 }
 
@@ -156,16 +167,40 @@ video {
   background-color: var(--bg-secondary);
   border: 1px solid var(--color-border);
   color: var(--color-text-primary);
-  padding: 0.5rem;
+  padding: 0.5rem 0.625rem;
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: var(--text-lg);
+  font-size: var(--text-sm);
+  line-height: 1;
+  min-height: 44px;
+  min-width: 44px;
+  gap: 0.5rem;
+  align-items: center;
   transition: all var(--transition-fast);
 }
 
 .mobile-menu-btn:hover {
   border-color: var(--accent-peach);
   color: var(--accent-peach);
+}
+
+.mobile-menu-btn:active,
+.mobile-menu-btn[aria-expanded="true"] {
+  border-color: var(--accent-peach);
+  color: var(--accent-peach);
+  background-color: var(--accent-peach-dim);
+}
+
+.mobile-menu-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  font-size: var(--text-xs);
+}
+
+.mobile-menu-active {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
 }
 
 /* ---------- Sidebar – File Tree ---------- */
@@ -292,6 +327,28 @@ video {
   color: var(--color-text-secondary);
 }
 
+.palette-trigger {
+  margin-left: auto;
+  min-height: 32px;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--bg-tertiary);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.palette-trigger:hover,
+.palette-trigger:active {
+  color: var(--accent-peach);
+  border-color: var(--accent-peach);
+  background-color: var(--accent-peach-dim);
+}
+
 .crumb {
   display: flex;
   align-items: center;
@@ -404,6 +461,47 @@ a.crumb.active {
   overflow: hidden;
 }
 
+.command-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.command-title {
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.command-close {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  line-height: 1;
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.command-close:hover,
+.command-close:active {
+  color: var(--accent-peach);
+  border-color: var(--accent-peach);
+  background-color: var(--accent-peach-dim);
+}
+
+.command-description {
+  padding: 0.625rem 1rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
 .command-input-wrapper {
   display: flex;
   align-items: center;
@@ -462,6 +560,11 @@ a.crumb.active {
 
 .command-item.selected {
   background-color: var(--accent-mint-dim);
+}
+
+.command-item:active {
+  background-color: var(--accent-mint-dim);
+  color: var(--color-text-primary);
 }
 
 .command-key {
@@ -934,6 +1037,14 @@ a.crumb.active {
     order: 6;
   }
 
+  .section-resume {
+    order: 7;
+  }
+
+  .cta-section {
+    order: 8;
+  }
+
   .hero {
     padding: 2.25rem 0 2rem;
   }
@@ -1056,6 +1167,50 @@ a.crumb.active {
 :focus-visible {
   outline: 2px solid var(--accent-mint);
   outline-offset: 2px;
+}
+
+body.menu-open,
+body.dialog-open {
+  overflow: hidden;
+}
+
+.keyboard-help-dialog {
+  max-width: 500px;
+}
+
+.keyboard-help-content {
+  padding: 1rem;
+  font-family: var(--font-mono);
+}
+
+.keyboard-help-group {
+  margin-bottom: 1rem;
+}
+
+.keyboard-help-label {
+  font-size: var(--text-xs);
+  color: var(--accent-peach);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.keyboard-help-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.5rem;
+  line-height: 1.8;
+}
+
+.keyboard-help-key {
+  color: var(--color-text-muted);
+}
+
+.keyboard-help-footer {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
 }
 
 /* ---------- Reduced Motion ---------- */

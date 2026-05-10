@@ -30,6 +30,16 @@ const { crumbs, showHint = false } = Astro.props;
       <span class="hint-key">⌘</span>K or <span class="hint-key">:</span> for commands
     </span>
   )}
+  <button
+    type="button"
+    class="palette-trigger"
+    id="command-palette-trigger"
+    aria-label="Open command palette"
+    aria-controls="command-palette"
+    aria-haspopup="dialog"
+  >
+    Command
+  </button>
 </nav>
 
 <style>

@@ -5,18 +5,69 @@ import { initFolderToggles, initMobileMenu } from "./mobile";
 import { initTheme } from "./themes";
 
 let commandPalette: CommandPalette | null = null;
+let previousHelpFocus: HTMLElement | null = null;
+
+function trapDialogFocus(event: KeyboardEvent, container: HTMLElement): void {
+  if (event.key !== "Tab") return;
+  const focusable = container.querySelectorAll<HTMLElement>(
+    'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+  );
+  if (focusable.length === 0) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const active = document.activeElement;
+
+  if (event.shiftKey && active === first) {
+    event.preventDefault();
+    last.focus();
+    return;
+  }
+
+  if (!event.shiftKey && active === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function closeKeyboardHelp(): void {
+  const help = document.getElementById("keyboard-help");
+  if (!help) return;
+  help.remove();
+  document.body.classList.remove("dialog-open");
+  previousHelpFocus?.focus();
+}
 
 function showKeyboardHelp(): void {
   const existing = document.getElementById("keyboard-help");
   if (existing) existing.remove();
+  previousHelpFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   const overlay = document.createElement("div");
   overlay.className = "command-palette-overlay";
   overlay.id = "keyboard-help";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-labelledby", "keyboard-help-title");
+  overlay.setAttribute("aria-describedby", "keyboard-help-body");
+  overlay.setAttribute("aria-hidden", "false");
   overlay.style.display = "flex";
-  overlay.innerHTML = '<div class="command-palette" style="max-width:500px;"><div style="padding:1rem;border-bottom:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">-- KEYBOARD SHORTCUTS --</span><button id="close-help" style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:1.25rem;padding:0.25rem;">x</button></div><div style="padding:1rem;font-family:var(--font-mono);"><div style="margin-bottom:1rem;"><div style="font-size:0.75rem;color:var(--accent-peach);text-transform:uppercase;margin-bottom:0.5rem;">:: Navigation</div><div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;line-height:1.8;"><span style="color:var(--text-muted);">1-6</span><span>Jump to section</span><span style="color:var(--text-muted);">^K</span><span>Command palette (:)</span><span style="color:var(--text-muted);">?</span><span>Show help</span></div></div><div style="margin-bottom:1rem;"><div style="font-size:0.75rem;color:var(--accent-peach);text-transform:uppercase;margin-bottom:0.5rem;">:: Actions</div><div style="display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;line-height:1.8;"><span style="color:var(--text-muted);">R</span><span>Download resume</span><span style="color:var(--text-muted);">Esc</span><span>Close/Quit</span></div></div><div style="font-size:0.75rem;color:var(--text-muted);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border);">:help for more info</div></div></div>';
+  overlay.innerHTML = '<div class="command-palette keyboard-help-dialog" tabindex="-1"><div class="command-header"><h2 id="keyboard-help-title" class="command-title">Keyboard Shortcuts</h2><button type="button" class="command-close" id="close-help" aria-label="Close keyboard shortcuts">x</button></div><div class="keyboard-help-content" id="keyboard-help-body"><div class="keyboard-help-group"><div class="keyboard-help-label">Navigation</div><div class="keyboard-help-grid"><span class="keyboard-help-key">1-6</span><span>Jump to section</span><span class="keyboard-help-key">^K</span><span>Command palette (:)</span><span class="keyboard-help-key">?</span><span>Show help</span></div></div><div class="keyboard-help-group"><div class="keyboard-help-label">Actions</div><div class="keyboard-help-grid"><span class="keyboard-help-key">R</span><span>Download resume</span><span class="keyboard-help-key">Esc</span><span>Close/Quit</span></div></div><div class="keyboard-help-footer">:help for more info</div></div></div>';
   document.body.appendChild(overlay);
-  document.getElementById("close-help")?.addEventListener("click", () => overlay.remove());
-  overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.remove(); });
+  document.body.classList.add("dialog-open");
+
+  const close = document.getElementById("close-help");
+  close?.addEventListener("click", () => closeKeyboardHelp());
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeKeyboardHelp();
+  });
+  overlay.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeKeyboardHelp();
+      return;
+    }
+    trapDialogFocus(e, overlay);
+  });
+  (close as HTMLElement | null)?.focus();
 }
 
 function initKeyboardShortcuts(): void {
@@ -36,7 +87,7 @@ function initKeyboardShortcuts(): void {
       const help = document.getElementById("keyboard-help");
       if (help) {
         e.preventDefault();
-        help.remove();
+        closeKeyboardHelp();
         return;
       }
       if (commandPalette?.isOpen) {
