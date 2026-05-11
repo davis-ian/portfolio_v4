@@ -73,7 +73,10 @@ export function initConsoleEasterEgg(): void {
       console.log("%c  ian.hire()    -- the right move", styles.helpLine);
       console.log("%c  ian.resume()  -- open resume", styles.helpLine);
       console.log("%c  ian.stack()   -- print stack", styles.helpLine);
-      console.log("%c  ian.terminal() -- open integrated terminal", styles.helpLine);
+      console.log(
+        "%c  ian.terminal() -- open integrated terminal",
+        styles.helpLine,
+      );
       return "good luck out there";
     },
   };
@@ -84,14 +87,16 @@ export function initConsoleEasterEgg(): void {
 
   console.log("%c" + ASCII_ART, styles.banner);
   console.log("%c👋 hey, you found the source.", styles.greeting);
-  console.log("%c   i see you know where to look.", styles.nod);
   console.log("%c", "");
   console.log(`%c   stack:   ${stackValues.join(" · ")}`, styles.details);
   console.log("%c   github:  github.com/davis-ian", styles.details);
   console.log(`%c   email:   ${getEmail()}`, styles.details);
   console.log("%c", "");
   console.log("%c   > ian.hire()  // returns: true", styles.hire);
-  console.log("%c   > ian.terminal()  // open integrated terminal", styles.hire);
+  console.log(
+    "%c   > ian.terminal()  // open integrated terminal",
+    styles.hire,
+  );
 }
 
 export {};
